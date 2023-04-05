@@ -7,36 +7,39 @@ namespace Maui1
     { 
 
         public string Numero { get; set; }
-        public string Nom { get; set; }
-        public string Famille { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
         public string Type { get; set; }
-        public string Adresse { get; set; }
-        int CodePostal {get; set;}
-        public string Coord_x { get; set; }
-        public string Coord_y { get; set; }
-        public bool accessibilite { get; set; }
-        public bool restauration { get; set; }
-
-        public bool public_access { get; set; }
-
+        public string Adress { get; set; }
+        int PostalCode {get; set;}
+        public float Coord_x { get; set; }
+        public float Coord_y { get; set; }
+        public bool Accessibilty { get; set; }
+        public bool Restauration { get; set; }
+        public bool Public_access { get; set; }
 
 
-        public Spot(string coord_x, string coord_y, string adresse,string nom)
+        public Spot(string numero,string nom,string family, string type, string adress, int postalcode,float coord_x, float coord_y,bool accessibilty,bool publicAccess)
         {
-            Coord_x=coord_x;
+            Numero = numero;
+            Name = nom;
+            Family = family;
+            Type = type;
+            Adress = adress;
+            PostalCode = postalcode;
+            Coord_x =coord_x;
             Coord_y=coord_y;
-            Adresse=adresse;
-            Nom = nom;
+            Accessibilty = accessibilty;
+            Public_access = publicAccess;
         }
 
-        public Spot()
-        { }
 
          public override string ToString()
         {
-            return "Spot : " + Nom + " Adresse " + CodePostal;
+            return "Spot : " + Name + " Adresse " + PostalCode;
         }
 
 
+        
     }
 }
