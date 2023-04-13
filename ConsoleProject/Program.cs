@@ -2,8 +2,6 @@
 
 using Maui1;
 
-Console.WriteLine("Hello, World!");
-
 /*
 //Spot a = new Spot("a","b","adresse","nom");
 
@@ -16,5 +14,9 @@ Console.WriteLine(empty);
 */
 
 Console.WriteLine("Le C# C'est excellent !!");
+
+Search r = new Search("Paris", "Basket");
+
+r.GetJson(r.Town, r.Activity);
 
 
