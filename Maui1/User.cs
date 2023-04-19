@@ -8,6 +8,8 @@ namespace Maui1
 {
     public class User
     {
+        
+        public User(string addr,string mail,string _passwd) { }
 
         string Mail { get; set; }
         

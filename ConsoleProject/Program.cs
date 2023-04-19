@@ -2,21 +2,8 @@
 
 using Maui1;
 
-/*
-//Spot a = new Spot("a","b","adresse","nom");
+Console.WriteLine("Welcome to SportSpots Console APP");
 
-Spot empty = new Spot();
+Connection conn = new Connection();
 
-Console.WriteLine(a);
-
-Console.WriteLine(empty);
-
-*/
-
-Console.WriteLine("Le C# C'est excellent !!");
-
-Search r = new Search("Paris", "Basket");
-
-r.GetJson(r.Town, r.Activity);
-
-
+//conn.adduser();
