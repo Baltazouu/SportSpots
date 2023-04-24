@@ -20,7 +20,7 @@ namespace Maui1
         
         private string _password;
 
-        public int Id { get; set; }
+        public int Id { get; set; } 
 
         public string Password
         {
@@ -101,6 +101,8 @@ namespace Maui1
             }
 
             adduser();
+            Console.WriteLine("[Inscription]\nSuccess.");
+            User u = new User(Id, mail, Password);
 
         }
 
@@ -116,6 +118,7 @@ namespace Maui1
                 cmd.ExecuteNonQuery();
                 id = Convert.ToInt32(cmd.ExecuteScalar());
                 id++;
+                Id = id;
 
                 var cmd2 = dataSource.CreateCommand($"INSERT INTO utilisateur VALUES ({id},'{mail}','{Password}')");
                 cmd2.ExecuteNonQuery();
@@ -142,9 +145,7 @@ namespace Maui1
             }
             Console.WriteLine("[connexion]\nSuccess.");
                      
-            User u = new User(mail,);
-
-
+            User u = new User(Id,mail,Password);
         }
 
 
@@ -205,8 +206,6 @@ namespace Maui1
             }
         }
         
-
-
         static string ReadPasswd()
         {
             string passwd = "";
