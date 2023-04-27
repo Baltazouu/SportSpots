@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Npgsql;
+using Newtonsoft.Json.Linq;
 
 namespace Model
 {
@@ -34,7 +34,7 @@ namespace Model
             ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&commune:{town}&famille:{s.Name}";
         }
 
-        public async Task<string> FindSpots()
+        /*public async Task<string> FindSpots()
         {   
             //Console.WriteLine(ApiLink);
 
@@ -43,33 +43,45 @@ namespace Model
             {
 
 
-                //string s = await _httpclient.GetStringAsync(ApiLink);
+                string s = await _httpclient.GetStringAsync(ApiLink);
                 //HttpResponseMessage response = await _httpclient.GetAsync(ApiLink);
-                //Console.WriteLine(s);
+                //  Console.WriteLine(s);
 
-                JsonModel j = new JsonModel();
+                JObject apires = JObject.Parse(s);
 
-                string json = j.getstring();
+                //Console.WriteLine(apires.ToString());
+                //Console.WriteLine(apires["records"]);
 
-                DataSet d = JsonConvert.DeserializeObject<DataSet>(json);
+               var records = apires["records"];
+
+                //Console.WriteLine(records);
+
+                //Console.WriteLine(records["fields"].Children());
+
+       
+
+                //Console.WriteLine("api res : ", apires["records"]["coordonnees"].Children().ToString());
 
 
-                DataTable dt = d.Tables["records"];
 
-                foreach(DataRow row in dt.Rows) 
-                {
-                    Console.WriteLine(row["famille"]);
-                }
-
-
-                return json;
-
+                return s;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
                 return null;
-            }            
-        }
+            }*/
+        
+           public List<Spot> findSpot()
+           {
+                SpotsStub s = new SpotsStub();
+                List<Spot> res = s.LoadSpots();
+
+            return res;
+
+                
+           }
+
+        
     }
 }
