@@ -5,12 +5,14 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsSpots", "SportsSpots.csproj", "{563BBD68-D194-404D-A75C-25E2CBCE24D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleProject", "..\ConsoleProject\ConsoleProject.csproj", "{85805753-504D-4326-A5F4-2BD7F9C673EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleProject", "..\ConsoleProject\ConsoleProject.csproj", "{85805753-504D-4326-A5F4-2BD7F9C673EF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9} = {D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maui1", "..\Maui1\Maui1.csproj", "{D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maui1", "..\Maui1\Maui1.csproj", "{D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\Model\Model.csproj", "{913E5E40-2E58-4BFB-832C-DDF2948A9774}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9367F14-97CA-4AF5-8092-2A0EF4FF9DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
