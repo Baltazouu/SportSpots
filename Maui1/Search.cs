@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Net;
-
+using Model;
 namespace Maui1;
 
 public class Search

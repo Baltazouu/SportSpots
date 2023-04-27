@@ -16,6 +16,10 @@ namespace Model
         public DbConn()
         { }
 
+
+        
+
+
         public bool CheckUserExist(string addr)
         {
             string sqlcommand = $"SELECT id FROM USER WHERE addr =\"{addr}\"";
@@ -54,4 +58,4 @@ namespace Model
     }
 
     
-}
+
