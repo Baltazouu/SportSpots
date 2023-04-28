@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 
-namespace Maui1
+namespace Maui1.Connexion
 {
     internal class Inscription
     {
         string db = "Host=localhost;Port=5432;Database=testdb;Username=bapt;Password=14010\";";
-        string addr {get; set;}
+        string addr { get; set; }
         string passwd { get; set; }
 
-        public Inscription() 
-        
+        public Inscription()
+
         {
             Console.WriteLine("Enter an email address : ");
             addr = Console.ReadLine();
@@ -37,7 +37,7 @@ namespace Maui1
             string sqlcommd = $"SELECT id FROM USER WHERE addr=\"{addr}\"";
 
             //conn.CreateCommand(sqlcommd);
-            
+
 
             conn.Close();
         }
@@ -46,10 +46,10 @@ namespace Maui1
 
         public bool checkexist()
         {
-            
+
             return true;
             // Checking that the mail doesn't exist
-            
+
         }
 
         static string ReadPasswd()
@@ -79,7 +79,7 @@ namespace Maui1
                     Console.Write(' ');
                     Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                 }
-            }   
+            }
             while (keyinfo.Key != ConsoleKey.Enter);
 
             Console.WriteLine();

@@ -17,6 +17,29 @@ namespace Model
         { }
 
 
+        public List<Sport> LoadFavSportFromUser(string mail, string password)
+        {
+            List<Sport> l = new List<Sport>();
+            // sql request
+            return l;
+        }
+
+
+        public List<Spot> LoadFavSpotFromUser(string mail, string password)
+        {
+            List<Spot> spots = new List<Spot>();
+
+            // sql request
+            return spots;
+        }
+
+
+        public bool CheckRightPasswd(string passwd)
+        {
+            // connect to database....
+            return true;
+
+        }
         
 
 
@@ -48,8 +71,7 @@ namespace Model
             }
 
             }
-            
-
+           
         }
 
 

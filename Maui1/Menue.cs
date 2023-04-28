@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Maui1.Connexion;
+
+using Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Maui1
 {
-    internal class Menue
+    public class Menue
     {
         public Menue() 
         {
-            Console.Write("""
+            /*Console.Write("""
 
             [SportSpotMenue] : 
 
@@ -36,7 +40,47 @@ namespace Maui1
             if ( c == "2") 
             {
                 Inscription i = new Inscription();
-            }           
+            }           */
+        }
+
+
+        public Sport MenueRech()
+        {
+            Console.WriteLine("[Sports]");
+            
+            SportStub s = new SportStub();
+
+            List<Sport> SportAvaible = s.Loadsport();
+
+            int i=1;
+
+            foreach(Sport sport in SportAvaible)
+            {
+                Console.WriteLine($"{i}. {sport.Name}");
+                i++;    
+            }
+            
+            Console.WriteLine("Enter The Number Of Your Choice : ");
+                
+            string choice = Console.ReadLine();
+            //Console.WriteLine(choice.GetType().Name);
+
+            bool valid = int.TryParse(choice, out i);
+            while (!valid || i < 0 || i > SportAvaible.Count)
+                {
+                    Console.WriteLine("Error Choose between our sports");
+                    Console.Write("Enter The Number Of Your Choice : ");
+                    
+                    choice = Console.ReadLine();
+                    valid = int.TryParse(choice, out i);
+            }
+            int v = Convert.ToInt32(choice);
+              
+            //Console.WriteLine("Convert en int : ", v);
+
+            return SportAvaible[Convert.ToInt32(choice)-1];   
+
+             //return SportAvaible[0];
         }
 
     }

@@ -36,15 +36,17 @@ namespace Model
         {
             List<Spot> result = new List<Spot>();
 
-            int i = 0;
-
             foreach (Sport sport in SportsToFind)
             {
                 Request r = new Request(Town, sport);
                 List<Spot> spots = await r.FindSpot();
-                i++;
-            }
+                foreach (Spot spot in spots)
+                {
+                    result.Add(spot);
+                }
 
+                
+            }
             return result;
         }
 

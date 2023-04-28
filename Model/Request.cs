@@ -36,7 +36,7 @@ namespace Model
         {
             Sport = s;
             Town = town;
-            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26Famille%3A{s.Name}";
+            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26typequipement%3A{s.TypeEquipement}";
 
         }
         
@@ -59,8 +59,8 @@ namespace Model
 
                 JObject apires = JObject.Parse(s);
 
-
-                int nbRecords = apires["parameters"]["rows"].Value<int>();
+                // apires["parameters"]["nhits"].Value<int>();
+                int nbRecords = apires["nhits"].Value<int>();
 
                 //Console.WriteLine("Nombre de rows :{0}", nbRecords);
 
@@ -96,19 +96,19 @@ namespace Model
                     }
                     else ac_restauration = true;
 
-                    /* Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}",apires["records"][i]["fields"]["codeinsee"].Value<int>(), 
-                                                                                      apires["records"][i]["fields"]["nominstallation"],
-                                                                                      apires["records"][i]["fields"]["famille"],
-                                                                                      apires["records"][i]["fields"]["adresse"],
-                                                                                      apires["records"][i]["fields"]["codepostal"].Value<int>(),
-                                                                                      apires["records"][i]["fields"]["nom_dept"],
-                                                                                      apires["records"][i]["fields"]["coordonnees"][0],
-                                                                                      apires["records"][i]["fields"]["coordonnees"][1],
-                                                                                      ac_handic,
-                                                                                      ac_restauration, 
-                                                                                      ac_free);*/
+                    int codeInsee = apires["records"][i]["fields"]["codeinsee"].Value<int>();
+
+                    bool code_Present = false;
+                    foreach(Spot sp in res)
+                    {
+                        if(sp.Numero == codeInsee)
+                        { code_Present = true; break; }
+                    }
+                    if (code_Present)
+                        continue;
 
                     res.Insert(i, new Spot(apires["records"][i]["fields"]["codeinsee"].Value<int>(),
+                                           apires["records"][i]["fields"]["nom_commune"].Value<string>(),
                                            apires["records"][i]["fields"]["nominstallation"].Value<string>(),
                                            apires["records"][i]["fields"]["famille"].Value<string>(),
                                            apires["records"][i]["fields"]["adresse"].Value<string>(),

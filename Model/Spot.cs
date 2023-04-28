@@ -6,13 +6,12 @@ namespace Model
     public class Spot
     {
 
+        public string NomCommune { get; init; }
         public int Numero { get; init; }
         public string Name { get; init; }
         public string Family { get; init; }
         public string Adress { get; init; }
-
         public string Dept {  get; init; }
-
         public int PostalCode { get; init; }
         public double Coord_x { get; init; }
         public double Coord_y { get; init; }
@@ -21,11 +20,12 @@ namespace Model
         public bool Public_access { get; init; }
 
 
-        public Spot(int numero, string nom, string family,
+        public Spot(int numero,string nomcomm, string nom, string family,
                     string adress, int postalcode,string dept,
                     double coord_x, double coord_y, bool asccessHandicap, 
                     bool restauration, bool publicAccess)
         {
+            NomCommune = nomcomm;
             Numero = numero;
             Name = nom;
             Family = family;
@@ -41,11 +41,9 @@ namespace Model
 
 
         public override string ToString()
-        {
-            return "Spot : " + Name + " Adresse " + PostalCode;
+        { 
+            return $"Spot : {Name}  {Family} {NomCommune} {Adress} {Dept} {PostalCode}";
         }
-
-
 
     }
 }

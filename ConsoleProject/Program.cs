@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Model;
+using Maui1;
 /*
 Console.WriteLine("Welcome to SportSpots Console APP");
 
@@ -8,6 +9,31 @@ Connection conn = new Connection();
 */
 //conn.adduser();
 
+while(true)
+{
+    Console.Write("Enter The City Of Your Search : ");
+    string Town = Console.ReadLine();
+
+    List<Sport> SportList = new List<Sport>();
+
+    Console.WriteLine("Searchs Sports : ");
+    Menue m = new Menue();
+    Sport s = m.MenueRech();
+
+    SportList.Insert(0, s);
+
+    Search recherche  = new Search(Town,SportList);
+
+    var res = await recherche.ExecuteSearch();
+
+    foreach (Spot sp in res)
+    {
+        Console.WriteLine(sp);
+    }
+}
+
+
+/*
 while(true)
 {
     Console.WriteLine("[Search a Spot]");
@@ -33,4 +59,4 @@ while(true)
     {
         Console.WriteLine(sp);
     }
-}
+}*/

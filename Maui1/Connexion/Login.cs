@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 
-namespace Maui1
+namespace Maui1.Connexion
 {
     public class Login
     {
@@ -31,28 +31,29 @@ namespace Maui1
         string _password;
 
         string Password
-        { 
-            get { return _password;  }
+        {
+            get { return _password; }
 
-            set {
-                    if(value == null || value.Length < 6 || value == "")
-                    {
+            set
+            {
+                if (value == null || value.Length < 6 || value == "")
+                {
                     throw new ArgumentException("Password Exception Not null, at least 6 char");
-                    }
-                    else
-                    {
-                        _password = value;
-                    }
                 }
+                else
+                {
+                    _password = value;
+                }
+            }
         }
 
         public Login()
         {
             Console.WriteLine("[Login]");
             Console.Write("Enter  Your Email Address : ");
-            string m  = Console.ReadLine();
+            string m = Console.ReadLine();
 
-            while(m == null || m == "")
+            while (m == null || m == "")
             {
                 Console.WriteLine("Please do not enter empty email adress !!");
                 Console.Write("Enter  Your Email Address : ");
@@ -65,7 +66,7 @@ namespace Maui1
             Console.Write("Enter Your Password : ");
             ReadPasswd r = new ReadPasswd();
             string pass = r.ReadPassword();
-            while( pass.Length < 6 || pass == "")
+            while (pass.Length < 6 || pass == "")
             {
                 Console.WriteLine("Please Enter A password of at least 6 chars !!");
                 Console.Write("Enter Your Password : ");
