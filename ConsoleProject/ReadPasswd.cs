@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maui1
 {
-    internal class ReadPasswd
+    public class ReadPasswd
     {
 
         public ReadPasswd()

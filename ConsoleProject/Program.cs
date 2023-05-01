@@ -2,61 +2,110 @@
 
 using Model;
 using Maui1;
-/*
-Console.WriteLine("Welcome to SportSpots Console APP");
+using ConsoleProject;
 
-Connection conn = new Connection();
-*/
-//conn.adduser();
+//TestConn t = new TestConn();
 
-while(true)
+string? Choice;
+
+ReadPasswd r = new();
+
+Console.WriteLine("SportSpots App !");
+
+Console.WriteLine("1. Connexion\n2.Inscription ");
+Console.Write("Enter Your Choice : ");
+Choice = Console.ReadLine();
+while (Choice != "1" && Choice != "2")
 {
-    Console.Write("Enter The City Of Your Search : ");
-    string Town = Console.ReadLine();
+    Console.WriteLine("Please Choose between 1 or 2 !");
+    Console.WriteLine("1. Connexion\n2.Inscription");
+    Console.Write("Enter Your Choice : ");
+    Choice = Console.ReadLine();
+}
+Console.Write("Enter Your Email Adress : ");
+string? mail = Console.ReadLine();
 
-    List<Sport> SportList = new List<Sport>();
+Console.Write("Enter Your Password : ");
 
-    Console.WriteLine("Searchs Sports : ");
-    Menue m = new Menue();
-    Sport s = m.MenueRech();
+string pass = r.ReadPassword();
 
-    SportList.Insert(0, s);
+Connexion conn = new(mail, pass);
 
-    Search recherche  = new Search(Town,SportList);
 
-    var res = await recherche.ExecuteSearch();
+if (Choice == "1")
+    Connection();
 
-    foreach (Spot sp in res)
+if (Choice == "2")
+    Inscription();
+
+void Inscription()
+{
+    while (conn.CheckMailExist(mail))
     {
-        Console.WriteLine(sp);
+        Console.WriteLine("This mail is already taken !");
+        if (pass == "" || pass.Length < 6)
+        {
+            Console.WriteLine("The password need at least 6 chars !");
+        }
+        Console.Write("Enter Your Email Adress : ");
+        mail = Console.ReadLine();
+
+        Console.Write("Enter Your Password : ");
+        pass = r.ReadPassword();
+        conn = new(mail, pass);
     }
+    conn.InsertNewUser(mail, pass);
+    UserActions u = new(conn.GetUserID(mail),mail,pass);
+    u.ChooseAction();
 }
 
-
-/*
-while(true)
+void Connection()
 {
+    while (!conn.CheckMailExist(mail) || !conn.CheckRightPasswd(mail, pass))
+    {
+        Console.WriteLine("Invalid Mail Or Password !");
+        Console.Write("Enter Your Email Adress : ");
+        mail = Console.ReadLine();
+
+        Console.WriteLine("Enter Your Password : ");
+        pass = r.ReadPassword();
+        conn = new(mail, pass);
+    }
+    UserActions u = new(conn.GetUserID(mail),mail,pass);
+    u.ChooseAction();
+}
+/*
+
+void SearchASpot()
+{
+
+    SportStub stub = new();
+    List<Sport> avaible = stub.Loadsport();
+    int i = 1;
+
     Console.WriteLine("[Search a Spot]");
     Console.Write("Enter a City For Your Spot : ");
-    string city = Console.ReadLine();
+    string? city = Console.ReadLine();
+
+    foreach (Sport s in avaible)
+    {
+        Console.WriteLine($"{i} :,{s.Name}");
+    }
+
+
 
     Console.Write("Enter a Spot Your Spot : ");
-    string sport = Console.ReadLine();
+    string? sport = Console.ReadLine();
 
-    Sport s = new Sport(sport, true, true);
+    //Sport s = new Sport(sport, true, true);
 
-    Request r = new Request(city, s);
+//Request r = new Request(city, s);
 
-    List<Spot> res = await r.FindSpot();
+//List<Spot> res = await r.FindSpot();
 
-    //string res_st = await res;
+//string res_st = await res;
 
-    //Console.WriteLine("res : {0}",res_st);
+//}
 
-    // Console.WriteLine("On est arrives jusque la");
+*/
 
-    foreach (Spot sp in res)
-    {
-        Console.WriteLine(sp);
-    }
-}*/

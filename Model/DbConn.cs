@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
@@ -11,67 +12,296 @@ namespace Model
     public class DbConn
     {
 
-        static string dburl = "Host=localhost;Port=5432;Database=testdb;Username=bapt;Password=14010";
+        static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
+
+        NpgsqlDataSource Datasrc = NpgsqlDataSource.Create(dburl);
 
         public DbConn()
         { }
+         
 
-
-        public List<Sport> LoadFavSportFromUser(string mail, string password)
+        List<Sport> LoadFavSportFromUser(string mail, string password)
         {
             List<Sport> l = new List<Sport>();
-            // sql request
+            
+            if(CheckMailExist(mail) && CheckRightPasswd(mail,password))
+            {
+                // sql request
+            }
             return l;
         }
 
 
-        public List<Spot> LoadFavSpotFromUser(string mail, string password)
+        public List<Spot> LoadFavSpotFromUser(string mail)
         {
             List<Spot> spots = new List<Spot>();
 
-            // sql request
+            string sqlcmd = $"SELECT * FROM FavSpots WHERE utilisateur = (SELECT id FROM Utilisateur WHERE addr = '{mail}')";
+
+            Console.WriteLine(sqlcmd);
+
+            try
+            {
+                List<Spot>fav = new();
+
+                using NpgsqlCommand cmd = Datasrc.CreateCommand(sqlcmd) ;
+
+                DataTable dt = new DataTable();
+
+                cmd.ExecuteNonQuery();
+
+                dt.Load(cmd.ExecuteReader()) ;
+                
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    bool access = false;
+                    bool restauration = false;
+                    bool publicaccess = false;
+
+                    if (dr[10].ToString() == "O")
+                    {  access = true; }
+                    if (dr[11].ToString() == "O")
+                    { restauration = true; }    
+                    if (dr[12].ToString() == "O")
+                    { publicaccess = true; }
+                    
+                    fav.Add(new(Convert.ToInt32(dr[0]),dr[4].ToString(), dr[2].ToString(), dr[3].ToString(),
+                                                dr[5].ToString(), Convert.ToInt32(dr[6]), dr[7].ToString(),Convert.ToDouble(dr[8]),Convert.ToDouble(dr[9]), access,
+                                                restauration, publicaccess));
+                }
+
+                return fav;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return spots;
         }
 
-
-        public bool CheckRightPasswd(string passwd)
+        // public for the moment only
+        public bool CheckRightPasswd(string addr,string passwd)
         {
-            // connect to database....
-            return true;
+            string sqlcmd = $"SELECT passwd FROM UTILISATEUR WHERE addr = '{addr}' and passwd = '{passwd}';";
+
+            try
+            {
+                //DataTable dt = new DataTable();
+                
+                using NpgsqlCommand cmd = Datasrc.CreateCommand(sqlcmd);
+                {
+                    cmd.ExecuteNonQuery();
+
+                   if (cmd.ExecuteScalar() == null) { return false; }
+                    
+                    string pass = cmd.ExecuteScalar().ToString();
+
+                    //Console.WriteLine("Passwoord {0}", pass);
+
+                    //Console.WriteLine(pass);
+
+                    //dt.Load(cmd.ExecuteReader());
+
+                    //if(dt.Rows.Count == 0) { return false; }
+
+                    //return (dt.Rows[0][0].ToString() == passwd);
+
+                    return (pass == passwd);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("erreur : {0}",ex.Message);
+                return false;
+            }
 
         }
-        
 
-
-        public bool CheckUserExist(string addr)
+        // public for the tests only
+        public bool CheckMailExist(string addr)
         {
-            string sqlcommand = $"SELECT id FROM USER WHERE addr =\"{addr}\"";
+            string sqlcommand = $"SELECT addr FROM utilisateur WHERE addr ='{addr}';";
 
             //NpgsqlConnection conn = new NpgsqlConnection(dburl);
 
             try
             {
-                NpgsqlDataSource datasrc = NpgsqlDataSource.Create(dburl);
+                DataTable dt = new DataTable();
 
-                using NpgsqlCommand cmd = datasrc.CreateCommand(sqlcommand);
+                using NpgsqlCommand cmd = Datasrc.CreateCommand(sqlcommand);
                 {
-                    cmd.ExecuteNonQuery();
-                    DataTable dt = new DataTable();
+                    if (cmd.ExecuteScalar() == null) { return false; }
+                    if(cmd.ExecuteScalar().ToString() == null) { return false; }
+                    string mail = cmd.ExecuteScalar().ToString();
 
-                    dt.Load(cmd.ExecuteReader());
-                    // if res = addr 
 
-                    return true;
+                    //Console.WriteLine("MAIL : {0} Mail SQL : {1}",addr,mail);
+                    return mail == addr;
                 }
             }
             catch (Exception ex)
             {
-                Console.Write("Error", ex.Message);
+                Console.Write("Error l'erreur est ic", ex.Message);
+                return false;
+            }
+            
+        }
+
+        public int GetNewUserId()
+        {
+            string sqlcmd = "SELECT MAX(id) FROM Utilisateur;";
+            try
+            {
+                using NpgsqlCommand cmd = Datasrc.CreateCommand(sqlcmd);
+                {
+                    cmd.ExecuteNonQuery();
+                    int id = Convert.ToInt32(cmd.ExecuteScalar());
+                    id++;
+                    Console.WriteLine($"New User ID: {id}");
+                    return id;
+                }
+            }
+
+            catch ( Exception ex )
+            {
+                Console.WriteLine (ex.Message);
+                return -1;
+            }
+            
+        }
+
+
+        public int GetUserID(string addr)
+        {
+            string sqlcmd = $"SELECT id FROM Utilisateur where addr = '{addr}';";
+            try { 
+                using NpgsqlCommand select = Datasrc.CreateCommand(sqlcmd);
+                {
+                    select.ExecuteNonQuery();
+                    int id = Convert.ToInt32(select.ExecuteScalar());
+                    return id;
+                }
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine (ex.Message);
+                return -1;
+            }
+        }
+
+
+
+        public bool InsertNewUser(string addr,string passwd)
+        {
+            int id = GetNewUserId();
+            try
+            {
+                using NpgsqlCommand cmd = Datasrc.CreateCommand(
+                    $"INSERT INTO Utilisateur VALUES({id},'{addr}','{passwd}')");
+                {
+                    cmd.ExecuteNonQuery();
+                    //Console.WriteLine("[InserUser] User Successfully added to database !");
+                    return true;
+                }
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine(ex.Message);
                 return false;
             }
 
+        }
+
+
+        internal bool UpdateMail(int id, string addr)
+        {
+            if (CheckMailExist(addr))
+            {
+                try
+                {
+                    using NpgsqlCommand update = Datasrc.CreateCommand(
+                        $"UPDATE utilisateur SET addr = '{addr}' WHERE id = {id};");
+
+                    update.ExecuteNonQuery();
+
+                    return true;
+
+                }
+                catch (Exception ex)
+                {   
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+
             }
-           
+            return false;
+
+        }
+
+
+        internal bool UpdatePass(int id,string addr,string passwd)
+        {
+            if (CheckMailExist(addr) && CheckRightPasswd(addr, passwd))
+            {
+                try
+                {
+                    using NpgsqlCommand update = Datasrc.CreateCommand(
+                        $"UPDATE utilisateur SET passwd = '{passwd}' WHERE id = {id};");
+
+                    update.ExecuteNonQuery ();
+
+                    return true;
+
+                }
+                catch ( Exception ex )
+                {
+                    return false;
+                }
+
+            }
+            return false;
+            
+        }
+
+
+        public bool InsertFavspot(Spot s,User u)
+        {
+            char accessibility = 'N';
+            char restauration = 'N';
+            char publicaccess = 'N';
+
+
+            if (s.AccessibiltyHandicap)
+            {
+                accessibility = 'O';
+            }
+            if (s.Public_access)
+            {
+                publicaccess = 'O';
+            }
+            if(s.Restauration)
+            {
+                restauration = 'O';
+            }
+            
+
+            string sqlcmd = $"INSERT INTO Favspots VALUES({s.Numero},{u.Id},{s.Family},{s.NomCommune},{s.Adress},{s.PostalCode},{s.Dept},{s.Coord_x},{s.Coord_y},{accessibility},{restauration},{publicaccess})";
+            try 
+            {
+                using NpgsqlCommand insertcmd = Datasrc.CreateCommand(sqlcmd);
+                {
+                    insertcmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
         }
 
 

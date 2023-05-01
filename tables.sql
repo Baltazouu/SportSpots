@@ -7,7 +7,7 @@
 /*
 psql 
 
- psql -d testdb -U bapt
+r
 
  mdp : 14010
 
@@ -35,8 +35,8 @@ CREATE TABLE Favsports(
     id_sport numeric(10) primary key,
     utilisateur numeric(5) references utilisateur,
     sport varchar(50) not null,
-    indoor boolean not null,
-    outdoor boolean not null
+    indoor char(1) not null,
+    outdoor char(1) not null
 );
 
 CREATE TABLE Favspots(
@@ -45,14 +45,18 @@ CREATE TABLE Favspots(
     utilisateur numeric(5) references utilisateur,
     nom varchar(50) not null,
     family varchar(50) not null,
-    type_ varchar(50) not null,
+    commune varchar(50) not null,
     adress varchar(50) not null,
     postalcode numeric(5) not null,
+    departement varchar(50)not null,
     coord_x numeric(10) not null,
     coord_y numeric(10) not null,
-    accessibility boolean not null,
-    restauration boolean not null,
-    publicaccess boolean not null
+    accessibility char(1) not null,
+    restauration char(1) not null,
+    publicaccess char(1) not null
+
 );
+
+
 
 
