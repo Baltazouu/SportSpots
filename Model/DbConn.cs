@@ -11,7 +11,6 @@ namespace Model
 {
     public class DbConn
     {
-
         static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
 
         NpgsqlDataSource Datasrc = NpgsqlDataSource.Create(dburl);
@@ -170,7 +169,6 @@ namespace Model
             }
             
         }
-
 
         public int GetUserID(string addr)
         {
