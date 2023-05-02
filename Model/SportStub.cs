@@ -28,7 +28,7 @@ namespace Model
             sport.Insert(6, new Sport(7,"Terrain de Basket", "Terrain de basket-ball", true, true));
             sport.Insert(7, new Sport(8,"Site de Voile", "Site d'activités aquatiques et nautiques", true, false));
             sport.Insert(8, new Sport(9,"CityStades ", "Plateau EPS/Multisports/city-stades", true, false));
-
+                
             return sport;
         }
 

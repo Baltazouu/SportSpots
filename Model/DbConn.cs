@@ -11,7 +11,8 @@ namespace Model
 {
     public class DbConn
     {
-        static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
+        //static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
+        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb";
 
         NpgsqlDataSource Datasrc = NpgsqlDataSource.Create(dburl);
 
@@ -29,6 +30,33 @@ namespace Model
             }
             return l;
         }
+
+        /// <summary>
+        /// Check that inernet is avaible
+        /// </summary>
+        /// <returns></returns>
+        public bool InternetAvaible()
+        {
+            NetworkAccess network = Connectivity.NetworkAccess;
+
+            return (network == NetworkAccess.Internet);
+        }
+
+        public bool SqlServerAvaible()
+        {
+            try 
+            {
+                Datasrc.OpenConnection();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
+
+        }
+
 
 
         public List<Spot> LoadFavSpotFromUser(string mail)
@@ -65,9 +93,17 @@ namespace Model
                     if (dr[12].ToString() == "O")
                     { publicaccess = true; }
                     
-                    fav.Add(new(Convert.ToInt32(dr[0]),dr[4].ToString(), dr[2].ToString(), dr[3].ToString(),
-                                                dr[5].ToString(), Convert.ToInt32(dr[6]), dr[7].ToString(),Convert.ToDouble(dr[8]),Convert.ToDouble(dr[9]), access,
-                                                restauration, publicaccess));
+                    fav.Add(new(Convert.ToInt32(dr[0]),dr[4].ToString(),
+                                                dr[2].ToString(),
+                                                dr[3].ToString(),
+                                                dr[5].ToString(),
+                                                Convert.ToInt32(dr[6]),
+                                                dr[7].ToString(),
+                                                Convert.ToDouble(dr[8]),
+                                                Convert.ToDouble(dr[9]),
+                                                access,
+                                                restauration,
+                                                publicaccess));
                 }
 
                 return fav;
@@ -95,16 +131,6 @@ namespace Model
                    if (cmd.ExecuteScalar() == null) { return false; }
                     
                     string pass = cmd.ExecuteScalar().ToString();
-
-                    //Console.WriteLine("Passwoord {0}", pass);
-
-                    //Console.WriteLine(pass);
-
-                    //dt.Load(cmd.ExecuteReader());
-
-                    //if(dt.Rows.Count == 0) { return false; }
-
-                    //return (dt.Rows[0][0].ToString() == passwd);
 
                     return (pass == passwd);
                 }
@@ -188,7 +214,29 @@ namespace Model
             }
         }
 
+        public bool InsertNewSport(int id,string addr,Sport s)
+        {
+            bool indoor = false;
+            bool outdoor = false;
 
+            if(s.Indoor)
+                indoor = true;
+            if(s.Outdoor)
+                outdoor = true;
+
+            string sqlcmd = $"INSERT INTO FAVSPORT VALUES({s.Numero},{id},'{indoor}','{outdoor}');";
+
+            try
+            {
+                using NpgsqlCommand cmd = Datasrc.CreateCommand(sqlcmd);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch ( Exception ex )
+            {
+                return false;
+            }
+        }
 
         public bool InsertNewUser(string addr,string passwd)
         {
@@ -261,7 +309,6 @@ namespace Model
             return false;
             
         }
-
 
         public bool InsertFavspot(Spot s,User u)
         {

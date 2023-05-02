@@ -15,6 +15,7 @@ Console.WriteLine("SportSpots App !");
 Console.WriteLine("1. Connexion\n2.Inscription ");
 Console.Write("Enter Your Choice : ");
 Choice = Console.ReadLine();
+
 while (Choice != "1" && Choice != "2")
 {
     Console.WriteLine("Please Choose between 1 or 2 !");
@@ -31,7 +32,18 @@ string pass = r.ReadPassword();
 
 Connexion conn = new(mail, pass);
 
+/*while(!conn.InternetAvaible())
+{
+    Console.WriteLine("[Network Error]\n Check Your Network Connection And Retry...");
+    Console.ReadLine();
+}
 
+while(!conn.SqlServerAvaible())
+{
+    Console.WriteLine("[SeverError]\n Sorry Our Server is actually down...");
+    Console.ReadLine();
+}
+*/
 if (Choice == "1")
     Connection();
 
@@ -55,6 +67,7 @@ void Inscription()
         conn = new(mail, pass);
     }
     conn.InsertNewUser(mail, pass);
+    Console.WriteLine("[Success Inscription !]");
     UserActions u = new(conn.GetUserID(mail),mail,pass);
     u.ChooseAction();
 }
@@ -71,6 +84,7 @@ void Connection()
         pass = r.ReadPassword();
         conn = new(mail, pass);
     }
+    Console.WriteLine("[Success Connection !]");
     UserActions u = new(conn.GetUserID(mail),mail,pass);
     u.ChooseAction();
 }
