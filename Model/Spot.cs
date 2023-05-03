@@ -41,9 +41,10 @@ namespace Model
 
 
         public override string ToString()
-        { 
+        {
             return $"Spot : {Name}  {Family} {NomCommune} {Adress} {Dept} {PostalCode}";
         }
+
 
     }
 }

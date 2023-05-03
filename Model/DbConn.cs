@@ -237,6 +237,31 @@ namespace Model
 
         }
 
+        internal bool Pass(string addr, string pass)
+        {
+            if (CheckRightPasswd(addr,pass))
+            {
+                try
+                {
+                    using NpgsqlCommand update = Datasrc.CreateCommand(
+                        $"UPDATE utilisateur SET passwd = '{pass}' WHERE addr = {addr};");
+
+                    update.ExecuteNonQuery();
+
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+
+            }
+            return false;
+
+        }
+
 
         internal bool UpdatePass(int id,string addr,string passwd)
         {

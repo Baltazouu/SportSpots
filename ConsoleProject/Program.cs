@@ -74,6 +74,9 @@ void Connection()
     UserActions u = new(conn.GetUserID(mail),mail,pass);
     u.ChooseAction();
 }
+
+
+
 /*
 
 void SearchASpot()

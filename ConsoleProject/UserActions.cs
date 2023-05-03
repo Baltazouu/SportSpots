@@ -10,18 +10,24 @@ namespace ConsoleProject
 {
     internal class UserActions : User
     {
+        List<Sport> sports = new();
 
         public UserActions(int id, string name, string password)
-            :base(id, name, password)
-        { }
+                         : base(id, name, password)
+        {
+            SportStub stub = new();
+            sports = stub.Loadsport();
+        }
 
-
+        public void SearchASport()
+        {
+            Console.WriteLine("[Search A Spot ]");
+            
+        }
 
         public void ActionsMenue()
         {
             Console.WriteLine("[UserActions]");
-
-
         }
 
         public void ChooseAction()
