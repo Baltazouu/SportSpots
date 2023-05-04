@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Npgsql;
 
 namespace Model
@@ -18,15 +12,29 @@ namespace Model
 
         public DbConn()
         { }
-         
-
+        
         List<Sport> LoadFavSportFromUser(string mail, string password)
         {
             List<Sport> l = new List<Sport>();
             
             if(CheckMailExist(mail) && CheckRightPasswd(mail,password))
             {
-                // sql request
+                string sqlcmd = $"SELECT * FROM FavSport WHERE  Utilisateur = '{mail}'";
+
+                try
+                {
+                    DataTable dt = new DataTable();
+                    NpgsqlCommand selectFavSports = Datasrc.CreateCommand(sqlcmd);
+
+                    selectFavSports.ExecuteNonQuery();
+                    dt.Load(selectFavSports.ExecuteReader());
+
+
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             return l;
         }
@@ -38,7 +46,6 @@ namespace Model
         public bool InternetAvaible()
         {
             NetworkAccess network = Connectivity.NetworkAccess;
-
             return (network == NetworkAccess.Internet);
         }
 
@@ -47,17 +54,14 @@ namespace Model
             try 
             {
                 Datasrc.OpenConnection();
+                Datasrc.Dispose(); 
                 return true;
             }
             catch (Exception ex)
             {
                 return false;
             }
-            
-
         }
-
-
 
         public List<Spot> LoadFavSpotFromUser(string mail)
         {
@@ -181,6 +185,7 @@ namespace Model
                 using NpgsqlCommand cmd = Datasrc.CreateCommand(sqlcmd);
                 {
                     cmd.ExecuteNonQuery();
+                    if(cmd.ExecuteScalar() == null) { return 1001; }
                     int id = Convert.ToInt32(cmd.ExecuteScalar());
                     id++;
                     Console.WriteLine($"New User ID: {id}");
@@ -191,7 +196,7 @@ namespace Model
             catch ( Exception ex )
             {
                 Console.WriteLine (ex.Message);
-                return -1;
+                return 1001;
             }
             
         }
@@ -203,13 +208,15 @@ namespace Model
                 using NpgsqlCommand select = Datasrc.CreateCommand(sqlcmd);
                 {
                     select.ExecuteNonQuery();
+                    if( (select.ExecuteScalar()) == null) { return -1; }
                     int id = Convert.ToInt32(select.ExecuteScalar());
+                    
                     return id;
                 }
             }
             catch ( Exception ex )
             {
-                Console.WriteLine (ex.Message);
+                //Console.WriteLine (ex.Message);
                 return -1;
             }
         }

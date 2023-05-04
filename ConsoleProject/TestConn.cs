@@ -7,7 +7,9 @@ namespace ConsoleProject
 
         public TestConn()
         {
-          Console.WriteLine("[TestConn]");
+
+        // uncomment for tests
+          /*Console.WriteLine("[TestConn]");
 
             string u1 = "bapt.14@hotmail.com";
             string pass1 = "nouvpass";
@@ -21,7 +23,7 @@ namespace ConsoleProject
 
             bool respass = conn.CheckRightPasswd(u1,pass1);
             Console.WriteLine("Check Right password for {0} {1}", u1,respass );
-            /* 
+            *//* 
               Console.WriteLine("Check Right password for {0} with wrong pass : {1}", u1, conn.CheckRightPasswd(u1,pass2));
 
 
@@ -29,7 +31,7 @@ namespace ConsoleProject
 
               conn = new Connexion("jean.michel@icloud.com", "mdp");
               res = conn.CheckUserExist("jean.michel@icloud.com");
-              Console.WriteLine("Connexion check user exist :  {0}", res);*/
+              Console.WriteLine("Connexion check user exist :  {0}", res);*//*
 
             conn.GetNewUserId();
 
@@ -42,7 +44,7 @@ namespace ConsoleProject
             Console.WriteLine("TEST LOAD FAVSPOTS :");
             List<Spot> l = cn.LoadFavSpotFromUser(mail2);
 
-            Console.WriteLine("Nom : {0}", l[0].Name);
+            Console.WriteLine("Nom : {0}", l[0].Name);*/
         }
 
     }

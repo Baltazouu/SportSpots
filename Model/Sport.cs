@@ -32,5 +32,22 @@ namespace Model
             Indoor = indoor;
             Outdoor = outdoor;
         }
+
+        public override string ToString()
+        {
+            string indoor = "No";
+            string outdoor = "No";
+
+            string name = Name.Replace("+"," ");
+
+            string typ = TypeEquipement.Replace("+"," ");
+
+            if (Indoor)
+                indoor = "Yes";
+            if (Outdoor)
+                outdoor = "Yes";
+
+            return $"Name : {name} Type : {typ} Indoor : {indoor}, Outdoor : {outdoor}";
+        }
     }
 }
