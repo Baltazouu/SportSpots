@@ -12,7 +12,7 @@ namespace Model
     public class DbConn
     {
         //static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
-        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb";
+        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb;SSLMode=Require";
 
         NpgsqlDataSource Datasrc = NpgsqlDataSource.Create(dburl);
 
@@ -44,7 +44,7 @@ namespace Model
 
         public bool SqlServerAvaible()
         {
-            try 
+            try
             {
                 Datasrc.OpenConnection();
                 return true;
@@ -53,7 +53,7 @@ namespace Model
             {
                 return false;
             }
-            
+
 
         }
 
@@ -167,7 +167,7 @@ namespace Model
             }
             catch (Exception ex)
             {
-                Console.Write("Error l'erreur est ic", ex.Message);
+                Console.Write("Error : ", ex.Message);
                 return false;
             }
             

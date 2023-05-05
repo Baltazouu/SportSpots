@@ -4,6 +4,14 @@ using Model;
 using Maui1;
 using ConsoleProject;
 
+
+
+NoSQLApp noSQLApp = new NoSQLApp();
+
+
+/*
+TestSql test = new TestSql();
+
 //TestConn t = new TestConn();
 
 string? Choice;
@@ -32,18 +40,18 @@ string pass = r.ReadPassword();
 
 Connexion conn = new(mail, pass);
 
-/*while(!conn.InternetAvaible())
+while (!conn.InternetAvaible())
 {
     Console.WriteLine("[Network Error]\n Check Your Network Connection And Retry...");
     Console.ReadLine();
 }
 
-while(!conn.SqlServerAvaible())
+while (!conn.SqlServerAvaible())
 {
     Console.WriteLine("[SeverError]\n Sorry Our Server is actually down...");
     Console.ReadLine();
 }
-*/
+
 if (Choice == "1")
     Connection();
 
@@ -68,7 +76,7 @@ void Inscription()
     }
     conn.InsertNewUser(mail, pass);
     Console.WriteLine("[Success Inscription !]");
-    UserActions u = new(conn.GetUserID(mail),mail,pass);
+    UserActions u = new(conn.GetUserID(mail), mail, pass);
     u.ChooseAction();
 }
 
@@ -85,14 +93,14 @@ void Connection()
         conn = new(mail, pass);
     }
     Console.WriteLine("[Success Connection !]");
-    UserActions u = new(conn.GetUserID(mail),mail,pass);
+    UserActions u = new(conn.GetUserID(mail), mail, pass);
     u.ChooseAction();
 }
 
 
+*/
 
 /*
-
 void SearchASpot()
 {
 
@@ -123,6 +131,6 @@ void SearchASpot()
 //string res_st = await res;
 
 //}
-
 */
+
 

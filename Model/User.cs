@@ -10,9 +10,9 @@ namespace Model
     {
         public int Id { get; init; }
 
-        string Mail { get; set; }
+        public string Mail { get; private set; }
 
-        string Passwd { get; set; }
+        public string Passwd { get;private set; }
 
         List<Spot> FavSpots { get; set; }
 
