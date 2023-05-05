@@ -20,9 +20,7 @@ namespace Model
 
         private HttpClient _httpclient = new HttpClient();
 
-        JsonSerializerOptions _serializerOptions;
-
-        const string dblink = "Host=localhost;Username=postgres;Password=14010;Database=test;";
+        //const string dblink = "Host=localhost;Username=postgres;Password=14010;Database=test;";
 
         static string ApiLink { get; set; }
 
@@ -35,9 +33,9 @@ namespace Model
         public Request(string town, Sport s)
         {
             Sport = s;
+            
             Town = town;
-            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26typequipement%3A{s.TypeEquipement}";
-
+            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26famille%3A{s.TypeEquipement}";
         }
         
 
@@ -49,20 +47,27 @@ namespace Model
         public async Task<List<Spot>> FindSpot()
         {
             List<Spot> res = new List<Spot>();
+            //Console.WriteLine("On est dans findSpot");
+            //Console.WriteLine(ApiLink);
             try
             {
                 //Console.WriteLine("Requete : {0}", ApiLink);
 
+                Console.WriteLine("Link API {0}", ApiLink);
+
                 string s = await _httpclient.GetStringAsync(ApiLink);
+                
                 //HttpResponseMessage response = await _httpclient.GetAsync(ApiLink);
                 //  Console.WriteLine(s);
 
                 JObject apires = JObject.Parse(s);
 
                 // apires["parameters"]["nhits"].Value<int>();
-                int nbRecords = apires["nhits"].Value<int>();
-
-                //Console.WriteLine("Nombre de rows :{0}", nbRecords);
+                //int nbRecords = apires["nhits"].Value<int>();
+                int nbRecords = apires["parameters"]["rows"].Value<int>();
+                
+                Console.WriteLine("Nous sommes ici");
+                Console.WriteLine("Nombre de rows :{0}", nbRecords);
 
                 for (int i = 0; i < nbRecords; i++)
                 {
@@ -124,19 +129,14 @@ namespace Model
                 return res;
             }
             catch (Exception e)
-            {   
-                Console.WriteLine("error 1", e.Message);
+            {
+                //Console.WriteLine("on est dans l'exception");
+                Console.WriteLine("error 1 {0}", e.Message);
                 return res;
             }
         }
 
-        /// <summary>
-        /// Methode permettant de charger les donnes en fonction de la classe stub
-        /// qui simule une requete API
-        /// </summary>
-        /// <returns></returns>
-
-
+       
         /*
         public List<Spot> FindHubSpot()
        {

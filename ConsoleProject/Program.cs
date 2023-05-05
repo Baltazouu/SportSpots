@@ -5,17 +5,20 @@ using Maui1;
 using ConsoleProject;
 
 
-
-NoSQLApp noSQLApp = new NoSQLApp();
+//NoSQLApp noSQLApp = new NoSQLApp();
 
 
 /*
 TestSql test = new TestSql();
+*/
+MainProg mainProg = new MainProg();
+await mainProg.Prog();
 
 //TestConn t = new TestConn();
 
-string? Choice;
+//TestAPI test = new();
 
+/*
 ReadPasswd r = new();
 
 Console.WriteLine("SportSpots App !");
@@ -99,36 +102,35 @@ void Connection()
 
 
 */
-
 /*
 void SearchASpot()
 {
 
     SportStub stub = new();
-    List<Sport> avaible = stub.Loadsport();
+    //List<Sport> avaible = stub.Loadsport();
     int i = 1;
 
     Console.WriteLine("[Search a Spot]");
     Console.Write("Enter a City For Your Spot : ");
     string? city = Console.ReadLine();
 
-    foreach (Sport s in avaible)
+    *//*foreach (Sport s in avaible)
     {
         Console.WriteLine($"{i} :,{s.Name}");
-    }
+    }*//*
 
 
 
-    Console.Write("Enter a Spot Your Spot : ");
+    Console.Write("Enter a Sport Your Spot : ");
     string? sport = Console.ReadLine();
+*//*
+    Sport s = new Sport(sport, true, true);
 
-    //Sport s = new Sport(sport, true, true);
+    Request r = new Request(city, s);
 
-//Request r = new Request(city, s);
+    List<Spot> res = await r.FindSpot();
 
-//List<Spot> res = await r.FindSpot();
-
-//string res_st = await res;
+    string res_st = await res;*//*
 
 //}
 */

@@ -27,7 +27,7 @@ CREATE TABLE utilisateur(
     
     id numeric(5) primary key,
     addr varchar(50) not null,
-    passwd varchar(50) not null
+    passwd varchar(200) not null
 );
 
 CREATE TABLE Favsports(
@@ -35,6 +35,7 @@ CREATE TABLE Favsports(
     id_sport numeric(10) primary key,
     utilisateur numeric(5) references utilisateur,
     sport varchar(50) not null,
+    typeequipement varchar(50) not null,
     indoor char(1) not null,
     outdoor char(1) not null
 );

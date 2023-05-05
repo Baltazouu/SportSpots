@@ -18,6 +18,7 @@ namespace Model
 
         List<Sport> Favsports { get; set; }
 
+        List<Spot> History { get; set; }
         public User(int id, string mail, string passwd)
         {
             Id = id;
@@ -25,12 +26,14 @@ namespace Model
             Passwd = passwd;
         }
 
+
+
+
         public bool ChangePasswd(string newpasswd)
         {
             if(newpasswd.Length > 6)
             {
                 Passwd = newpasswd;
-                // dbonn
                 return UpdatePass(Id,Mail,Passwd);
 
 

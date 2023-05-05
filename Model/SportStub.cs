@@ -15,7 +15,7 @@ namespace Model
     {
         public SportStub() { }
 
-        public List<Sport> Loadsport()
+        public static List<Sport> Loadsport()
         {
             List<Sport> sport = new List<Sport>();
 
