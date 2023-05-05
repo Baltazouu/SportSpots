@@ -14,7 +14,7 @@ trigger:
 
 steps:
   - name : FirstBuild
-    image: mcr.microsoft.com/dotnet/sdk:7.0
+    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dronesonarplugin-dotnet7-maui
     commands:
       - cd SportSpots
       - dotnet restore SportSpots.sln
