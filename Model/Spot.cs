@@ -5,7 +5,6 @@ namespace Model
     // All the  code in this file is included in all platforms.
     public class Spot
     {
-
         public string NomCommune { get; init; }
         public int Numero { get; init; }
         public string Name { get; init; }
@@ -41,9 +40,10 @@ namespace Model
 
 
         public override string ToString()
-        { 
+        {
             return $"Spot : {Name}  {Family} {NomCommune} {Adress} {Dept} {PostalCode}";
         }
+
 
     }
 }

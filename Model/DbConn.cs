@@ -6,7 +6,7 @@ namespace Model
     public class DbConn
     {
         //static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
-        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb";
+        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb;SSLMode=Require";
 
         NpgsqlDataSource Datasrc = NpgsqlDataSource.Create(dburl);
 
@@ -52,7 +52,7 @@ namespace Model
 
         public bool SqlServerAvaible()
         {
-            try 
+            try
             {
                 Datasrc.OpenConnection();
                 Datasrc.Dispose(); 
@@ -62,6 +62,7 @@ namespace Model
             {
                 return false;
             }
+
         }
 
         public List<Spot> LoadFavSpotFromUser(string mail)
@@ -172,7 +173,7 @@ namespace Model
             }
             catch (Exception ex)
             {
-                Console.Write("Error l'erreur est ic", ex.Message);
+                Console.Write("Error : ", ex.Message);
                 return false;
             }
             
@@ -284,6 +285,31 @@ namespace Model
                 }
                 catch (Exception ex)
                 {   
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+
+            }
+            return false;
+
+        }
+
+        internal bool Pass(string addr, string pass)
+        {
+            if (CheckRightPasswd(addr,pass))
+            {
+                try
+                {
+                    using NpgsqlCommand update = Datasrc.CreateCommand(
+                        $"UPDATE utilisateur SET passwd = '{pass}' WHERE addr = {addr};");
+
+                    update.ExecuteNonQuery();
+
+                    return true;
+
+                }
+                catch (Exception ex)
+                {
                     Console.WriteLine(ex.Message);
                     return false;
                 }
