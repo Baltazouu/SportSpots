@@ -11,5 +11,5 @@ steps:
     image: mcr.microsoft.com/dotnet/sdk:7.0
     commands:
       - cd SportsSpots/
-      - dotnet restore SportsSpots.sln
-      - dotnet build SportsSpots.sln -c Release --no-restore
+      - dotnet restore CI.sln
+      - dotnet build CI.sln -c Release --no-restore
