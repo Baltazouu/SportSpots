@@ -44,7 +44,7 @@ namespace Model
         /// Check that inernet is avaible
         /// </summary>
         /// <returns></returns>
-        public bool InternetAvaible()
+        /*public bool InternetAvaible()
         {
             NetworkAccess network = Connectivity.NetworkAccess;
             return (network == NetworkAccess.Internet);
@@ -64,7 +64,7 @@ namespace Model
             }
 
         }
-
+        */
         public List<Spot> LoadFavSpotFromUser(string mail)
         {
             List<Spot> spots = new List<Spot>();
