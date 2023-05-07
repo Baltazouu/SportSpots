@@ -59,7 +59,7 @@ namespace Model
                     present = true;
                 }
             }
-            foreach(Spot sp in newFavSpots)
+            foreach(Spot sp in NewFavSpots)
             {
                 if(sp.Numero == spot.Numero)
                 {

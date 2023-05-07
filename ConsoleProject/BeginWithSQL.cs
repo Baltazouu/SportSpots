@@ -36,11 +36,11 @@ namespace ConsoleProject
 
             Console.Write("Enter Your Password : ");
 
-            string pass = r.ReadPassword();
+            string pass = ReadPasswd.ReadPassword();
 
             Connexion conn = new(mail, pass);
 
-            while (!conn.InternetAvaible())
+            /*while (!conn.InternetAvaible())
             {
                 Console.WriteLine("[Network Error]\n Check Your Network Connection And Retry...");
                 Console.ReadLine();
@@ -51,7 +51,7 @@ namespace ConsoleProject
                 Console.WriteLine("[SeverError]\n Sorry Our Server is actually down...");
                 Console.ReadLine();
             }
-
+*/
             if (Choice == "1")
                 Connection();
 
@@ -71,7 +71,7 @@ namespace ConsoleProject
                     mail = Console.ReadLine();
 
                     Console.Write("Enter Your Password : ");
-                    pass = r.ReadPassword();
+                    pass = ReadPasswd.ReadPassword();
                     conn = new(mail, pass);
                 }
                 conn.InsertNewUser(mail, pass);
@@ -89,7 +89,7 @@ namespace ConsoleProject
                     mail = Console.ReadLine();
 
                     Console.WriteLine("Enter Your Password : ");
-                    pass = r.ReadPassword();
+                    pass = ReadPasswd.ReadPassword();
                     conn = new(mail, pass);
                 }
                 Console.WriteLine("[Success Connection !]");

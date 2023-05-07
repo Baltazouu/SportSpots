@@ -15,6 +15,8 @@ namespace ConsoleProject
 
         public List<User> Users { get; set; }
 
+
+        /*
         public NoSQLApp()
         {
             SpotsStub spots_stub = new SpotsStub();
@@ -117,5 +119,8 @@ namespace ConsoleProject
 
             }
         }
+    }
+
+        */
     }
 }
