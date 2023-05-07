@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Maui\Model.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
 </Project>

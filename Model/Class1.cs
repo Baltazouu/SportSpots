@@ -1,4 +1,4 @@
-﻿namespace Maui
+﻿namespace Model
 {
     public class Class1
     {

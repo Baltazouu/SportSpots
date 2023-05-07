@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 // load data
 
-namespace Model
+namespace ModelMaui
 {   
     /// <summary>
     /// Load Sports

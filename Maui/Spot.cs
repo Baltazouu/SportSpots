@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace Model
+namespace ModelMaui
 {
     // All the  code in this file is included in all platforms.
     public class Spot

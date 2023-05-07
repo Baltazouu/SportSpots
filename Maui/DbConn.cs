@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Npgsql;
 
-namespace Model
+namespace ModelMaui
 {
     public class DbConn
     {

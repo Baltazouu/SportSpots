@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsSpots", "SportsSpots.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleProject", "..\ConsoleProject\ConsoleProject.csproj", "{85805753-504D-4326-A5F4-2BD7F9C673EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelMaui", "..\Maui\ModelMaui.csproj", "{913E5E40-2E58-4BFB-832C-DDF2948A9774}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\Model\Model.csproj", "{4648CE82-3EB7-47A8-8DE6-7704DEF79053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "..\Model\Model.csproj", "{4648CE82-3EB7-47A8-8DE6-7704DEF79053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		{85805753-504D-4326-A5F4-2BD7F9C673EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85805753-504D-4326-A5F4-2BD7F9C673EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85805753-504D-4326-A5F4-2BD7F9C673EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{913E5E40-2E58-4BFB-832C-DDF2948A9774}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4648CE82-3EB7-47A8-8DE6-7704DEF79053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4648CE82-3EB7-47A8-8DE6-7704DEF79053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4648CE82-3EB7-47A8-8DE6-7704DEF79053}.Release|Any CPU.ActiveCfg = Release|Any CPU

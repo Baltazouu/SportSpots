@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 
-namespace Maui1
+namespace ConsoleProject
 {
     public class ReadPasswd
     {
