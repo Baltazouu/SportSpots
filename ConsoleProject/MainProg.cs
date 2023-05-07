@@ -33,6 +33,7 @@ namespace ConsoleProject
                 Console.Write("Enter Your Choice : ");
                 Choice = Console.ReadLine();
             }
+
             Console.Write("Enter Your Email Adress : ");
             string? mail = Console.ReadLine();
 
@@ -46,6 +47,7 @@ namespace ConsoleProject
 
 
             Console.WriteLine("[TEST INTERN]");
+
             /*while (!conn.InternetAvaible())
             {
                 Console.WriteLine("[Network Error]\n Check Your Network Connection And Retry...");
@@ -68,6 +70,14 @@ namespace ConsoleProject
                 await Inscription(conn, mail, pass);
 
         }
+
+        /// <summary>
+        /// Methode Permettant 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="mail"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         public async Task Inscription(Connexion conn, string mail, string pass)
         {
             while (conn.CheckMailExist(mail))
@@ -92,6 +102,13 @@ namespace ConsoleProject
             await u.ChooseAction();
         }
 
+        /// <summary>
+        /// Methode Permettant de gerer la connexion
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="mail"></param>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         async Task Connection(Connexion conn,string mail,string pass)
             {
                 while (!conn.CheckMailExist(mail) || !conn.CheckRightPasswd(mail, pass))
@@ -101,7 +118,7 @@ namespace ConsoleProject
                     mail = Console.ReadLine();
 
                     Console.Write("Enter Your Password : ");
-                    //pass = r.ReadPassword();
+                    
                     pass = ReadPasswd.ReadPassword();
                     pass = ReadPasswd.HashPassword(pass);
                     conn = new(mail, pass);

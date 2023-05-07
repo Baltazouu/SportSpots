@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿
 using Model;
+using System.Diagnostics;
 
 namespace ConsoleProject
 {
@@ -13,36 +9,64 @@ namespace ConsoleProject
         
     {
         
-
+        /// <summary>
+        /// Classe Heritee de User Permettant d'utiliser l'application
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
         public UserActions(int id, string name, string password)
             :base(id, name, password)
         { }
 
+        /// <summary>
+        /// Methode asynchrone Menue qui permet de gerer les choix du programme
+        /// </summary>
+        /// <returns></returns>
         public async Task ChooseAction()
         {
-             
-            Console.WriteLine("[UserActions]\n1. Search A Spot\n2. See my favspots\n3. See my favsports");
-            Console.Write("Enter Your Choice : ");
-            string?choice = Console.ReadLine();
-            while (choice != "1" && choice != "2" && choice != "3")
+            string? choice;
+            do
             {
-                Console.WriteLine("Error ! Enter A choice Between 1 and 3");
+                Console.WriteLine("[UserActions]\n1. Search A Spot\n2. See my favspots\n3. See my favsports\n4. Exit SportsSpots");
                 Console.Write("Enter Your Choice : ");
                 choice = Console.ReadLine();
+                while (choice != "1" && choice != "2" && choice != "3")
+                {
+                    Console.WriteLine("Error ! Enter A choice Between 1 and 3");
+                    Console.Write("Enter Your Choice : ");
+                    choice = Console.ReadLine();
+
+                }
+                switch (choice)
+                {
+                    case "1":
+                        await SearchSpots();
+                        break;
+                    case "2":
+                        Console.WriteLine("Bientot dispo !");
+                        break;
+                }
+            } while (choice != "4");
+
+            Console.WriteLine("[Saving...]");
+
+            foreach (Spot sp in NewFavSpots)
+            {
+                if(!InsertFavspot(sp,this))
+                {
+                    Console.WriteLine("Erreur While Connecting To Db");
+                }    
 
             }
-            switch (choice)
-            {
-                case "1":
-                    await SearchSpots();
-                    break;
-                case "2":
-                    Console.WriteLine("Bientot dispo !");
-                    break;
-            }
+            
 
         }
 
+        /// <summary>
+        /// Methode Asynchrone permettant de rechercher des Spots 
+        /// </summary>
+        /// <returns>nothing</returns>
         public async Task SearchSpots()
         {
             List<Sport> sportSearchs = new();
@@ -73,13 +97,16 @@ namespace ConsoleProject
                 if(addnew == "1")
                 {
                    Sport s = AddSportToSearch();
+                    bool present = false;
                    foreach (Sport s2 in sportSearchs)
                     {
                         if(s2.Name == s.Name)
                         { Console.WriteLine($"The {s.Name} Sport Is Already in the list to search"); }
+                        present = true;
 
                     }
-                    sportSearchs.Add(s);
+                    if (!present)
+                    { sportSearchs.Add(s); }
                 }
                 else { stop = true; }
             } while (!stop);
@@ -89,10 +116,34 @@ namespace ConsoleProject
             {
                 Search Research = new(town, sportSearchs);
                 finded = await Research.ExecuteSearch();
-                //Console.WriteLine
+                string choice;
                 foreach (Spot s in finded)
                 {
                     Console.WriteLine(s);
+                    Console.WriteLine("1. Add Spot To my favorite List");
+                    Console.WriteLine("2. Get Route to the spot");
+                    Console.WriteLine("3. Display next");
+
+                    do
+                    {
+                        Console.Write("Enter Your Choice : ");
+                        choice = Console.ReadLine();
+                    }
+                    while (choice != "1" && choice != "2" && choice != "3");
+
+                    if(choice == "1")
+                    {
+                        if(!AddSpot(s))
+                        {
+                            Console.WriteLine("Spot Already in your favorite list !");
+                        }
+
+                    }
+                    if (choice == "2")
+                    {
+                        OpenBrowser($"www.google.com/search?&q=45.735176%2C+3.008964&sourceid=opera&ie=UTF-8&oe=UTF-8");
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -102,7 +153,26 @@ namespace ConsoleProject
 
         }
 
+        /// <summary>
+        /// Methode Permettant d'afficher le Spot sur google maps 
+        /// </summary>
+        /// <param name="url"></param>
+        public static void OpenBrowser(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
+        /// <summary>
+        /// Methode Permettant d'ajouter un Sport a la liste de recherche
+        /// </summary>
+        /// <returns>Sport</returns>
         public Sport AddSportToSearch()
         {
             Sport?s = null;
@@ -123,7 +193,7 @@ namespace ConsoleProject
             string choice = Console.ReadLine();
 
             while (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5"
-                    && choice != "6" && choice != "7" && choice != "8")
+                    && choice != "6" && choice != "7" && choice != "8" && choice != "9")
             {
 
                 Console.Write(" Error ! Enter A Number :");

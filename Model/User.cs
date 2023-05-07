@@ -16,6 +16,7 @@ namespace Model
 
         List<Spot> FavSpots { get; set; }
 
+        public List<Spot> NewFavSpots { get; private set; }
         List<Sport> Favsports { get; set; }
 
         List<Spot> History { get; set; }
@@ -25,9 +26,6 @@ namespace Model
             Mail = mail;
             Passwd = passwd;
         }
-
-
-
 
         public bool ChangePasswd(string newpasswd)
         {
@@ -43,7 +41,6 @@ namespace Model
 
         public bool ChangeMail(string newMail)
         {
-
             if(UpdateMail(Id,Mail))
             { 
                 Mail = newMail;
@@ -56,6 +53,13 @@ namespace Model
         {
             bool present = false;
             foreach(Spot sp in FavSpots)
+            {
+                if(sp.Numero == spot.Numero)
+                {
+                    present = true;
+                }
+            }
+            foreach(Spot sp in newFavSpots)
             {
                 if(sp.Numero == spot.Numero)
                 {
@@ -87,7 +91,6 @@ namespace Model
                 return true;
             }
             return false;
-
         }
 
 

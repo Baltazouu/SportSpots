@@ -1,0 +1,15 @@
+kind: pipeline
+type: docker
+name: myFirstPipeline
+
+trigger:
+  event:
+    - push
+
+steps:
+  - name: build
+    image: mcr.microsoft.com/dotnet/sdk:7.0
+    commands:
+      - cd SportsSpots/
+      - dotnet restore SportsSpots.sln
+      - dotnet build SportsSpots.sln -c Release --no-restore

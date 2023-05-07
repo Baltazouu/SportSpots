@@ -39,6 +39,7 @@ namespace Model
             return l;
         }
 
+
         /// <summary>
         /// Check that inernet is avaible
         /// </summary>
@@ -353,13 +354,8 @@ namespace Model
                 return false;
             }
         }
-
         }
-
-
-
-
-    }
+}
 
     
 

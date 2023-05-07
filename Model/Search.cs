@@ -20,8 +20,6 @@ namespace Model
         string Town { get; init; }
         List<Sport> SportsToFind { get; init; }
 
-        
-
         public Search(string town,List<Sport>sports)
         {
             Town = town;
@@ -38,8 +36,6 @@ namespace Model
 
             foreach (Sport sport in SportsToFind)
             {
-                Console.WriteLine("Appel API ");
-                Console.WriteLine(SportsToFind[0]);
                 Request r = new Request(Town, sport);
                 List<Spot> spots = await r.FindSpot();
                 //Console.WriteLine("Spot 0 : {0}",spots[0]);
@@ -52,6 +48,5 @@ namespace Model
             }
             return result;
         }
-
     }
 }
