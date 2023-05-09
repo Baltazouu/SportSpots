@@ -6,7 +6,7 @@ namespace Model
     public class DbConn
     {
         //static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
-        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb;SSLMode=Require";
+        static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb;Trust Server Certificate=true";
 
         NpgsqlDataSource Datasrc = NpgsqlDataSource.Create(dburl);
 
@@ -65,7 +65,7 @@ namespace Model
 
         }
         */
-        public List<Spot> LoadFavSpotFromUser(string mail)
+        protected List<Spot> LoadFavSpotFromUser(string mail)
         {
             List<Spot> spots = new List<Spot>();
 
@@ -165,8 +165,6 @@ namespace Model
                     if (cmd.ExecuteScalar() == null) { return false; }
                     if(cmd.ExecuteScalar().ToString() == null) { return false; }
                     string mail = cmd.ExecuteScalar().ToString();
-
-
                     //Console.WriteLine("MAIL : {0} Mail SQL : {1}",addr,mail);
                     return mail == addr;
                 }
@@ -269,7 +267,7 @@ namespace Model
         }
 
 
-        internal bool UpdateMail(int id, string addr)
+        public bool UpdateMail(int id, string addr)
         {
             if (CheckMailExist(addr))
             {
@@ -344,6 +342,11 @@ namespace Model
             
         }
 
+        protected bool InsertFavSport(Sport s,User u)
+        {
+            return true;
+        }
+
         public bool InsertFavspot(Spot s,User u)
         {
             char accessibility = 'N';
@@ -382,6 +385,3 @@ namespace Model
         }
         }
 }
-
-    
-

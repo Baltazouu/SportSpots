@@ -14,17 +14,27 @@ namespace Model
 
         string Passwd { get; set; }
 
-        List<Spot> FavSpots { get; set; }
+        protected List<Spot> FavSpots { get; set; }
 
         public List<Spot> NewFavSpots { get; private set; }
-        List<Sport> Favsports { get; set; }
+        public List<Sport> Favsports { get; set; }
+
+        public List<Sport> NewFavsports { get; set; }
 
         List<Spot> History { get; set; }
+
         public User(int id, string mail, string passwd)
         {
             Id = id;
             Mail = mail;
             Passwd = passwd;
+            FavSpots = new List<Spot>();
+            NewFavSpots = new List<Spot>();
+            Favsports = new List<Sport>();
+            NewFavsports = new List<Sport>();
+            History = new List<Spot>();
+
+
         }
 
         public bool ChangePasswd(string newpasswd)
@@ -122,9 +132,6 @@ namespace Model
             }
             return false;
         }
-
-
-
 
     }
 }

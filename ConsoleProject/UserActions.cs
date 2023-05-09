@@ -5,8 +5,6 @@ using System.Diagnostics;
 namespace ConsoleProject
 {
     internal class UserActions : User
-
-        
     {
         
         /// <summary>
@@ -43,8 +41,17 @@ namespace ConsoleProject
                     case "1":
                         await SearchSpots();
                         break;
+
                     case "2":
-                        Console.WriteLine("Bientot dispo !");
+                       
+                        foreach(Spot s in FavSpots)
+                        {
+                            Console.WriteLine(s);
+                        }
+                        break;
+                    case "3":
+                        FavSports();
+
                         break;
                 }
             } while (choice != "4");
@@ -59,7 +66,14 @@ namespace ConsoleProject
                 }    
 
             }
-            
+            foreach(Sport sport in NewFavsports)
+            {
+                if(!InsertFavSport(sport,this))
+                {
+                    Console.WriteLine("Erreur While Connecting To Database !");
+                }
+            }
+            Console.WriteLine("Finished");
 
         }
 
@@ -83,7 +97,7 @@ namespace ConsoleProject
                 town = Console.ReadLine();
             } while (town == "" || town == null);
 
-            sportSearchs.Add(AddSportToSearch());
+            sportSearchs.Add(AddSport());
 
             do
             {
@@ -96,7 +110,7 @@ namespace ConsoleProject
                 } while (addnew != "1" && addnew != "2");
                 if(addnew == "1")
                 {
-                   Sport s = AddSportToSearch();
+                   Sport s = AddSport();
                     bool present = false;
                    foreach (Sport s2 in sportSearchs)
                     {
@@ -173,7 +187,7 @@ namespace ConsoleProject
         /// Methode Permettant d'ajouter un Sport a la liste de recherche
         /// </summary>
         /// <returns>Sport</returns>
-        public Sport AddSportToSearch()
+        public Sport AddSport()
         {
             Sport?s = null;
 
@@ -243,5 +257,36 @@ namespace ConsoleProject
             return s;
         }
 
+        public void FavSports()
+        {
+
+            string? choice2;
+            Console.WriteLine("[FavSpots : ]");
+            if (Favsports.Count() < 1 || Favsports == null)
+            {
+                Console.WriteLine("There is no sports in your favorite list !");
+            }
+            foreach (Sport spot in Favsports)
+            {
+                Console.WriteLine($"{spot}");
+            }
+            foreach(Sport s in NewFavsports)
+            {
+                Console.WriteLine(s);
+            }
+            do
+            {
+                Console.WriteLine("1. Add Sports To My Favorite List !");
+                Console.WriteLine("2. Back to main menue");
+                Console.Write("Enter Your Choice : ");
+                choice2 = Console.ReadLine();
+            }
+            while (choice2 != "1" && choice2 != "2");
+
+            if (choice2 == "1")
+            {
+                NewFavsports.Add(AddSport());
+            }
+        }
     }
 }

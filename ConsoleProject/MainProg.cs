@@ -73,9 +73,9 @@ namespace ConsoleProject
         /// <returns></returns>
         public async Task Inscription(Connexion conn, string mail, string pass)
         {
-            while (conn.CheckMailExist(mail))
+            while (conn.CheckMailExist(mail) || mail.Length < 3)
             {
-                Console.WriteLine("This mail is already taken !");
+                Console.WriteLine("Error With this address taken or not an email!");
                 if (pass == "" || pass.Length < 6)
                 {
                     Console.WriteLine("The password need at least 6 chars !");
