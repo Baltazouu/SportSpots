@@ -2,8 +2,7 @@
   "solution": {
     "path": "SportSpots2.sln",
     "projects": [
-      "Model\\Model.csproj",
-      "UnitsTests\\UnitsTests.csproj"
+      "Model\\Model.csproj"
     ]
   }
 }
