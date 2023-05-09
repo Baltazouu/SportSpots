@@ -1,1 +1,0 @@
-select addr from utilisateur;
