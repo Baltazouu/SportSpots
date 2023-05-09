@@ -11,10 +11,8 @@ namespace Model
     /// <summary>
     /// Load Sports
     /// </summary>
-    public class SportStub
-    {
-        public SportStub() { }
-
+    public static class SportStub
+    { 
         public static List<Sport> Loadsport()
         {
             List<Sport> sport = new List<Sport>();
