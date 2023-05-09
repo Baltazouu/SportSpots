@@ -35,7 +35,7 @@ namespace Model
             Sport = s;
             
             Town = town;
-            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26famille%3A{s.TypeEquipement}";
+            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26famille%3A{s.TypeEquipement}&rows=15";
         }
         
 
@@ -53,7 +53,7 @@ namespace Model
             {
                 //Console.WriteLine("Requete : {0}", ApiLink);
 
-                Console.WriteLine("Link API {0}", ApiLink);
+                //Console.WriteLine("Link API {0}", ApiLink);
 
                 string s = await _httpclient.GetStringAsync(ApiLink);
                 
@@ -62,12 +62,10 @@ namespace Model
 
                 JObject apires = JObject.Parse(s);
 
-                // apires["parameters"]["nhits"].Value<int>();
-                //int nbRecords = apires["nhits"].Value<int>();
                 int nbRecords = apires["parameters"]["rows"].Value<int>();
                 
-                Console.WriteLine("Nous sommes ici");
-                Console.WriteLine("Nombre de rows :{0}", nbRecords);
+                //Console.WriteLine("Nous sommes ici");
+                // Console.WriteLine("Nombre de rows :{0}", nbRecords);
 
                 for (int i = 0; i < nbRecords; i++)
                 {
@@ -131,24 +129,10 @@ namespace Model
             catch (Exception e)
             {
                 //Console.WriteLine("on est dans l'exception");
-                Console.WriteLine("error 1 {0}", e.Message);
+                //Console.WriteLine("error {0}", e.Message);
                 return res;
             }
         }
-
-       
-        /*
-        public List<Spot> FindHubSpot()
-       {
-            SpotsStub s = new SpotsStub();
-            List<Spot> res = s.LoadSpots();
-
-        return res;
-
-
-       }*/
-
-
 
 
     }

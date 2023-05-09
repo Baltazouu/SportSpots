@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Security.Cryptography;
 
-namespace Maui1
+namespace ConsoleProject
 {
     public class ReadPasswd
     {
@@ -65,6 +61,5 @@ namespace Maui1
                 return builder.ToString();
             }
         }
-
     }
 }

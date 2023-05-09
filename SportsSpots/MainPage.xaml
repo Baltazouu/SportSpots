@@ -4,39 +4,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SportsSpots.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*" />
+            <ColumnDefinition Width="80*" />
+        </Grid.ColumnDefinitions>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <Grid Grid.Column="0" BackgroundColor="Grey" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            <FlexLayout >
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                <StackLayout BackgroundColor="darkgrey" >
 
-        </VerticalStackLayout>
-    </ScrollView>
+                    <Label Text="Rechercher Un Spot !" FontSize="25" VerticalOptions="Start" HorizontalOptions="Center" Margin="20" HorizontalTextAlignment="Center"/>
+                    <Label  Text="Entrez Une Ville :" FontSize="15"/>
+                    <Entry   Text="..."></Entry>
+                    <Button  Text="LOC"  WidthRequest="60" TextColor="White" BackgroundColor="black"/>
+
+                </StackLayout>
+            </FlexLayout>
+
+        </Grid>
+
+        <!-- Grille de Droite : -->
+
+        <Grid Grid.Column="1">
+            <WebView Grid.Column="1" Source="https://www.openstreetmap.org/#map=12/48.8566/2.3522" />
+        </Grid>
+
+    </Grid>
+
 
 </ContentPage>

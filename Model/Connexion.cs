@@ -41,9 +41,5 @@ namespace Model
             }
             return false;
         }
-
-
-        
-
     }
 }

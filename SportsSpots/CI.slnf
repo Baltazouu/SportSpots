@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "SportsSpots.sln",
+    "projects": [
+      "..\\ConsoleProject\\ConsoleProject.csproj",
+      "..\\Model\\Model.csproj"
+    ]
+  }
+}
