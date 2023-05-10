@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: myFirstPipeline
+name: CI
 
 trigger:
   event:
@@ -13,3 +13,34 @@ steps:
       - cd SportSpots2
       - dotnet restore CI.slnf
       - dotnet build CI.slnf -c Release --no-restore
+      
+      
+      
+###
+kind: pipeline
+type: docker
+name: CD
+
+trigger:
+  event:
+    - push 
+
+steps:
+  - name: deploy-container-mysql
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environnement :
+      - IMAGENAME: mariadb:10
+              IMAGENAME: mariadb:10
+        CONTAINERNAME: mysql
+        COMMAND: create
+        # OVERWRITE: false
+        PRIVATE: true
+        CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:
+          from_secret: db_root_password
+        CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
+          from_secret: db_database
+        CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:
+          from_secret: db_user
+        CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
+          from_secret: db_password
+      
