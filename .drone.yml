@@ -1,20 +1,20 @@
-kind: pipeline
-type: docker
-name: CI
+#kind: pipeline
+#type: docker
+#name: CI
 
-trigger:
-  event:
-    - push
+#trigger:
+#   event:
+#     - push
 
-steps:
-  - name: build
-    image: mcr.microsoft.com/dotnet/sdk:7.0
-    commands:
-      - cd SportSpots2
-      - dotnet restore CI.slnf
-      - dotnet build CI.slnf -c Release --no-restore
-      
-      
+# steps:
+#   - name: build
+#     image: mcr.microsoft.com/dotnet/sdk:7.0
+#     commands:
+#       - cd SportSpots2
+#       - dotnet restore CI.slnf
+#       - dotnet build CI.slnf -c Release --no-restore
+        
+        
       
 ###
 kind: pipeline
