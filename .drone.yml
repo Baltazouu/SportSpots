@@ -26,7 +26,7 @@ trigger:
     - push 
 
 steps:
-  - name: deploy-container-mysql
+  - name: container-SporstSpots
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environnement :
         IMAGENAME: mariadb:10
