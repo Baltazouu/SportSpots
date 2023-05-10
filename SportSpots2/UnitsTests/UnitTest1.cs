@@ -8,7 +8,45 @@ namespace UnitsTests
             List<Sport> avaible = new();
             avaible = SportStub.Loadsport();
 
-            Assert.Empty(avaible);
+            Assert.NotNull(avaible);
+            Assert.False(avaible.Count==0);
         }
+
+        [Fact]
+        public void TestStubUser()
+        {
+            List<User> users = UserStub.LoadUser();
+
+            Assert.False(users.Count != 5);
+        }
+
+        [Fact]
+        public void TestStubSpot()
+        {
+            List<Spot> spots = SpotStub.LoadSpots();
+
+            Assert.False(spots.Count == 0);
+        }
+
+        [Fact]
+        public void TestStub()
+        {
+            List<User> users = UserStub.LoadUser();
+
+            Assert.False(users.Count != 5);
+        }
+
+        [Fact]
+        public void TestJson()
+        {
+            List<User> users = UserStub.LoadUser();
+
+            DataManager dt = new();
+
+
+
+            Assert.False(dt.SaveUserJson(users));
+        }
+
     }
 }

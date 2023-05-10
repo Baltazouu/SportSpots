@@ -16,12 +16,12 @@ namespace Model
 
         public Sport(int num, string name, string typ, bool indoor, bool outdoor)
         {
-            name = name.Replace(" ", "+");
+            //name = name.Replace(" ", "+");
             //Console.WriteLine(name);
 
             Name = name;
 
-            typ = typ.Replace(" ", "+");
+            //typ = typ.Replace(" ", "+");
             Numero = num;
             TypeEquipement = typ;
             Indoor = indoor;

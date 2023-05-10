@@ -1,40 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
+
+    [DataContract(Name = "user")]
     public class User : DataBaseConnection
     {
+        [DataMember]
         public int Id { get; init; }
 
+        [DataMember]
         string Mail { get; set; }
 
+        [DataMember]
         string Passwd { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
         protected List<Spot> FavSpots { get; set; }
 
-        public List<Spot> NewFavSpots { get; private set; }
+        [DataMember(EmitDefaultValue = false)]
         public List<Sport> Favsports { get; set; }
 
-        public List<Sport> NewFavsports { get; set; }
 
-        List<Spot> History { get; set; }
-
-        public User(int id, string mail, string passwd)
+        public User(int id, string mail, string passwd,List<Spot>?spots,List<Sport> ?sports)
         {
             Id = id;
             Mail = mail;
             Passwd = passwd;
-            FavSpots = new List<Spot>();
-            NewFavSpots = new List<Spot>();
-            Favsports = new List<Sport>();
-            NewFavsports = new List<Sport>();
-            History = new List<Spot>();
+            if(spots != null)
+            {
+                FavSpots = spots;
+            }
+            else FavSpots = new List<Spot>();
 
-
+            if(sports!=null)
+            {
+                Favsports = sports;
+            }    
+            else Favsports = new List<Sport>();
         }
 
         public bool ChangePasswd(string newpasswd)
@@ -67,13 +75,6 @@ namespace Model
         {
             bool present = false;
             foreach (Spot sp in FavSpots)
-            {
-                if (sp.Numero == spot.Numero)
-                {
-                    present = true;
-                }
-            }
-            foreach (Spot sp in NewFavSpots)
             {
                 if (sp.Numero == spot.Numero)
                 {
@@ -136,6 +137,16 @@ namespace Model
             }
             return false;
         }
+
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        public bool Equals(User other)
+        {
+            return this.Mail== other.Mail && this.Passwd==other.Passwd;
+        }
     }
 }
-

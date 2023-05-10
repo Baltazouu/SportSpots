@@ -14,7 +14,7 @@ namespace ConsoleProject
         /// <param name="name"></param>
         /// <param name="password"></param>
         public UserActions(int id, string name, string password)
-            :base(id, name, password)
+            :base(id, name, password,null,null)
         { }
 
         /// <summary>
@@ -58,21 +58,6 @@ namespace ConsoleProject
 
             Console.WriteLine("[Saving...]");
 
-            foreach (Spot sp in NewFavSpots)
-            {
-                if(!InsertFavspot(sp,this))
-                {
-                    Console.WriteLine("Erreur While Connecting To Db");
-                }    
-
-            }
-            foreach(Sport sport in NewFavsports)
-            {
-                if(!InsertFavSport(sport,this))
-                {
-                    Console.WriteLine("Erreur While Connecting To Database !");
-                }
-            }
             Console.WriteLine("Finished");
 
         }
@@ -270,10 +255,7 @@ namespace ConsoleProject
             {
                 Console.WriteLine($"{spot}");
             }
-            foreach(Sport s in NewFavsports)
-            {
-                Console.WriteLine(s);
-            }
+            
             do
             {
                 Console.WriteLine("1. Add Sports To My Favorite List !");
@@ -283,10 +265,10 @@ namespace ConsoleProject
             }
             while (choice2 != "1" && choice2 != "2");
 
-            if (choice2 == "1")
+            /*if (choice2 == "1")
             {
                 NewFavsports.Add(AddSport());
-            }
+            }*/
         }
     }
 }

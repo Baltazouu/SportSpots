@@ -3,7 +3,7 @@ using Npgsql;
 
 namespace Model
 {
-    public class DataBaseConnection : IDatabase
+    public class DataBaseConnection : IDatabaseManager
     {
         //static string dburl = "Host=localhost;Username=postgres;Password=14010;Database=test";
         static string dburl = "Host=ppqqwyo2ga.tflguiznc2.tsdb.cloud.timescale.com;Username=tsdbadmin;Password=yji0k7194gy9201i;Port=39598;Database=tsdb;Trust Server Certificate=true";

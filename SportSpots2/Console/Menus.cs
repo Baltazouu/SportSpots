@@ -7,10 +7,8 @@ namespace ConsoleProject
     {
         public Menus() { }
 
-        User u = new(12346,"test.com@gmail.com","password");
-
-        
-
+        User u = new(12346,"test.com@gmail.com","password",null,null);
+                
         public void StartMenue()
         {
             Console.WriteLine("Welcome To SportsSpots APP\n1. Connection\n2. Inscription");
