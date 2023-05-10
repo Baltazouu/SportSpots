@@ -29,8 +29,7 @@ steps:
   - name: deploy-container-mysql
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environnement :
-      - IMAGENAME: mariadb:10
-              IMAGENAME: mariadb:10
+        IMAGENAME: mariadb:10
         CONTAINERNAME: mysql
         COMMAND: create
         # OVERWRITE: false
