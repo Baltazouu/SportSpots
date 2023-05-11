@@ -1,21 +1,34 @@
 ﻿using System.Collections.Specialized;
+using System.Runtime.Serialization;
 
 namespace Model
 {
     // All the  code in this file is included in all platforms.
     public class Spot
     {
+        [DataMember(Name = "commune")]
         public string? NomCommune { get; init; }
+        [DataMember(Name = "SpotNum")]
         public int?Numero { get; init; }
+        [DataMember(Name = "SpotName")]
         public string?Name { get; init; }
+        [DataMember(Name = "SpotFamily")]
         public string?Family { get; init; }
+        [DataMember(Name = "SpotAddress")]
         public string?Adress { get; init; }
+        [DataMember(Name = "SpotDepartement")]
         public string?Dept { get; init; }
+        [DataMember(Name = "PostalCode")]
         public int?PostalCode { get; init; }
+        [DataMember(Name = "SpotCoord_x")]
         public double?Coord_x { get; init; }
+        [DataMember(Name = "SpotCoord_x")]
         public double?Coord_y { get; init; }
+        [DataMember(Name="AccessHandicap")]
         public bool AccessibiltyHandicap { get; init; }
+        [DataMember(Name = "Restauration")]
         public bool Restauration { get; init; }
+        [DataMember(Name = "PublicAcess")]
         public bool Public_access { get; init; }
 
 

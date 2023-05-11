@@ -19,7 +19,7 @@ namespace Model
                 {
                     builder.Append(bytes[i].ToString("x2"));
                 }
-                Console.WriteLine(builder.ToString());
+                //Console.WriteLine(builder.ToString());
                 return builder.ToString();
             }
         }

@@ -18,7 +18,6 @@ namespace Model
 
             sports = SportStub.Loadsport();
 
-
             List<string> passes = new();
 
             passes.Add(Hash.HashPassword("motdepasse"));
@@ -39,8 +38,6 @@ namespace Model
                 users.Add(new(i, mails[x], passes[x], sp, sports));
                 x++;
             }
-
-            Console.WriteLine(users.ToString());
             
             return users;
         }

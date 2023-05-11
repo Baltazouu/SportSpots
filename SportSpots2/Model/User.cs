@@ -21,7 +21,7 @@ namespace Model
         string Passwd { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        protected List<Spot> FavSpots { get; set; }
+        public List<Spot> FavSpots { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
         public List<Sport> Favsports { get; set; }
@@ -147,6 +147,12 @@ namespace Model
         public bool Equals(User other)
         {
             return this.Mail== other.Mail && this.Passwd==other.Passwd;
+        }
+
+
+        public override string ToString()
+        {
+            return $"{Mail} {Id}";
         }
     }
 }

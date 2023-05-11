@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal interface IDataManager
+    public interface IDataManager
     {
-
         List<User> LoadUser();
 
         void SaveUser(List<User> users);
