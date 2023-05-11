@@ -8,9 +8,9 @@ namespace Model
 {
     public interface IDataManager
     {
-        List<User> LoadUser();
+        (bool,List<User>?) LoadUser();
 
-        void SaveUser(List<User> users);
+        bool SaveUser(List<User> users);
 
     }
 }

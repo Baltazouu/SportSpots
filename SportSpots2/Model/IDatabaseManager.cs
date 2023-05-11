@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal interface IDatabaseManager
+    public interface IDatabaseManager
     {
         List<Sport> LoadFavSportFromUser(string mail, string password);
         List<Spot> LoadFavSpotFromUser(string mail);

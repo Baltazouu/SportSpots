@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
+
 
 namespace Model
 {
 
-    [DataContract(Name = "user")]
-    public class User
+    [DataContract(Name = "oldoldoldoldUser")]
+    public class oldUser : DataBaseConnection
     {
         [DataMember]
         public int Id { get; init; }
@@ -24,24 +20,24 @@ namespace Model
         public List<Spot> FavSpots { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<Sport> Favsports { get;  set; }
+        public List<Sport> Favsports { get; set; }
 
 
-        public User(int id, string mail, string passwd,List<Spot>?spots,List<Sport> ?sports)
+        public oldUser(int id, string mail, string passwd, List<Spot>? spots, List<Sport>? sports)
         {
             Id = id;
             Mail = mail;
             Passwd = passwd;
-            if(spots != null)
+            if (spots != null)
             {
                 FavSpots = spots;
             }
             else FavSpots = new List<Spot>();
 
-            if(sports!=null)
+            if (sports != null)
             {
                 Favsports = sports;
-            }    
+            }
             else Favsports = new List<Sport>();
         }
 
@@ -50,19 +46,24 @@ namespace Model
             if (newpasswd.Length > 6)
             {
                 Passwd = newpasswd;
-                return true;
+                return UpdatePass(Id, Mail, Passwd);
+
+
             }
-            return false ;
+            return false;
         }
 
         public bool ChangeMail(string newMail)
         {
-            if(newMail.Length > 5)
+            if (newMail.Length > 5)
             {
-                 Mail = newMail;
-                 return true;
-                
+                if (UpdateMail(Id, Mail))
+                {
+                    Mail = newMail;
+                    return true;
+                }
             }
+
             return false;
         }
 
@@ -139,9 +140,9 @@ namespace Model
             return Id.GetHashCode();
         }
 
-        public bool Equals(User other)
+        public bool Equals(oldUser other)
         {
-            return this.Mail== other.Mail && this.Passwd==other.Passwd;
+            return this.Mail == other.Mail && this.Passwd == other.Passwd;
         }
 
 
@@ -150,4 +151,6 @@ namespace Model
             return $"{Mail} {Id}";
         }
     }
+
 }
+

@@ -1,12 +1,9 @@
 ﻿using Model;
 
-namespace ConsoleProject
+namespace ConsoleApp
 {
-    public class ReadPasswd
+    internal class ReadPasswd
     {
-
-        public ReadPasswd() {}
-
         public static string ReadPassword()
         {
             string passwd = "";
@@ -34,7 +31,7 @@ namespace ConsoleProject
                 }
             }
             while (keyinfo.Key != ConsoleKey.Enter);
-            
+
             Console.WriteLine();
             return Hash.HashPassword(passwd);
         }
@@ -43,6 +40,8 @@ namespace ConsoleProject
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-       
+
     }
+
 }
+

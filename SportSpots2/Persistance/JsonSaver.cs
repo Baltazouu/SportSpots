@@ -10,7 +10,7 @@ namespace Persistance
             List<User>?users = null;
             try
             {
-                users = LoadUser();
+                users = LoadUser().Item2;
             }
             catch 
             {

@@ -2,7 +2,9 @@
   "solution": {
     "path": "SportSpots2.sln",
     "projects": [
-      "Model\\Model.csproj"
+      "Model\\Model.csproj",
+      "Persistance\\Persistance.csproj",
+      "UnitsTests\\UnitsTests.csproj"
     ]
   }
 }

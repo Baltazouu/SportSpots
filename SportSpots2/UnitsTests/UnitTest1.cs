@@ -1,3 +1,6 @@
+using Model;
+using Persistance;
+
 namespace UnitsTests
 {
     public class UnitTest1
@@ -41,11 +44,11 @@ namespace UnitsTests
         {
             List<User> users = UserStub.LoadUser();
 
-            DataManager dt = new();
+            DataContractJson dt = new();
 
 
 
-            Assert.False(dt.SaveUserJson(users));
+            Assert.True(dt.SaveUser(users));
         }
 
     }

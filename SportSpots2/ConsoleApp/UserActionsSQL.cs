@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace ConsoleProject
 {
-    internal class UserActions : User
+    internal class UserActionsSQL : User
     {
         
         /// <summary>
@@ -13,7 +13,7 @@ namespace ConsoleProject
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="password"></param>
-        public UserActions(int id, string name, string password)
+        public UserActionsSQL(int id, string name, string password)
             :base(id, name, password,null,null)
         { }
 
@@ -115,7 +115,7 @@ namespace ConsoleProject
             {
                 Search Research = new(town, sportSearchs);
                 finded = await Research.ExecuteSearch();
-                string choice;
+                string?choice;
                 foreach (Spot s in finded)
                 {
                     Console.WriteLine(s);
@@ -175,7 +175,7 @@ namespace ConsoleProject
         public Sport AddSport()
         {
             Sport?s = null;
-
+            string? choice;
             List<Sport> avaible = SportStub.Loadsport();
             
             Console.WriteLine("Enter A number Corresponding To A Sport !");
@@ -189,7 +189,7 @@ namespace ConsoleProject
             }
 
             Console.Write("Enter A Number :");
-            string choice = Console.ReadLine();
+            choice = Console.ReadLine();
 
             while (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5"
                     && choice != "6" && choice != "7" && choice != "8" && choice != "9")
@@ -237,6 +237,9 @@ namespace ConsoleProject
                     case "9":
                         s = avaible[8];
                         break;
+                    default:
+                        s = avaible[0];
+                        break;
                     
                     }
             return s;
@@ -250,10 +253,14 @@ namespace ConsoleProject
             if (Favsports.Count() < 1 || Favsports == null)
             {
                 Console.WriteLine("There is no sports in your favorite list !");
+               
             }
-            foreach (Sport spot in Favsports)
+            else
             {
-                Console.WriteLine($"{spot}");
+                foreach (Sport spot in Favsports)
+                {
+                    Console.WriteLine($"{spot}");
+                }
             }
             
             do
