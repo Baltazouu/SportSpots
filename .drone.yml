@@ -6,7 +6,7 @@ trigger:
    event:
      - push
 
- steps:
+steps:
    - name: build
      image: mcr.microsoft.com/dotnet/sdk:7.0
      commands:
