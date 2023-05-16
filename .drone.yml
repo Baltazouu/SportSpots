@@ -16,11 +16,10 @@ steps:
    
     - name: tests
       image: mcr.microsoft.com/dotnet/sdk:7.0
-      
       commands:
-	- cd SportSpots2
-	- dotnet restore CI.slnf
-	- dotnet test --no-restore
+       - cd SportSpots2
+       - dotnet restore CI.slnf
+       - dotnet test --no-restore
       depends_on: [ build ]
    
 
