@@ -13,11 +13,16 @@ steps:
        - cd SportSpots2
        - dotnet restore CI.slnf
        - dotnet build CI.slnf -c Release --no-restore
-        
-        
+   
+    - name: tests
+      image: mcr.microsoft.com/dotnet/sdk:7.0
       
-#---
-
+      commands:
+	- cd SportSpots2
+	- dotnet restore CI.slnf
+	- dotnet test --no-restore
+      depends_on: [ build ]
+   
 
 #kind: pipeline
 #type: docker
