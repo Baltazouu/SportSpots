@@ -14,7 +14,7 @@ steps:
        - dotnet restore CI.slnf
        - dotnet build CI.slnf -c Release --no-restore
    
-    - name: tests
+  - name: tests
       image: mcr.microsoft.com/dotnet/sdk:7.0
       commands:
        - cd SportSpots2
