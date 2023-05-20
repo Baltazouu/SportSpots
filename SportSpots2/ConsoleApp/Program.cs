@@ -3,4 +3,4 @@ using ConsoleProject;
 
 
 MainProgJson m = new();
-m.Program();
+await m.Program();

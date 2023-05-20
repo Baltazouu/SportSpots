@@ -15,7 +15,7 @@ namespace ConsoleApp
         }
 
 
-        public void actions()
+        public async Task actions()
         {
 
             Console.WriteLine($"Welcome Back {User.Mail} , {User.Id} !");
@@ -29,15 +29,17 @@ namespace ConsoleApp
                 switch (choice)
                 {
                     case "1":
-
+                        
+                        await SearchSpots();
                         break;
 
                     case "2":
-
+                        menue.MyFavspots(User.FavSpots);
+                        
                         break;
 
                     case "3":
-
+                        menue.MyFavSports(User.Favsports);
                         break;
 
                     case "5":

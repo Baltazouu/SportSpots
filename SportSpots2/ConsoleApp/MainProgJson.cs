@@ -23,7 +23,7 @@ namespace ConsoleProject
         }
 
 
-        public void Program()
+        public async Task Program()
         {
             string? choice;
             Console.WriteLine("Welcome To SportSpots !");
@@ -38,14 +38,14 @@ namespace ConsoleProject
             while (choice != "1" && choice != "2");
 
             if (choice == "1")
-                Inscription();
+                await Inscription();
             else
-                Connection();
+                await Connection();
             
 
         }
 
-        public void Inscription()
+        public async Task Inscription()
         {
             Console.WriteLine("[Inscription]");
 
@@ -83,12 +83,14 @@ namespace ConsoleProject
             }*/
 
             User u = new(Dt.GetNewUserId(all), Addr, Passwd, null, null);
-           
+            all.Add(u);
+
             UserActions actions = new UserActions(u);
-            actions.actions();
+            await actions.actions();
+            Dt.SaveData(JsonSource, all);
         }
 
-        public void Connection()
+        public async Task Connection()
         {
             bool errorConditions = false;
             do
@@ -114,7 +116,7 @@ namespace ConsoleProject
                 else if (!Dt.CheckRightPass(Addr, Passwd, all))
                 {
                     Console.WriteLine("Error ! Wrong Password !");
-                    errorConditions = false;
+                    errorConditions = true;
                 }
                 else errorConditions = false;
 
@@ -122,11 +124,12 @@ namespace ConsoleProject
 
 
             User u = Dt.FindUser(Addr, Passwd, all);
-            all.Add(u);
+
             Dt.SaveData(JsonSource, all);
 
             UserActions actions = new(u);
-            actions.actions();
+            await actions.actions();
+            Dt.SaveData(JsonSource,all);
 
         }
     }
