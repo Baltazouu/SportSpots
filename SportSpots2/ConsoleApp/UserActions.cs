@@ -29,7 +29,6 @@ namespace ConsoleApp
                 switch (choice)
                 {
                     case "1":
-                        
                         await SearchSpots();
                         break;
 

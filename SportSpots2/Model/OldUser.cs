@@ -113,7 +113,7 @@ namespace Model
             {
                 if (sp.Numero == sport.Numero)
                     present = true;
-                break;
+               
             }
             if (present) { FavSpots.Remove(sport); }
             return present;

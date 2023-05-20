@@ -17,8 +17,22 @@ namespace Model
         [DataMember]
         public string Mail { get; private set; }
 
+        string _passwd;
+
         [DataMember]
-        public string Passwd { get; private set; }
+        public string Passwd
+        {
+            get { return _passwd; }
+
+            private set
+            {
+                if (value.Length < 6 || value.Equals(null))
+                {
+                    throw new ArgumentException("Invalid Password ");
+                }
+                _passwd = value;
+            }
+        }
 
         [DataMember(EmitDefaultValue = false)]
         public List<Spot> FavSpots { get; set; }
