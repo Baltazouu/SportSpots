@@ -14,9 +14,7 @@ namespace Model
 
             List<Spot> sp = SpotStub.LoadSpots();
 
-            List<Sport> sports = new();
-
-            sports = SportStub.Loadsport();
+            List<Sport> sports = SportStub.Loadsport();
 
             List<string> passes = new();
 

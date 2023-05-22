@@ -41,11 +41,11 @@ namespace Model
         public List<Sport> Favsports { get;  set; }
 
 
-        public User(int id, string mail, string passwd,List<Spot>?spots,List<Sport> ?sports)
+        public User(int id, string mail,string pass,List<Spot>?spots,List<Sport> ?sports)
         {
             Id = id;
             Mail = mail;
-            Passwd = passwd;
+            Passwd = pass;
             if(spots != null)
             {
                 FavSpots = spots;
@@ -57,6 +57,9 @@ namespace Model
                 Favsports = sports;
             }    
             else Favsports = new List<Sport>();
+            
+            
+
         }
 
         public bool ChangePasswd(string newpasswd)

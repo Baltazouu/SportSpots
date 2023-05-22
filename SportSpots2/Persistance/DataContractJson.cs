@@ -13,7 +13,6 @@ namespace Persistance
         {
             try
             {
-                string JsonString = JsonConvert.SerializeObject(users, Formatting.Indented);
                 //Console.WriteLine(JsonString);
 
                 using (StreamWriter streamWriter = new(UserFile))
@@ -38,8 +37,6 @@ namespace Persistance
             List<User>? users = new();
             try
             {
-                DataContractJsonSerializer jsonSerializer = new(typeof(User));
-
                 using (StreamReader reader = new("Users.json"))
                 {
                     users = JsonConvert.DeserializeObject<List<User>>(reader.ReadToEnd());
@@ -53,34 +50,6 @@ namespace Persistance
             return (true,users);
         }
 
-        /* public List<User> LoadUser()
-         {
-             List<User> users = new List<User>();
-            using (StreamReader streamReader = new StreamReader(UserFile))
-             {
-                 using (JsonTextReader jreader = new JsonTextReader(streamReader))
-                 {
-                     //JObject fileValue = JObject.Read(jreader);
-
-                     //  Console.WriteLine(fileValue);
-                     //string json = jreader.ReadToEnd();
-
-
-                     users = JsonConvert.DeserializeObject<List<User>>(jreader);
-
-                 }
-              }*/
-
-        /*
-        string json = File.ReadAllText(UserFile);
-
-         Console.WriteLine("[Json fichier : ]");
-         Console.WriteLine(json);
-
-         JObject jsonObject = JObject.Parse(json);
-         users = jsonObject["Users"].Children.To
-
-        */
-        //return users;
+        
     }
     }
