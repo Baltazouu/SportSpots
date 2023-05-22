@@ -1,0 +1,75 @@
+kind: pipeline
+type: docker
+name: CI_SportSpots
+
+trigger:
+   event:
+     - push
+
+steps:
+   - name: build
+     image: mcr.microsoft.com/dotnet/sdk:7.0
+     commands:
+       - cd SportSpots2
+       - dotnet restore CI.slnf
+       - dotnet build CI.slnf -c Release --no-restore
+
+   - name: tests
+     image: mcr.microsoft.com/dotnet/sdk:7.0
+     commands:
+       - cd SportSpots2
+       - dotnet restore CI.slnf
+       - dotnet test CI.slnf  --no-restore
+     
+     depends_on: [ build ]
+
+   - name: code-inspection
+     image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dronesonarplugin-dotnet7
+     secrets: [ SECRET_SONAR_LOGIN ]
+     environment:
+       sonar_host: https://codefirst.iut.uca.fr/sonar/
+       sonar_token:
+         from_secret: SECRET_SONAR_LOGIN
+       project_key: SportSpots
+       coverage_exclusions: "UnitsTests/**"
+     commands:
+       - cd SportSpots2/
+       - dotnet restore CI.slnf
+       - dotnet sonarscanner begin /k:$${project_key} /d:sonar.host.url=$${sonar_host} /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions=$${coverage_exclusions} /d:sonar.login=$${sonar_token} 
+       - dotnet build CI.slnf -c Release --no-restore
+       - dotnet test CI.slnf --logger trx --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "XPlat Code Coverage"
+       - reportgenerator -reports:"**/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"coveragereport"
+       - dotnet publish CI.slnf -c Release --no-restore -o CI_PROJECT_DIR/build/release
+       - dotnet sonarscanner end /d:sonar.login=$${sonar_token}
+
+     depends_on: [ tests ]
+   
+
+#kind: pipeline
+#type: docker
+#name: CD
+#
+#trigger:
+#  event:
+#    - push 
+#
+#steps:
+#  - name: container-SporstSpots
+#    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+#    environnement :
+#        IMAGENAME: mariadb:10
+#        CONTAINERNAME: mysql
+#        COMMAND: create
+#        OVERWRITE: true
+#        PRIVATE: true
+#        CODEFIRST_CLIENTDRONE_ENV_MARIADB_ROOT_PASSWORD:
+#          from_secret: db_root_password
+#        CODEFIRST_CLIENTDRONE_ENV_MARIADB_DATABASE:
+#          from_secret: db_database
+#        CODEFIRST_CLIENTDRONE_ENV_MARIADB_USER:
+#          from_secret: db_user
+#        CODEFIRST_CLIENTDRONE_ENV_MARIADB_PASSWORD:
+#          from_secret: db_password
+#        ADMINS: baptistedudonne
+#      
+#

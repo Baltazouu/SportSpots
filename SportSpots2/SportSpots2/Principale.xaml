@@ -1,0 +1,223 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SportsSpots.Principale"
+             BackgroundColor="#a4a2a2"
+             Title="">
+
+
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <StackLayout>
+                <!-- Barre du haut -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
+
+                    <Image Source="foot.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" Margin="30"/>
+
+                    <Label Text="SportsSpot" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"/>
+
+                    <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30"/>
+                </StackLayout>
+                <!-- Barre laterale -->
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="White" WidthRequest="350" Padding="10">
+                    <!-- Recherche de la ville -->
+                    <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label Text="Ville" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0" BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True">
+                            <SearchBar Placeholder="Entrez une ville" TextColor="Black" VerticalOptions="Center" />
+                        </Frame>
+                        <Image Grid.Column="1" Source="pin.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                    <!-- Catégorie sports -->
+                    <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True" HeightRequest="400">
+                        <ScrollView VerticalScrollBarVisibility="Always">
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="White" WidthRequest="350" Padding="10,0,35,0">
+                                <!-- 1 CASE SPORT -->
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="foot.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Football" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <!-- FIN 1 CASE SPORT -->
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="basket.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Basketball" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="tennis.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Tennis" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="volley.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Volleyball" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="skate.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Skatepark" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="marche.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Sentier de Rando" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="boxe.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Salle de Boxe" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="escrime.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Salle d'escrime" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="golf.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Golf" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="moto.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Circuit de motocross" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="muscu.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Salle de musculation" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="peche.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Site de pêche" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="piscine.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Baignade" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="run.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Piste d'athlétisme" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="ski.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Station de Ski" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Image Source="vtt.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Trial" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
+                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
+                    <!-- Catégorie favoris -->
+                    <Label Text="Spots Favoris" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
+                        <ScrollView VerticalScrollBarVisibility="Always">
+                            <StackLayout>
+                                <!-- 1 CASE FAVORIS -->
+                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
+                                        <Label Text="Football test" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
+                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
+                                        <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                    </Grid>
+                                </Frame>
+                                <!-- FIN 1 CASE FAVORIS -->
+                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
+                                        <Label Text="Football test" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
+                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
+                                        <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
+                    <!-- Catégorie historique -->
+                    <Label Text="Historique" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
+                        <ScrollView VerticalScrollBarVisibility="Always">
+                            <StackLayout>
+                                <!-- 1 CASE D'HISTORIQUE -->
+                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
+                                        <Label Text="Football test" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
+                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
+                                        <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                    </Grid>
+                                </Frame>
+                                <!-- FIN 1 CASE HISTORIQUE -->
+                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
+                                        <Label Text="Football test" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
+                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
+                                        <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>  
+                        </ScrollView>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+</ContentPage>
