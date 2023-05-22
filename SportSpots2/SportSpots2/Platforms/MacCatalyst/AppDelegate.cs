@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace SportSpots2;
+namespace SportsSpots;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

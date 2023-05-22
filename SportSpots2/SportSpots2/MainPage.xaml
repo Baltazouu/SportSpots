@@ -1,41 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SportSpots2.MainPage">
+             x:Class="SportsSpots.MainPage"
+             BackgroundColor="#a4a2a2"
+             Title="">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        
+        <!-- Titre page -->
+        <Label Grid.Row="0" Text="Sports Spot" TextColor="#707070" HorizontalOptions="CenterAndExpand" FontSize="50" Margin="0,40"/>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <StackLayout>
+            <StackLayout>
+                <!-- Case de connexion -->
+                <StackLayout BackgroundColor="#ffffff"  HeightRequest="300" WidthRequest="450" Padding="10" Spacing="10">
+                    <!-- Titre div -->
+                    <Label Text="Inscription : " TextColor="#707070" FontSize="Medium" HorizontalOptions="Center" Margin="0, 20, 0, 0"/>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                    <!-- email -->
+                    <Entry Placeholder="Adresse mail" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="200" Margin="0, 20, 0, 20"/>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+                    <!-- mot de passe -->
+                    <Entry Placeholder="Mot de passe" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" IsPassword="True" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 20"/>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                    <!-- Bouton confirmer -->
+                    <Button Text="Confirmer" BackgroundColor="#413838" TextColor="White" WidthRequest="150"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
 
-        </VerticalStackLayout>
-    </ScrollView>
+
+
+        <!-- Lien de connexion -->
+        <StackLayout BackgroundColor="#ffffff" Margin="0, 15, 0, 0" HeightRequest="50" WidthRequest="450" Padding="10" Orientation="Horizontal">
+            <Label Text="Vous avez déjà un compte ? Connexion" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+    </StackLayout>
 
 </ContentPage>

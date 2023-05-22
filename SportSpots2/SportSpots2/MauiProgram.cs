@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace SportSpots2;
+namespace SportsSpots;
 
 public static class MauiProgram
 {

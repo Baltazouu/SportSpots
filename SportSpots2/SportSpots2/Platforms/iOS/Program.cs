@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace SportSpots2;
+namespace SportsSpots;
 
 public class Program
 {

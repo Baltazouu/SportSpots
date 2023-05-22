@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="SportSpots2.WinUI.App"
+    x:Class="SportsSpots.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:SportSpots2.WinUI">
+    xmlns:local="using:SportsSpots.WinUI">
 
 </maui:MauiWinUIApplication>

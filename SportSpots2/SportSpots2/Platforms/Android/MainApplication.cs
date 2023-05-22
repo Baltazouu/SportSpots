@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace SportSpots2;
+namespace SportsSpots;
 
 [Application]
 public class MainApplication : MauiApplication
