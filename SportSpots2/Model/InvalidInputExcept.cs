@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal class InvalidInputExcept : Exception
+    public class InvalidInputExcept : Exception
     {
         public InvalidInputExcept(string errmsg)
         : base(errmsg)

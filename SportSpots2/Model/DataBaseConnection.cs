@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Npgsql;
 
+/*
 namespace Model
 {
     public class DataBaseConnection : IDatabaseManager
@@ -64,6 +65,8 @@ namespace Model
 
         }
         */
+
+/*
         public  List<Spot> LoadFavSpotFromUser(string mail)
         {
             List<Spot> spots = new List<Spot>();
@@ -359,3 +362,4 @@ namespace Model
         }
     }
 }
+*/

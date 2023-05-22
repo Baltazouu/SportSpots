@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using Model;
 using System.Diagnostics;
 
@@ -276,6 +276,8 @@ namespace ConsoleProject
             {
                 NewFavsports.Add(AddSport());
             }*/
+/*
         }
     }
 }
+*/

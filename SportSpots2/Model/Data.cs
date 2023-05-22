@@ -13,7 +13,7 @@ namespace Model
             DtManager.SaveUser(users);
         }
 
-        public (bool,List<User>) LoadData(IDataManager Dtmanager)
+        public (bool,List<User>?) LoadData(IDataManager Dtmanager)
         {
             return Dtmanager.LoadUser();
         }
@@ -30,7 +30,7 @@ namespace Model
 
         public bool CheckRightPass(string mail, string pass, List<User> u)
         {
-            User find;
+            //User find;
             if(u==null || u.Count==0) { return false; }
             try
             {
@@ -45,7 +45,6 @@ namespace Model
             {
                 return false;
             }
-            //return (find == null);
             return false;
         }
 

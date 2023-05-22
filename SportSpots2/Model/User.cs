@@ -125,8 +125,10 @@ namespace Model
             foreach (Spot sp in FavSpots)
             {
                 if (sp.Numero == sport.Numero)
+                {
                     present = true;
-                break;
+                    break;
+                }
             }
             if (present) { FavSpots.Remove(sport); }
             return present;

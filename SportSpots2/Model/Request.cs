@@ -10,7 +10,7 @@ namespace Model
         /// Cette classe permet de gerer la partie connexion avec l'api data-es
         /// </summary>
 
-        private HttpClient _httpclient = new HttpClient();
+        private readonly HttpClient _httpclient = new HttpClient();
 
         string ApiLink { get; set; }
 
