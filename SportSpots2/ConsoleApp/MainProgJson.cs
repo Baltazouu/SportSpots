@@ -22,7 +22,6 @@ namespace ConsoleProject
             all = Dt.LoadData(JsonSource).Item2;
         }
 
-
         public async Task Program()
         {
             string? choice;

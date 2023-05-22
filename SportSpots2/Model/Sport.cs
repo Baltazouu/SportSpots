@@ -16,7 +16,10 @@ namespace Model
         [DataMember(Name = "outdoor")]
         public bool Outdoor { get; init; }
 
-        public Sport(int num, string name, string typ, bool indoor, bool outdoor)
+        [DataMember(Name="imglink")]
+        public string ImgLink { get; set; }
+
+        public Sport(int num, string name, string typ, bool indoor, bool outdoor,string urlImage)
         {
             //name = name.Replace(" ", "+");
             //Console.WriteLine(name);
@@ -28,6 +31,8 @@ namespace Model
             TypeEquipement = typ;
             Indoor = indoor;
             Outdoor = outdoor;
+            ImgLink = urlImage;
+
         }
 
         public override string ToString()

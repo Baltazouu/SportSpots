@@ -32,9 +32,9 @@ namespace Model
         public bool Public_access { get; init; }
 
 
-        public Spot(int ?numero, string?nomcomm, string?nom, string?family,
-                    string?adress, int?postalcode, string?dept,
-                    double?coord_x, double? coord_y, bool asccessHandicap,
+        public Spot(int? numero, string? nomcomm, string? nom, string? family,
+                    string? adress, int? postalcode, string? dept,
+                    double? coord_x, double? coord_y, bool asccessHandicap,
                     bool restauration, bool publicAccess)
         {
             NomCommune = nomcomm;

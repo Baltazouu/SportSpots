@@ -54,4 +54,9 @@
 		<PackageReference Include="Npgsql" Version="7.0.4" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Model\Model.csproj" />
+	  <ProjectReference Include="..\Persistance\Persistance.csproj" />
+	</ItemGroup>
+
 </Project>
