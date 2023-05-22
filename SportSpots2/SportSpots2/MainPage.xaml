@@ -18,10 +18,10 @@
                     <Label Text="Inscription : " TextColor="#707070" FontSize="Medium" HorizontalOptions="Center" Margin="0, 20, 0, 0"/>
 
                     <!-- email -->
-                    <Entry x:Name="entryMail" Placeholder="Adresse mail" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="200" Margin="0, 20, 0, 20"/>
+                    <Entry x:Name="entryMail" PlaceholderColor="Black" Placeholder="Adresse mail" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" HorizontalOptions="Center" WidthRequest="200" Margin="0, 20, 0, 20"/>
 
                     <!-- mot de passe -->
-                    <Entry x:Name="entryPass" Placeholder="Mot de passe" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" IsPassword="True" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 20"/>
+                    <Entry x:Name="entryPass" PlaceholderColor="Black" Placeholder="Mot de passe" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" IsPassword="True" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 20"/>
 
                     <!-- Bouton confirmer -->
                     <Button Text="Confirmer" BackgroundColor="#413838" TextColor="White" WidthRequest="150"/>
@@ -32,10 +32,11 @@
 
 
         <!-- Lien de connexion -->
-        <StackLayout BackgroundColor="#ffffff" Margin="0, 15, 0, 0" HeightRequest="50" WidthRequest="450" Padding="10" Orientation="Horizontal">
-            <Label Text="Vous avez déjà un compte ? Connexion" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <StackLayout BackgroundColor="#ffffff" Margin="0, 15, 0, 0" HeightRequest="65" WidthRequest="450" Padding="10" Orientation="Horizontal">
+            <Label Text="Vous avez déjà un compte ? " TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Button Text="Connexion" TextColor="White" BackgroundColor="#413838" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="OnConnexionClicked"/>
         </StackLayout>
-
+ 
     </StackLayout>
 
 </ContentPage>

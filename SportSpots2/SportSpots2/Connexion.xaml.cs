@@ -8,4 +8,9 @@ public partial class Connexion : ContentPage
 		InitializeComponent();
 
     }
+
+    private async void OnInscriptionClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
+    }
 }

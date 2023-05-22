@@ -12,6 +12,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 
+		
 		Data dt = new Data();
 		DataContractJson JsonSource = new DataContractJson();
 
@@ -35,8 +36,14 @@ public partial class MainPage : ContentPage
 				// error User Already existing !!
 			}
 		}
-
+		
 	}
+
+    private async void OnConnexionClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Connexion());
+    }
+
 }
 
 
