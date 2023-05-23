@@ -15,27 +15,19 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-
     <!-- Barre du haut -->
     <StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
-
             <Image Source="foot.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" Margin="30"/>
-
             <Label Text="SportsSpot" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"/>
-
             <Label TextColor="Black" FontSize="20" VerticalOptions="Center" Margin="15,0,0,0">
                 <Label.Text>
                     <MultiBinding StringFormat="{} Compte : {0}">
-                        <Binding Path="Mail"/>
+                        <Binding Path="Utilisateur.Mail"/>
                     </MultiBinding>
                 </Label.Text>
             </Label>
-
-            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30">
-
-            </Image>
-
+            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30" />
         </StackLayout>
 
         <Grid>
@@ -45,11 +37,8 @@
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
             <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="1070">
-                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" 
-                             BackgroundColor="White" WidthRequest="350" Padding="10" >
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="White" WidthRequest="350" Padding="10" >
                     <!-- Recherche de la ville -->
-
-
                     <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
                     <Label Text="Ville" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
                     <Grid>
@@ -64,92 +53,21 @@
                     </Grid>
                     <!-- Catégorie sports -->
                     <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
-                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True" HeightRequest="400">
+                    <Frame BackgroundColor="Gray" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True" HeightRequest="400">
                         <ScrollView VerticalScrollBarVisibility="Always">
-                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="White" WidthRequest="350" Padding="10,0,35,0">
-                                <!-- 1 CASE SPORT -->
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="foot.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Football" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <!-- FIN 1 CASE SPORT -->
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="basket.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Basketball" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="tennis.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Tennis" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="volley.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Volleyball" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="skate.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Skatepark" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="marche.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Sentier de Rando" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="boxe.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Salle de Boxe" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="escrime.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Salle d'escrime" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="golf.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Golf" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="moto.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Circuit de motocross" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="muscu.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Salle de musculation" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="peche.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Site de pêche" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="piscine.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Baignade" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="run.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Piste d'athlétisme" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="ski.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Station de Ski" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                    <Image Source="vtt.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Trial" FontSize="Medium" TextColor="Black" Margin="10,0,10,0"  HorizontalOptions="FillAndExpand" />
-                                    <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-                                </StackLayout>
-                            </StackLayout>
+                            <ListView ItemsSource="{Binding SportsAvaibles.SportCollection}" Grid.Row="1">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                                <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                                <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" Margin="10,0,10,0" HorizontalOptions="FillAndExpand" />
+                                                <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </ScrollView>
                     </Frame>
                     <!-- Catégorie favoris -->
@@ -257,11 +175,10 @@
                 <SearchBar Placeholder="Entrez une ville" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 <Button Text="changer l'adresse mail" Margin="15"></Button>
                 <Label Text="changer le mot de passe" FontAttributes="Italic"/>
-                <Editor Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"></Editor>
-                <Editor Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"></Editor>
-                <Editor Placeholder="répeter le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"></Editor>
-                <Button Text="Confirmer" Margin="15"></Button>
-                <Button Text="Se déconnecter" Margin="0,5,0,0"></Button>
+                <Editor Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Editor>
+                <Editor Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Editor>
+                <Editor Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Editor>
+                <Button Text="valider" Margin="15"></Button>
             </StackLayout>
         </Grid>
     </StackLayout>

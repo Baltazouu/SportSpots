@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,6 @@ namespace Model
 {
     public static class SpotStub
     {
-
         public static List<Spot> LoadSpots()
         {
             List<Spot> list = new List<Spot>();

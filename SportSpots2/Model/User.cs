@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -9,15 +10,25 @@ namespace Model
 {
 
     [DataContract(Name = "user")]
-    public class User
+    public class User : INotifyPropertyChanged
     {
         [DataMember]
         public int Id { get; init; }
 
         [DataMember]
-        public string Mail { get; private set; }
+        public string Mail { get;  private set; }
 
         string _passwd;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         [DataMember]
         public string Passwd
@@ -31,6 +42,7 @@ namespace Model
                     throw new ArgumentException("Invalid Password ");
                 }
                 _passwd = value;
+                OnPropertyChanged("Passwd");
             }
         }
 
@@ -77,7 +89,8 @@ namespace Model
             if(newMail.Length > 5)
             {
                  Mail = newMail;
-                 return true;
+                OnPropertyChanged("Mail");
+                return true;
                 
             }
             return false;
@@ -96,6 +109,7 @@ namespace Model
             if (!present)
             {
                 FavSpots.Add(spot);
+                OnPropertyChanged("FavSpots");
                 return true;
             }
             return false;
@@ -115,6 +129,7 @@ namespace Model
             if (!present)
             {
                 Favsports.Add(sport);
+                OnPropertyChanged("Favsports");
                 return true;
             }
             return false;
@@ -133,7 +148,7 @@ namespace Model
                     break;
                 }
             }
-            if (present) { FavSpots.Remove(sport); }
+            if (present) { FavSpots.Remove(sport); OnPropertyChanged("FavSpots"); }
             return present;
 
         }
@@ -146,6 +161,7 @@ namespace Model
                 if (sp.Numero == spot.Numero)
                 {
                     FavSpots.Remove(sp);
+                    OnPropertyChanged("FavSpots");
                     return true;
                 }
             }

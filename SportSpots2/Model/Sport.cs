@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Model
 {
-    public class Sport
+    public class Sport : IEquatable<Sport>
     {
         [DataMember(Name="SportNumero")]
         public int Numero { get; set; }
@@ -35,6 +35,12 @@ namespace Model
 
         }
 
+        public override int GetHashCode()
+            => base.GetHashCode();
+
+        public bool Equals(Sport? other)
+        => Name.Equals(other.Name);
+
         public override string ToString()
         {
             string indoor = "No";
@@ -51,5 +57,14 @@ namespace Model
 
             return $"Name : {name} Type : {typ} Indoor : {indoor}, Outdoor : {outdoor}";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(obj, null)) return false;
+            if (ReferenceEquals(obj, this)) return true;
+            if (GetType() != obj.GetType()) return false;
+            return Equals(obj as Sport);
+        }
+
     }
 }
