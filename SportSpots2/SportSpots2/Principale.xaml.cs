@@ -5,15 +5,19 @@ namespace SportsSpots;
 
 public partial class Principale : ContentPage
 {
-    User User;
+    User Utilisateur;
 
     public Principale(User user)
     {
 
-        Data dt;
+        Utilisateur = user;
 
-        User = user;
+
+        BindingContext = Utilisateur;
+
         InitializeComponent();
+
+        
     }
 
 

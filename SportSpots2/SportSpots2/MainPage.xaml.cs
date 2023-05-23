@@ -71,6 +71,7 @@ public partial class MainPage : ContentPage
 
     async void OnConnexionClicked(object sender, EventArgs e)
     {
+        await Navigation.PopAsync();
         await Navigation.PushAsync(new Connexion());
     }
 }

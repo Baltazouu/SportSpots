@@ -22,7 +22,7 @@
         <!-- Titre page -->
         <Label Grid.Row="0" Text="Sports Spot" TextColor="#707070" HorizontalOptions="CenterAndExpand" FontSize="50" Margin="0,40"/>
 
-        <StackLayout>
+        <StackLayout Padding="20">
             <StackLayout>
                 <!-- Case de connexion -->
                 <StackLayout BackgroundColor="#ffffff"  HeightRequest="300" WidthRequest="450" Padding="10" Spacing="10">
@@ -35,7 +35,9 @@
                     <!-- mot de passe -->
                     <Entry x:Name="entryPass" Placeholder="Mot de passe" PlaceholderColor="Black" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" IsPassword="True" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 20"/>
 
+                    <!-- Bouton erreur de saisie -->
                     <Label x:Name="ResultLabel" TextColor="Black" HorizontalTextAlignment="Center" />
+                    
                     <!-- Bouton confirmer -->
                     <Button Text="Confirmer" TextColor="White" WidthRequest="150" Clicked="OnConnexionClicked"/> 
                 </StackLayout>

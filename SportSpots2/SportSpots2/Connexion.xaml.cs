@@ -53,6 +53,7 @@ public partial class Connexion : ContentPage
 
             User user = Dt.FindUser(Mail, Pass, all);
 
+           
             await Navigation.PushAsync(new Principale(user));
 
         }
@@ -60,7 +61,7 @@ public partial class Connexion : ContentPage
 
     private async void OnInscriptionClicked(object sender, EventArgs e)
     {
-
+        await Navigation.PopAsync();
         await Navigation.PushAsync(new MainPage());
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace SportsSpots;
+﻿
+namespace SportsSpots;
 
 public partial class App : Application
 {
