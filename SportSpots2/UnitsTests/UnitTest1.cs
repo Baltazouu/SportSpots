@@ -18,7 +18,9 @@ namespace UnitsTests
         [Fact]
         public void TestStubUser()
         {
-            List<User> users = UserStub.LoadUser();
+            Data dt = new();
+            
+            List<User> users = dt.LoadData(new UserStub()).Item2;
 
             Assert.False(users.Count != 5);
         }
@@ -34,7 +36,8 @@ namespace UnitsTests
         [Fact]
         public void TestStub()
         {
-            List<User> users = UserStub.LoadUser();
+            Data dt = new();
+            List<User> users = dt.LoadData(new UserStub()).Item2;
 
             Assert.False(users.Count != 5);
         }
@@ -42,11 +45,10 @@ namespace UnitsTests
         [Fact]
         public void TestJson()
         {
-            List<User> users = UserStub.LoadUser();
+            Data dtstub = new();
+            List<User> users = dtstub.LoadData(new UserStub()).Item2; 
 
             DataContractJson dt = new();
-
-
 
             Assert.True(dt.SaveUser(users));
         }

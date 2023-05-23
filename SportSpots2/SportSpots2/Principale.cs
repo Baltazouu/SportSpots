@@ -1,13 +1,23 @@
-﻿namespace SportsSpots;
+﻿using Model;
+
+
+namespace SportsSpots;
 
 public partial class Principale : ContentPage
 {
+    User User;
 
-    public Principale()
+    public Principale(User user)
     {
-        InitializeComponent();
 
+        Data dt;
+
+        User = user;
+        InitializeComponent();
     }
+
+
+
 }
 
 

@@ -8,12 +8,13 @@ namespace Model
 {
     public class Data
     {
+
         public void SaveData(IDataManager DtManager,List<User> users)
         {
             DtManager.SaveUser(users);
         }
 
-        public (bool,List<User>?) LoadData(IDataManager Dtmanager)
+        public (bool,List<User>) LoadData(IDataManager Dtmanager)
         {
             return Dtmanager.LoadUser();
         }
@@ -75,5 +76,12 @@ namespace Model
         {
             return all.Max(u =>  u.Id);
         }
+
+   
+
     }
+
+
 }
+
+

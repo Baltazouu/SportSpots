@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public static class UserStub
+    public class UserStub : IDataManager
     {
-        public static List<User> LoadUser()
+        public (bool,List<User>) LoadUser()
         {
             List<User> users = new();
 
@@ -37,7 +37,18 @@ namespace Model
                 x++;
             }
             
-            return users;
+            return (true,users);
         }
+
+
+        public bool SaveUser(List<User> all)
+        {
+            throw new NotImplementedException("Error Not Possible to save in userStub");
+        }
+        
+
     }
+
+
+   
 }

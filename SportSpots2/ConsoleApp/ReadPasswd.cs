@@ -32,7 +32,7 @@ namespace ConsoleApp
             }
             while (keyinfo.Key != ConsoleKey.Enter);
 
-            Console.WriteLine();
+            //Console.WriteLine();
             return Hash.HashPassword(passwd);
         }
         /// <summary>

@@ -5,45 +5,74 @@ namespace SportsSpots;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-	// page inscription
 
-	public MainPage()
+    // page inscription
+
+    string Pass;
+    string Mail;
+
+    Data Dt = new Data();
+    DataContractJson jsonSource = new DataContractJson();
+
+    List<User> all;
+
+
+    public MainPage()
 	{
-		InitializeComponent();
-
 		
-		Data dt = new Data();
-		DataContractJson JsonSource = new DataContractJson();
+        InitializeComponent();
+        Dt = new Data();
+        jsonSource = new DataContractJson();
+
+        //all = Dt.LoadData(jsonSource).Item2;
+
+        UserStub source = new();
+        all = Dt.LoadData(source).Item2;
+
+    }
 
 
-
-		List<User> users = dt.LoadData(JsonSource).Item2;
-
-		BindingContext = users;
-
-		string Addr = entryMail.Text;
-		string Passwd = entryPass.Text;
-
-		Passwd = Hash.HashPassword(Passwd);
-
-		User u = new(dt.GetNewUserId(users),Addr,Passwd,null,null);
-
-		foreach (var user in users)
-		{
-			if(u.Mail.Equals(user.Mail))
-			{
-				// error User Already existing !!
-			}
-		}
+	async void OnInscriptionClicked(Object sender,EventArgs e)
+	{
 		
-	}
+        
 
-    private async void OnConnexionClicked(object sender, EventArgs e)
+        if(Dt.CheckMailExist(Mail,all))
+        {
+            ResultLabel.Text = "Adresse Mail déjà utilisée !";
+        }
+        
+        else if(entryPass.Text ==  null || entryPass.Text.Length < 6)
+        {
+            ResultLabel.Text = "Entrez un mot de passe d'au moins 6 Caractères !";
+        }
+
+        else if(entryMail.Text == null || entryMail.Text.Length < 5)
+        {
+            ResultLabel.Text = "Entrez Une Adresse email valide !";
+        }
+
+        else
+        { 
+            ResultLabel.Text = "Connexion en cours ...";
+
+            Mail = entryMail.Text;
+            Pass = Hash.HashPassword(entryPass.Text);
+
+            User u = new(Dt.GetNewUserId(all), Mail, Pass, null, null);
+
+            all.Add(u);
+            Dt.SaveData(jsonSource, all);
+
+            await Navigation.PushAsync(new Principale(u));
+        }
+
+    }
+
+    async void OnConnexionClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Connexion());
     }
-
 }
 
 

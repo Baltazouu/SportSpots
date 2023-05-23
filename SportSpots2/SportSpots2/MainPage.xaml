@@ -5,7 +5,7 @@
              BackgroundColor="#a4a2a2"
              Title="">
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
         
         <!-- Titre page -->
         <Label Grid.Row="0" Text="Sports Spot" TextColor="#707070" HorizontalOptions="CenterAndExpand" FontSize="50" Margin="0,40"/>
@@ -24,11 +24,13 @@
                     <Entry x:Name="entryPass" PlaceholderColor="Black" Placeholder="Mot de passe" BackgroundColor="#d1cece" HorizontalTextAlignment="Center" IsPassword="True" HorizontalOptions="Center" WidthRequest="200" Margin="0, 0, 0, 20"/>
 
                     <!-- Bouton confirmer -->
-                    <Button Text="Confirmer" BackgroundColor="#413838" TextColor="White" WidthRequest="150"/>
+                    <Button Text="Confirmer" BackgroundColor="#413838" TextColor="White" WidthRequest="150" Clicked="OnInscriptionClicked"/>
+
+                    <Label x:Name="ResultLabel" TextColor="Black" HorizontalTextAlignment="Center" />
+
                 </StackLayout>
             </StackLayout>
         </StackLayout>
-
 
 
         <!-- Lien de connexion -->

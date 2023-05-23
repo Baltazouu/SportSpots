@@ -13,7 +13,7 @@ namespace Persistance
         {
             try
             {
-                //Console.WriteLine(JsonString);
+                //Debug.WriteLine(JsonString);
 
                 using (StreamWriter streamWriter = new(UserFile))
                 {
@@ -49,7 +49,6 @@ namespace Persistance
 
             return (true,users);
         }
-
         
     }
-    }
+ }
