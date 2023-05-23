@@ -1,40 +1,57 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SportsSpots.Principale"
-             
-             
              BackgroundColor="#a4a2a2"
              Title="">
 
+    <!-- Ressources -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonBackgroundColor">#d8d8d8</Color>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <ScrollView VerticalScrollBarVisibility="Always">
-            <StackLayout>
-                <!-- Barre du haut -->
-                <StackLayout Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
 
-                    <Image Source="foot.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" Margin="30"/>
+    <!-- Barre du haut -->
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
 
-                    <Label Text="SportsSpot" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"/>
+            <Image Source="foot.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" Margin="30"/>
 
-                <Label TextColor="Black" FontSize="20" VerticalOptions="Center" Margin="15,0,0,0">
-                    <Label.Text>
-                        <MultiBinding StringFormat="{} Compte : {0}">
-                            <Binding Path="Mail"/>
-                        </MultiBinding>
-                    </Label.Text>
-                </Label>
+            <Label Text="SportsSpot" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"/>
 
-                <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30"/>
-                </StackLayout>
-                <!-- Barre laterale -->
-            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" 
+            <Label TextColor="Black" FontSize="20" VerticalOptions="Center" Margin="15,0,0,0">
+                <Label.Text>
+                    <MultiBinding StringFormat="{} Compte : {0}">
+                        <Binding Path="Mail"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30">
+
+            </Image>
+
+        </StackLayout>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="1070">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" 
                              BackgroundColor="White" WidthRequest="350" Padding="10" >
-                <!-- Recherche de la ville -->
+                    <!-- Recherche de la ville -->
 
 
-                <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Label Text="Ville" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
-                
+                    <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label Text="Ville" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -228,10 +245,24 @@
                                         <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
                                     </Grid>
                                 </Frame>
-                            </StackLayout>  
+                            </StackLayout>
                         </ScrollView>
                     </Frame>
                 </StackLayout>
+            </ScrollView>
+
+            <!-- Parametres utilisateur -->
+            <StackLayout IsVisible="True" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="End" Padding="20">
+                <Label Text="adresse mail" FontAttributes="Italic"/>
+                <SearchBar Placeholder="Entrez une ville" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <Button Text="changer l'adresse mail" Margin="15"></Button>
+                <Label Text="changer le mot de passe" FontAttributes="Italic"/>
+                <Editor Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"></Editor>
+                <Editor Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"></Editor>
+                <Editor Placeholder="répeter le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,5"></Editor>
+                <Button Text="Confirmer" Margin="15"></Button>
+                <Button Text="Se déconnecter" Margin="0,5,0,0"></Button>
             </StackLayout>
-        </ScrollView>
+        </Grid>
+    </StackLayout>
 </ContentPage>
