@@ -36,7 +36,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
-            <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="1070">
+            
+            <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="1070 ">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="White" WidthRequest="350" Padding="10" >
                     <!-- Recherche de la ville -->
                     <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
@@ -54,15 +55,24 @@
                     <!-- Catégorie sports -->
                     <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
                     <Frame BackgroundColor="Gray" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True" HeightRequest="400">
-                        <ScrollView VerticalScrollBarVisibility="Always">
-                            <ListView ItemsSource="{Binding SportsAvaibles.SportCollection}" Grid.Row="1">
+                        <ScrollView VerticalScrollBarVisibility="Never">
+                            <ListView ItemsSource="{Binding SportsAvaibles.SportCollection}" Grid.Row="1" >
                                 <ListView.ItemTemplate>
-                                    <DataTemplate>
+                                    <DataTemplate >
                                         <ViewCell>
-                                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                                <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
+
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnClickedSport"/>
+                                                </StackLayout.GestureRecognizers>
+
+                                                <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand"/>
                                                 <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" Margin="10,0,10,0" HorizontalOptions="FillAndExpand" />
-                                                <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+                                                <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnClickedStar" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -168,6 +178,10 @@
                     </Frame>
                 </StackLayout>
             </ScrollView>
+
+            
+            <!-- Map à mettre ici -->
+            
 
             <!-- Parametres utilisateur -->
             <StackLayout IsVisible="True" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="End" Padding="20">
