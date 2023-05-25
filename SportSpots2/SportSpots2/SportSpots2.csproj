@@ -59,4 +59,10 @@
 	  <ProjectReference Include="..\Persistance\Persistance.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="ViewSpot.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

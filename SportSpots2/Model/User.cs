@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -52,6 +53,7 @@ namespace Model
         [DataMember(EmitDefaultValue = false)]
         public List<Sport> Favsports { get;  set; }
 
+        public ReadOnlyCollection<Spot> FavSpotsCollection { get; set; }
 
         public User(int id, string mail,string pass,List<Spot>?spots,List<Sport> ?sports)
         {
@@ -69,6 +71,8 @@ namespace Model
                 Favsports = sports;
             }    
             else Favsports = new List<Sport>();
+
+            FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
             
             
 

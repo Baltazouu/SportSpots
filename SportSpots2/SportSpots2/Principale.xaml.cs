@@ -12,12 +12,9 @@ public partial class Principale : ContentPage
 
     public Principale(User user)
     {
-
        Modelview = new ViewModel1(user);
-
-        BindingContext = Modelview;
-
-        InitializeComponent();
+       BindingContext = Modelview;
+       InitializeComponent();
 
     }
 
@@ -26,7 +23,7 @@ public partial class Principale : ContentPage
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
     }
 
-    bool IsClickedStar = false;
+    
 
     public void OnClickedSport(object sender, EventArgs e)
     {
@@ -52,7 +49,7 @@ public partial class Principale : ContentPage
                 {
                     Modelview.toSearch.Add(sport);
                     OnPropertyChanged(nameof(Modelview));
-                    stackLayout.BackgroundColor = Color.FromRgb(0, 0, 255);
+                    stackLayout.BackgroundColor = Color.FromArgb("737373");
                 }
 
                 
@@ -67,13 +64,13 @@ public partial class Principale : ContentPage
     {
         if(sender is Image img)
         {
-            if (!IsClickedStar)
+            if (img.Source.Equals(Modelview.star))
             {
-                img.Source = "starfilled.png";
+                img.Source = Modelview.starfilled;
+                // et ajouter à list des favoris
             }
-            else img.Source = "star.png";
-
-            IsClickedStar = !IsClickedStar;
+            else img.Source = Modelview.star;
+            // to do later remove to favlist
         }
     }
 

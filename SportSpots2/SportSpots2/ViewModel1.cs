@@ -17,7 +17,8 @@ namespace SportsSpots
             
         }
 
-        
+        public ImageSource star { get;init; } = "star.png";
+        public ImageSource starfilled { get; init; } = "starfilled.png";
 
     }
 }

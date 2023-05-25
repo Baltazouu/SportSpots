@@ -58,21 +58,22 @@
                     </Grid>
                     <!-- Catégorie sports -->
                     <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
-                    <Frame BackgroundColor="Gray" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True" HeightRequest="400">
-                        <ScrollView VerticalScrollBarVisibility="Never">
+                    <Frame BackgroundColor="LightGray" BorderColor="Gray" CornerRadius="5" Padding="1" Margin="10,0,0,0" HasShadow="True" HeightRequest="400">
+                        <ScrollView VerticalScrollBarVisibility="Always">
                             <ListView ItemsSource="{Binding SportsAvaibles.SportCollection}" Grid.Row="1" >
                                 <ListView.ItemTemplate>
-                                    <DataTemplate >
+                                    
+                                    <DataTemplate>
                                         <ViewCell>
-                                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" >
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,0,10,0" >
 
                                                 <StackLayout.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="OnClickedSport"/>
                                                 </StackLayout.GestureRecognizers>
 
                                                 <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand"/>
-                                                <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" Margin="10,0,10,0" HorizontalOptions="FillAndExpand" />
-                                                <Image Source="star.png" WidthRequest="29" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                                                <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" Margin="10,0,10,10" HorizontalOptions="FillAndExpand" />
+                                                <Image Source="star.png" WidthRequest="35" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
                                                     <Image.GestureRecognizers>
                                                         <TapGestureRecognizer Tapped="OnClickedStar" />
                                                     </Image.GestureRecognizers>
@@ -80,6 +81,7 @@
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
+                                    
                                 </ListView.ItemTemplate>
                             </ListView>
                         </ScrollView>
@@ -89,46 +91,41 @@
                     <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
                         <ScrollView VerticalScrollBarVisibility="Always">
                             <StackLayout>
-                                <!-- 1 CASE FAVORIS -->
-                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="40"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
-                                        <Label Text="Football test" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
-                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
-                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
-                                        <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                    </Grid>
-                                </Frame>
-                                <!-- FIN 1 CASE FAVORIS -->
-                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="40"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
-                                        <Label Text="Football test" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
-                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
-                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
-                                        <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                    </Grid>
-                                </Frame>
+                                <ListView ItemsSource="{Binding Utilisateur.FavSpotsCollection}">
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+
+                                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
+                                                        <Label Text="{Binding Name}" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
+                                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                                        <Image Source="starfilled.png" WidthRequest="30" Grid.Column="3"/>
+                                                        <Label Text="{Binding Adress}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        <Label Text="{Binding NonCommune}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+
+                                                       <!-- <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/> -->
+                                                    </Grid>
+                                                </Frame>
+
+                                            </ViewCell>
+
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                              
                             </StackLayout>
                         </ScrollView>
                     </Frame>
@@ -183,12 +180,21 @@
                 </StackLayout>
             </ScrollView>
 
-            
-            <!-- Map à mettre ici -->
-            
 
+            <StackLayout Grid.Column="1" BackgroundColor="Grey">
+                
+                <Label Text=" test "/>
+
+            </StackLayout>
+            
+            <!-- Map à mettre ici 
+            <StackLayout Grid.Column="1"  >
+                <WebView
+                    Source="https://www.openstreetmap.org/#map=7/48.836/4.444" />
+            </StackLayout>
+            -->
             <!-- Parametres utilisateur -->
-            <StackLayout x:Name="ParametreUser" IsVisible="False" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="End" Padding="20">
+            <StackLayout x:Name="ParametreUser" IsVisible="False" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" VerticalOptions="Start" HorizontalOptions="End" Padding="20" BackgroundColor="Grey">
                 <Label Text="adresse mail" FontAttributes="Italic"/>
                 <Entry x:Name="NewTextMail" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
                 <Button Text="changer l'adresse mail" Margin="15"></Button>

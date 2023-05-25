@@ -59,7 +59,7 @@ public partial class MainPage : ContentPage
             Mail = entryMail.Text;
             Pass = Hash.HashPassword(entryPass.Text);
 
-            User u = new(Dt.GetNewUserId(all), Mail, Pass, null, null);
+            User u = new(Dt.GetNewUserId(all), Mail, Pass, SpotStub.LoadSpots(), null);
 
             all.Add(u);
             Dt.SaveData(jsonSource, all);
