@@ -6,12 +6,16 @@ namespace ConsoleApp
     internal class UserActions
     {
         User User;
+        List<User> ALlUsers;
+        IDataManager Dt;
 
         Menue menue = new Menue();
 
-        public UserActions(User u)
+        public UserActions(User u,List<User> all,IDataManager dt)
         {
             User = u;
+            ALlUsers = all;
+            Dt = dt;
         }
 
 
@@ -41,13 +45,18 @@ namespace ConsoleApp
                         menue.MyFavSports(User.Favsports);
                         break;
 
+                    case "4":
+
+                        if(menue.ChangeEmail(User))
+                        { Dt.SaveUser(ALlUsers); }
+                        break;
+                    
                     case "5":
+                        if(menue.ChangePass(User))
+                        { Dt.SaveUser(ALlUsers); }
 
                         break;
 
-                    case "6":
-
-                        break;
 
                 }
             } while (choice == "6");
@@ -150,8 +159,7 @@ namespace ConsoleApp
             do
             {
                 do
-                {
-                    Console.WriteLine("Ajouter Un Autre Sport A Rechercher ?\n1 : Oui\n2 : Non ");
+                {   Console.WriteLine("Ajouter Un Autre Sport A Rechercher ?\n1 : Oui\n2 : Non ");
                     Console.Write("Entrez Votre Choix :");
                     addnew = Console.ReadLine();
 
@@ -206,6 +214,7 @@ namespace ConsoleApp
                     }
                     if (choice == "2")
                     {
+                        Console.WriteLine("Coming Soon");
                         //OpenBrowser($"www.google.com/search?&q=45.735176%2C+3.008964&sourceid=opera&ie=UTF-8&oe=UTF-8");
                     }
 

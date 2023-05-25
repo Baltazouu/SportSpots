@@ -84,7 +84,7 @@ namespace ConsoleProject
             User u = new(Dt.GetNewUserId(all), Addr, Passwd, null, null);
             all.Add(u);
 
-            UserActions actions = new UserActions(u);
+            UserActions actions = new UserActions(u,all,(IDataManager)JsonSource);
             await actions.actions();
             Dt.SaveData(JsonSource, all);
         }
@@ -126,7 +126,7 @@ namespace ConsoleProject
 
             Dt.SaveData(JsonSource, all);
 
-            UserActions actions = new(u);
+            UserActions actions = new(u,all,(IDataManager)JsonSource);
             await actions.actions();
             Dt.SaveData(JsonSource,all);
 

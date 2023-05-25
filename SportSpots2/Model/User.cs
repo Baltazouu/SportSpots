@@ -17,7 +17,7 @@ namespace Model
         public int Id { get; init; }
 
         [DataMember]
-        public string Mail { get;  private set; }
+        public string Mail { get; private set; }
 
         string _passwd;
 
@@ -38,9 +38,10 @@ namespace Model
 
             private set
             {
-                if (value.Length < 6 || value.Equals(null))
+                if (value == null || value.Length < 6 )
                 {
-                    throw new ArgumentException("Invalid Password ");
+                    Console.WriteLine("Value null");
+                    //throw new ArgumentException("Invalid Password ");
                 }
                 _passwd = value;
                 OnPropertyChanged("Passwd");

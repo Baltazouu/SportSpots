@@ -88,7 +88,64 @@ namespace ConsoleApp
             //return list;
         }
 
+        public bool ChangeEmail(User u)
+        {
+            string? mail,pass;
+            Console.WriteLine("[ChangeEmail]");
 
+            Console.Write("Enter Your Actual Email : ");
+            mail = Console.ReadLine();
+
+            Console.Write("Enter Your Password :");
+            pass = ReadPasswd.ReadPassword();
+
+            if(pass.Equals(u.Passwd) && mail.Equals(u.Mail) && u.ChangeMail(mail))
+            {  
+                Console.WriteLine("[New Mail Setted Successfully]");
+                return true;
+            }
+            Console.WriteLine("Error Mail Not Updated !");
+            return false;
+
+
+
+        }
+
+        public bool ChangePass(User u)
+        {
+            string? pass,newpass;
+            Console.WriteLine("[ChangePasswd]");
+
+            Console.Write("Enter Your Password : ");
+            pass = ReadPasswd.ReadPassword();
+
+            Console.Write("Enter new Password :");
+            newpass = ReadPasswd.ReadPassword();
+
+            if (pass.Equals(u.Passwd))
+            {
+                bool succes = false;
+                try
+                {
+                    u.ChangePasswd(newpass);
+                    succes = true;
+
+                }
+                catch (Exception)
+                { succes = false; }
+
+                if(succes) { 
+                    Console.WriteLine("[New passwd Setted Successfully]");
+                }
+
+                return succes;
+            }
+            Console.WriteLine("Error passwd Not Updated !");
+            return false;
+
+
+
+        }
 
     }
 }
