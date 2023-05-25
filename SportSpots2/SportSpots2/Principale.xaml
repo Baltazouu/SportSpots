@@ -38,8 +38,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="350" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+            
+            <!-- 
+            <ColumnDefinition Width="200" />
+            
+                -->
             
             <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="1070 ">
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" BackgroundColor="White" WidthRequest="350" Padding="10" >
@@ -194,7 +198,7 @@
             </StackLayout>
             -->
             <!-- Parametres utilisateur -->
-            <StackLayout x:Name="ParametreUser" IsVisible="False" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" VerticalOptions="Start" HorizontalOptions="End" Padding="20" BackgroundColor="Grey">
+            <StackLayout x:Name="ParametreUser" IsVisible="False" BackgroundColor="White" Orientation="Vertical" Grid.Column="1" ZIndex="1" WidthRequest="300" VerticalOptions="Start" HorizontalOptions="End" Padding="20" >
                 <Label Text="adresse mail" FontAttributes="Italic"/>
                 <Entry x:Name="NewTextMail" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
                 <Button Text="changer l'adresse mail" Margin="15"></Button>
