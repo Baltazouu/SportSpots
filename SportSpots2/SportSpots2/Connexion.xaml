@@ -25,7 +25,7 @@
         <StackLayout Padding="20">
             <StackLayout>
                 <!-- Case de connexion -->
-                <StackLayout BackgroundColor="#ffffff"  HeightRequest="300" WidthRequest="450" Padding="10" Spacing="10">
+                <StackLayout BackgroundColor="#ffffff"  HeightRequest="320" WidthRequest="450" Padding="10" Spacing="10">
                     <!-- Titre div -->
                     <Label Text="Connexion : " TextColor="#707070" FontSize="Medium" HorizontalOptions="Center" Margin="0, 20, 0, 0"/>
 

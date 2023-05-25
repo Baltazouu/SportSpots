@@ -27,7 +27,11 @@
                     </MultiBinding>
                 </Label.Text>
             </Label>
-            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30" />
+            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClickedAccount"/>
+                </Image.GestureRecognizers>
+            </Image>
         </StackLayout>
 
         <Grid>
@@ -184,7 +188,7 @@
             
 
             <!-- Parametres utilisateur -->
-            <StackLayout IsVisible="True" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="End" Padding="20">
+            <StackLayout x:Name="ParametreUser" IsVisible="False" Orientation="Vertical" Grid.Column="2" ZIndex="1" WidthRequest="300" BackgroundColor="White" VerticalOptions="Start" HorizontalOptions="End" Padding="20">
                 <Label Text="adresse mail" FontAttributes="Italic"/>
                 <SearchBar Placeholder="Entrez une ville" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 <Button Text="changer l'adresse mail" Margin="15"></Button>

@@ -8,7 +8,6 @@ namespace SportsSpots;
 public partial class Principale : ContentPage
 {
 
-
     ViewModel1 Modelview { get; set; }
 
     public Principale(User user)
@@ -21,7 +20,12 @@ public partial class Principale : ContentPage
         InitializeComponent();
 
     }
- 
+
+    private void ClickedAccount(object sender, EventArgs e)
+    {
+        ParametreUser.IsVisible = !ParametreUser.IsVisible;
+    }
+
     bool IsClickedStar = false;
 
     public void OnClickedSport(object sender, EventArgs e)
@@ -76,17 +80,17 @@ public partial class Principale : ContentPage
 
     public void StarFav()
     {
-        foreach(var Sport in Modelview.Utilisateur.Favsports)
-        { 
-            foreach(var sportView in Modelview.SportsAvaibles.SportCollection)
+        foreach (var Sport in Modelview.Utilisateur.Favsports)
+        {
+            foreach (var sportView in Modelview.SportsAvaibles.SportCollection)
             {
-                if(Sport.Name.Equals(sportView.Name))
+                if (Sport.Name.Equals(sportView.Name))
                 {
 
                 }
             }
         }
-
+    }
 
 }
 
