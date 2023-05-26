@@ -23,6 +23,10 @@ public partial class Principale : ContentPage
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
     }
 
+    private void ClickedResult(object sender, EventArgs e)
+    {
+        ResultSearch.IsVisible = !ResultSearch.IsVisible;
+    }
     
 
     public void OnClickedSport(object sender, EventArgs e)
@@ -64,7 +68,7 @@ public partial class Principale : ContentPage
     {
         if(sender is Image img)
         {
-            if (img.Source.Equals(Modelview.star))
+            if (img.Source == Modelview.star )
             {
                 img.Source = Modelview.starfilled;
                 // et ajouter à list des favoris
