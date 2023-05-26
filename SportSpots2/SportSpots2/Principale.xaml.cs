@@ -8,6 +8,7 @@ namespace SportsSpots;
 public partial class Principale : ContentPage
 {
 
+
     ViewModel1 Modelview { get; set; }
 
     public Principale(User user)
@@ -25,7 +26,7 @@ public partial class Principale : ContentPage
 
     private async void ClickedResult(object sender, EventArgs e)
     {
-
+        
         if(sender is SearchBar)
         {
             if (searchCity.Text == "" || searchCity.Text == null || searchCity.Text.Length < 2)
@@ -36,12 +37,21 @@ public partial class Principale : ContentPage
             { errorSearchLabel.Text = "Séléctionnez au moins un sport à rechercher"; }
             else
             {
+                
                 errorSearchLabel.Text = null;
+                searchinfo.Text = "Chargement...";
+                ResultSearch.IsVisible = true;
                 // rechercher les spots
 
                 await Modelview.executeResearch(searchCity.Text);
 
-                ResultSearch.IsVisible = true;
+                if(Modelview.SpotsFinded.Count <1 ) 
+                {
+                    searchinfo.Text = $"Aucun Spot Trouvé Pour {searchCity.Text}";
+                }
+                else { searchinfo.Text = "Spots Trouvés :"; }
+               
+                
             }
                    
         }

@@ -14,7 +14,10 @@ namespace SportsSpots
         public List<Sport> toSearch { get; set; } = new();
 
         public List<Spot> SpotsFinded { get; set; }
+        
+        public string Town { get; set; }
 
+        // ne marche pas quand bindée ??
         public ReadOnlyCollection<Spot> collectionFinded;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -40,6 +43,9 @@ namespace SportsSpots
         public async  Task executeResearch(string town)
         {
             Search s = new(town, toSearch);
+
+            Town = town;
+            OnPropertyChanged("Town");
 
             SpotsFinded = await s.ExecuteSearch();
 

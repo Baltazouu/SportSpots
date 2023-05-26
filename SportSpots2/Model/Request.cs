@@ -26,6 +26,9 @@ namespace Model
             Sport = s;
             Res = new List<Spot>();
             Town = town;
+            Town = Town.Replace(" ", "+");
+            
+            Debug.WriteLine(Town);
             ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26famille%3A{s.TypeEquipement}&rows=15";
         }
         
