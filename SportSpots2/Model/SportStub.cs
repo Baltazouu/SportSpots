@@ -26,9 +26,9 @@ namespace Model
         {
             List<Sport> sport = new List<Sport>();
 
-            sport.Insert(0, new Sport(1, "Terrain de Pétanque", "Terrain de pétanque", true, true,"petanque.png"));
+            sport.Insert(0, new Sport(1, "Pétanque", "Terrain de Pétanque", true, true,"petanque.png"));
             sport.Insert(1, new Sport(2, "Terrain de Football", "Terrain de Football", true, true, "foot.png"));
-            sport.Insert(2, new Sport(3, "Salle de musculation", "Salle de musculation/cardiotraining", false, false, "muscu.png"));
+            sport.Insert(2, new Sport(3, "Musculation", "Salle de musculation/cardiotraining", false, false, "muscu.png"));
             sport.Insert(3, new Sport(4, "Terrain de Tennis", "Court de tennis", true, true, "tennis.png"));
             sport.Insert(4, new Sport(5, "Piste d'athlétisme", "Piste d'athlétisme isolée", true, true, "run.png"));
             sport.Insert(5, new Sport(6, "Terrain de Rugby", "Terrain de rugby", true, true, "rugby.png"));

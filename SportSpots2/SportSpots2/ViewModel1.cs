@@ -14,7 +14,6 @@ namespace SportsSpots
         public ViewModel1(User utilisateur)
         {
             Utilisateur = utilisateur;
-            
         }
 
         public ImageSource star { get;init; } = "star.png";

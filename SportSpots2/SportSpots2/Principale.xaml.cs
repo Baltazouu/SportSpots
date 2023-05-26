@@ -25,7 +25,15 @@ public partial class Principale : ContentPage
 
     private void ClickedResult(object sender, EventArgs e)
     {
-        ResultSearch.IsVisible = !ResultSearch.IsVisible;
+        if(searchCity.Text == "" || searchCity.Text == null || searchCity.Text.Length < 2)
+        {
+            errorSearchLabel.Text = "Entrez une ville de recherche valide";
+        }
+        else if(Modelview.toSearch.Count < 1)
+        { errorSearchLabel.Text = "Séléctionnez au moins un sport à rechercher";  }
+        else {
+            ResultSearch.IsVisible = !ResultSearch.IsVisible;
+        }
     }
     
 
