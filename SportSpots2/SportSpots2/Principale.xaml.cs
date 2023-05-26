@@ -18,21 +18,36 @@ public partial class Principale : ContentPage
 
     }
 
-    private void ClickedAccount(object sender, EventArgs e)
+    void ClickedAccount(object sender, EventArgs e)
     {
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
     }
 
-    private void ClickedResult(object sender, EventArgs e)
+    private async void ClickedResult(object sender, EventArgs e)
     {
-        if(searchCity.Text == "" || searchCity.Text == null || searchCity.Text.Length < 2)
+
+        if(sender is SearchBar)
         {
-            errorSearchLabel.Text = "Entrez une ville de recherche valide";
+            if (searchCity.Text == "" || searchCity.Text == null || searchCity.Text.Length < 2)
+            {
+                errorSearchLabel.Text = "Entrez une ville de recherche valide";
+            }
+            else if (Modelview.toSearch.Count < 1)
+            { errorSearchLabel.Text = "Séléctionnez au moins un sport à rechercher"; }
+            else
+            {
+                errorSearchLabel.Text = null;
+                // rechercher les spots
+
+                await Modelview.executeResearch(searchCity.Text);
+
+                ResultSearch.IsVisible = true;
+            }
+                   
         }
-        else if(Modelview.toSearch.Count < 1)
-        { errorSearchLabel.Text = "Séléctionnez au moins un sport à rechercher";  }
-        else {
-            ResultSearch.IsVisible = !ResultSearch.IsVisible;
+        if(sender is ImageButton)
+        {
+            ResultSearch.IsVisible = false;
         }
     }
     

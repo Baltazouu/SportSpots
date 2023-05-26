@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace Model
                 Request r = new Request(Town, sport);
                 List<Spot> spots = await r.FindSpot();
                 //Console.WriteLine("Spot 0 : {0}",spots[0]);
+                Debug.WriteLine("\"Spot 0 : {0}\",spots[0])");
                 foreach (Spot spot in spots)
                 {
                     result.Add(spot);

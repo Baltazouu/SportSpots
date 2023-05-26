@@ -1,4 +1,6 @@
-﻿
+﻿using Model;
+
+
 namespace SportsSpots;
 
 public partial class App : Application
@@ -7,7 +9,11 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		//MainPage = new AppShell();
 		//MainPage = new ViewSpot();
+
+		User u = new(155,"testmail.com","dadadada",SpotStub.LoadSpots(), SportStub.Loadsport());
+
+		MainPage = new Principale(u);
 	}
 }

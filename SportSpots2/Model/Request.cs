@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace Model
 {
@@ -37,14 +38,15 @@ namespace Model
         public async Task<List<Spot>> FindSpot()
         {
             List<Spot> res = new List<Spot>();
-            //Console.WriteLine("On est dans findSpot");
-            //Console.WriteLine(ApiLink);
+            Debug.WriteLine(ApiLink);
             try
             {
-                //Console.WriteLine("Requete : {0}", ApiLink);
+                Debug.WriteLine("Requete : {0}", ApiLink);
 
-                //Console.WriteLine("Link API {0}", ApiLink);
+                Debug.WriteLine("Link API {0}", ApiLink);
 
+
+                _httpclient.Timeout = TimeSpan.FromMinutes(2);
                 string s = await _httpclient.GetStringAsync(ApiLink);
                 
                 //HttpResponseMessage response = await _httpclient.GetAsync(ApiLink);
@@ -55,11 +57,11 @@ namespace Model
               
                 int ? nbRecords = apires?["parameters"]?["rows"]?.Value<int>();
                 
-                //Console.WriteLine("Nous sommes ici");
-                // Console.WriteLine("Nombre de rows :{0}", nbRecords);
+                Debug.WriteLine("Nombre de rows :{0}", nbRecords);
 
                 for (int i = 0; i < nbRecords; i++)
                 {
+                    Debug.WriteLine("Passage {0}", i);
                     // access handicap caract 3
                     // restauration carct 9
                     // access libre = caract25
@@ -67,8 +69,8 @@ namespace Model
                     string? restauraton = (string?)apires?["records"]?[i]?["fields"]?["carct9"];
                     string?  acces_free = (string?)apires?["records"]?[i]?["fields"]?["caract25"];
 
-                    if(access_handicap == null || restauraton == null || acces_free == null)
-                        continue;
+                   // if(access_handicap == null || restauraton == null || acces_free == null)
+                    //    continue;
 
                     bool ac_handic; // default values false
                     bool ac_free;
@@ -93,6 +95,9 @@ namespace Model
                     }
                     else ac_restauration = true;
 
+                    Debug.WriteLine("Code Insee {0}",apires?["records"]?[i]?["fields"]?["codeinsee"]?.Value<int>());
+                    Debug.WriteLine("Nom commune : {0}",apires?["records"]?[i]?["fields"]?["nom_commune"]?.Value<string>());
+
                     int? codeInsee = apires?["records"]?[i]?["fields"]?["codeinsee"]?.Value<int>();
                     string? nomCommune = apires?["records"]?[i]?["fields"]?["nom_commune"]?.Value<string>();
                     string? nomInstall = apires?["records"]?[i]?["fields"]?["nominstallation"]?.Value<string>();
@@ -115,14 +120,19 @@ namespace Model
                                            ac_handic,
                                            ac_restauration,
                                            ac_free));
-                    
+
+
+                    Debug.WriteLine(res[i].ToString());
                 }
+
+                
                 return res;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 //Console.WriteLine("on est dans l'exception");
                 //Console.WriteLine("error {0}", e.Message);
+                Debug.WriteLine(e.Message);
                 return res;
             }
         }
