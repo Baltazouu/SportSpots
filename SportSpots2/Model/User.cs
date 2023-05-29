@@ -93,7 +93,7 @@ namespace Model
         {
             if(newMail.Length > 5)
             {
-                 Mail = newMail;
+                Mail = newMail;
                 OnPropertyChanged("Mail");
                 return true;
                 

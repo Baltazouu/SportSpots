@@ -54,7 +54,7 @@ public partial class Connexion : ContentPage
             User user = Dt.FindUser(Mail, Pass, all);
 
            
-            await Navigation.PushAsync(new Principale(user));
+            await Navigation.PushAsync(new Principale(user,all));
 
         }
     }

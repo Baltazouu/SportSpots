@@ -16,15 +16,12 @@ public partial class Principale : ContentPage
 
     ViewModel1 Modelview { get; set; }
 
-    public Principale(User user)
+    public Principale(User user,List<User> allusers)
     {
        Modelview = new ViewModel1(user);
        BindingContext = Modelview;
        InitializeComponent();
-       All = Dt.LoadData(JsonSource).Item2;
-
-
-
+        All = allusers;
 }
 
     void ClickedAccount(object sender, EventArgs e)
@@ -148,6 +145,12 @@ public partial class Principale : ContentPage
             else
             {
                 Modelview.Utilisateur.ChangeMail(newEmail);
+
+                // a refaire mieux
+
+               // All.Remove(Modelview.Utilisateur);
+                //All.Add(Modelview.Utilisateur);
+                //
                 Dt.SaveData(JsonSource, All);
                 errorNewMailLabel.Text = "Changement Effectué !";
             }

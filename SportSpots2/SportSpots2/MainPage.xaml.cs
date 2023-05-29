@@ -69,7 +69,7 @@ public partial class MainPage : ContentPage
 
             Debug.WriteLine("User Added to json");
 
-            await Navigation.PushAsync(new Principale(u));
+            await Navigation.PushAsync(new Principale(u, all));
         }
 
     }
