@@ -25,11 +25,11 @@ namespace Model
             passes.Add(Hash.HashPassword("motdepasse5"));
 
             List<string> mails = new();
-            mails.Add("mail.test@coefef");
-            mails.Add("mail.test@coefef");
-            mails.Add("mail.test@coefef");
-            mails.Add("mail.test@coefef");
-            mails.Add("mail.test@coefef");
+            mails.Add("mail.test@coefef1");
+            mails.Add("mail.test@coefef2");
+            mails.Add("mail.test@coefef3");
+            mails.Add("mail.test@coefef4");
+            mails.Add("mail.test@coefef5");
             int x  = 0;
             for (int i = 150;i<155;i++)
             {

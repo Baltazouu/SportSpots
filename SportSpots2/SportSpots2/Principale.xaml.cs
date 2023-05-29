@@ -2,12 +2,17 @@
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Graphics;
 using Microsoft.VisualBasic;
+using Persistance;
 
 namespace SportsSpots;
 
 public partial class Principale : ContentPage
 {
 
+    Data Dt { get; set; } = new Data();
+    DataContractJson JsonSource { get; set; } = new DataContractJson();
+
+    List<User> All { get; set; }
 
     ViewModel1 Modelview { get; set; }
 
@@ -16,8 +21,11 @@ public partial class Principale : ContentPage
        Modelview = new ViewModel1(user);
        BindingContext = Modelview;
        InitializeComponent();
+       All = Dt.LoadData(JsonSource).Item2;
 
-    }
+
+
+}
 
     void ClickedAccount(object sender, EventArgs e)
     {
@@ -126,6 +134,27 @@ public partial class Principale : ContentPage
         }
     }
 
-}
+    private void OnChangeMailClicked(object sender, EventArgs e)
+    {
+        string userEmail = Modelview.Utilisateur.Mail;
+        string newEmail = NewTextMail.Text;
+
+        if (newEmail != userEmail)
+        {
+            if (Dt.CheckMailExist(newEmail, All))
+            {
+                errorNewMailLabel.Text = "Erreur cette adresse email est déjà utilisée";
+            }
+            else
+            {
+                Modelview.Utilisateur.ChangeMail(newEmail);
+                Dt.SaveData(JsonSource, All);
+                errorNewMailLabel.Text = "Changement Effectué !";
+            }
+        }
+        else errorNewMailLabel.Text = "Veuillez Saisir Un Nouvel Email !";
+    }
+
+    }
 
 

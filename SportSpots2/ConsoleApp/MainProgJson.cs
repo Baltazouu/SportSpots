@@ -15,11 +15,11 @@ namespace ConsoleProject
         Data Dt = new();
         DataContractJson JsonSource = new DataContractJson();
 
-        List<User> all;
+        List<User> All;
 
         public MainProgJson()
         {
-            all = Dt.LoadData(JsonSource).Item2;
+            All = Dt.LoadData(JsonSource).Item2;
         }
 
         public async Task Program()
@@ -65,7 +65,7 @@ namespace ConsoleProject
                 }
                 while (Passwd.Length < 10); // 10 car hash meme si ca sert a rien 
 
-                if (Dt.CheckMailExist(Addr, all))
+                if (Dt.CheckMailExist(Addr, All))
                 {
                     errorConditions = true;
                     Console.WriteLine("Error ! Wrong This email altready exists !");
@@ -81,12 +81,12 @@ namespace ConsoleProject
                 throw new Exception("Error While Connecting to persistence");
             }*/
 
-            User u = new(Dt.GetNewUserId(all), Addr, Passwd, null, null);
-            all.Add(u);
+            User u = new(Dt.GetNewUserId(All), Addr, Passwd, null, null);
+            All.Add(u);
 
-            UserActions actions = new UserActions(u,all,(IDataManager)JsonSource);
+            UserActions actions = new UserActions(u,All,(IDataManager)JsonSource);
             await actions.actions();
-            Dt.SaveData(JsonSource, all);
+            Dt.SaveData(JsonSource, All);
         }
 
         public async Task Connection()
@@ -107,12 +107,12 @@ namespace ConsoleProject
                 }
                 while (Passwd.Length < 6);
 
-                if (!Dt.CheckMailExist(Addr, all))
+                if (!Dt.CheckMailExist(Addr, All))
                 {
                     errorConditions = true;
                     Console.WriteLine("Error ! Wrong This email does'nt exists !");
                 }
-                else if (!Dt.CheckRightPass(Addr, Passwd, all))
+                else if (!Dt.CheckRightPass(Addr, Passwd, All))
                 {
                     Console.WriteLine("Error ! Wrong Password !");
                     errorConditions = true;
@@ -122,13 +122,13 @@ namespace ConsoleProject
             } while (errorConditions);
 
 
-            User u = Dt.FindUser(Addr, Passwd, all);
+            User u = Dt.FindUser(Addr, Passwd, All);
 
-            Dt.SaveData(JsonSource, all);
+            Dt.SaveData(JsonSource, All);
 
-            UserActions actions = new(u,all,(IDataManager)JsonSource);
+            UserActions actions = new(u,All,(IDataManager)JsonSource);
             await actions.actions();
-            Dt.SaveData(JsonSource,all);
+            Dt.SaveData(JsonSource,All);
 
         }
     }

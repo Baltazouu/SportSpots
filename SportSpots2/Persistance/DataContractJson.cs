@@ -1,54 +1,70 @@
 ﻿using Model;
 using Newtonsoft.Json;
 using System.Runtime.Serialization.Json;
+using System.Diagnostics;
 
 namespace Persistance
 {
     public class DataContractJson : IDataManager
     {
 
-        static string UserFile = "Users.json";
+        static string UserFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Users.json");
 
         public bool SaveUser(List<User> users)
         {
             try
             {
-                //Debug.WriteLine(JsonString);
+                // Test
+                Debug.WriteLine("Test user all");
+                foreach (var user in users)
+                {
+                    Debug.WriteLine(user);
+                }
 
-                using (StreamWriter streamWriter = new(UserFile))
+                using (StreamWriter streamWriter = new StreamWriter(UserFile))
                 {
                     using (JsonTextWriter jsonWriter = new JsonTextWriter(streamWriter))
                     {
                         jsonWriter.Formatting = Formatting.Indented;
-                        JsonSerializer serializer = new();
+                        JsonSerializer serializer = new JsonSerializer();
                         serializer.Serialize(jsonWriter, users);
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
             return true;
         }
 
-        public (bool,List<User>?) LoadUser()
+        public (bool, List<User>?) LoadUser()
         {
-            List<User>? users = new();
+            List<User>? users = new List<User>();
             try
             {
-                using (StreamReader reader = new("Users.json"))
+                using (StreamReader reader = new StreamReader(UserFile))
                 {
-                    users = JsonConvert.DeserializeObject<List<User>>(reader.ReadToEnd());
+                    string json = reader.ReadToEnd();
+                    users = JsonConvert.DeserializeObject<List<User>>(json);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return (false,users);
+                return (false, users);
             }
 
-            return (true,users);
+            if(users == null ) { users = new List<User>(); }
+
+            Debug.WriteLine("TESTS USERS LOAD");
+
+            foreach (var user in users)
+            {
+                Debug.WriteLine(user);
+            }    
+
+            return (true, users);
         }
-        
+
     }
  }

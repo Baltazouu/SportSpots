@@ -280,12 +280,14 @@
             <!-- Parametres utilisateur -->
             <StackLayout x:Name="ParametreUser" IsVisible="False" BackgroundColor="White" Orientation="Vertical" Grid.Column="1" ZIndex="1" WidthRequest="300" VerticalOptions="Start" HorizontalOptions="End" Padding="20" >
                 <Label Text="adresse mail" FontAttributes="Italic"/>
-                <Entry x:Name="NewTextMail" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Button Text="changer l'adresse mail" Margin="15"></Button>
+                <Entry TextColor="Black" x:Name ="NewTextMail" Placeholder="Nouvelle Adresse Email" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Entry TextColor="Black" x:Name="MailMotDePasse" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5" IsPassword="True"></Entry>
+                <Label x:Name="errorNewMailLabel" TextColor="Black"/>
+                <Button Text="changer l'adresse mail" Clicked="OnChangeMailClicked" Margin="15"></Button>
                 <Label Text="changer le mot de passe" FontAttributes="Italic"/>
-                <Entry x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Entry x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Entry x:Name="ConfirmNewPassword"  Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Entry TextColor="Black" x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Entry TextColor="Black" x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Entry TextColor="Black" x:Name="ConfirmNewPassword"  Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
                 <Button Text="valider" Margin="15"></Button>
             </StackLayout>
         </Grid>

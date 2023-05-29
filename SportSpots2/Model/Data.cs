@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Model
 {
@@ -23,6 +24,7 @@ namespace Model
             if(u==null || u.Count==0) return false;
             foreach (var user in u)
             {
+                Debug.WriteLine(user.Mail);
                 if (user.Mail == mail)
                     return true;
             }
@@ -63,6 +65,7 @@ namespace Model
 
         public int GetNewUserId(List<User> all)
         {
+            
             int max = 100;
             foreach (var user in all)
                 if(user.Id > max)

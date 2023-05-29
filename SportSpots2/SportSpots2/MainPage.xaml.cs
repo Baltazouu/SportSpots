@@ -1,5 +1,6 @@
 ﻿using Model;
 using Persistance;
+using System.Diagnostics;
 
 namespace SportsSpots;
 
@@ -26,8 +27,10 @@ public partial class MainPage : ContentPage
 
         //all = Dt.LoadData(jsonSource).Item2;
 
-        UserStub source = new();
-        all = Dt.LoadData(source).Item2;
+        //UserStub source = new();
+        //all = Dt.LoadData(source).Item2;
+        all = Dt.LoadData(jsonSource).Item2;
+
 
     }
 
@@ -37,7 +40,7 @@ public partial class MainPage : ContentPage
 		
         
 
-        if(Dt.CheckMailExist(Mail,all))
+        if(Dt.CheckMailExist(entryMail.Text, all))
         {
             ResultLabel.Text = "Adresse Mail déjà utilisée !";
         }
@@ -59,10 +62,12 @@ public partial class MainPage : ContentPage
             Mail = entryMail.Text;
             Pass = Hash.HashPassword(entryPass.Text);
 
-            User u = new(Dt.GetNewUserId(all), Mail, Pass, SpotStub.LoadSpots(), null);
+            User u = new(Dt.GetNewUserId(all), Mail, Pass, null, null);
 
             all.Add(u);
             Dt.SaveData(jsonSource, all);
+
+            Debug.WriteLine("User Added to json");
 
             await Navigation.PushAsync(new Principale(u));
         }

@@ -26,7 +26,7 @@ public partial class Connexion : ContentPage
 
         // tester avec le stub
 
-        all = Dt.LoadData(new UserStub()).Item2;
+        all = Dt.LoadData(jsonSource).Item2;
 
         // all = Dt.LoadData(jsonSource).Item2;
 
