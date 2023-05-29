@@ -166,15 +166,21 @@ public partial class Principale : ContentPage
         string newPassword = Hash.HashPassword(NewTextPassword.Text);
         string confirmNewPassword = Hash.HashPassword(ConfirmNewPassword.Text);
 
+        
 
         if (actualPassword == userPassword)
         {
             if (newPassword == confirmNewPassword)
             {
-                Modelview.Utilisateur.ChangePasswd(newPassword);
+                if (NewTextPassword.Text.Length >= 6)
+                {
+                    Modelview.Utilisateur.ChangePasswd(newPassword);
 
-                Dt.SaveData(JsonSource, All);
-                errorNewPasswordLabel.Text = "Changement Effectué !";
+                    Dt.SaveData(JsonSource, All);
+                    errorNewPasswordLabel.Text = "Changement Effectué !";
+                }
+                else errorNewPasswordLabel.Text = "Entrez un mot de passe d'au moins 6 caractères";
+                
             }
             else
             {
