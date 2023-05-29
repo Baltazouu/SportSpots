@@ -285,10 +285,11 @@
                 <Label x:Name="errorNewMailLabel" TextColor="Black"/>
                 <Button Text="changer l'adresse mail" Clicked="OnChangeMailClicked" Margin="15"></Button>
                 <Label Text="changer le mot de passe" FontAttributes="Italic"/>
-                <Entry TextColor="Black" x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Entry TextColor="Black" x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Entry TextColor="Black" x:Name="ConfirmNewPassword"  Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Button Text="valider" Margin="15"></Button>
+                <Entry IsPassword="True" TextColor="Black" x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Entry IsPassword="True" TextColor="Black" x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Entry IsPassword="True" TextColor="Black" x:Name="ConfirmNewPassword" Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                <Label x:Name="errorNewPasswordLabel" TextColor="Black"/>
+                <Button Text="valider" Clicked="OnChangePasswordClicked" Margin="15"></Button>
             </StackLayout>
         </Grid>
     </StackLayout>

@@ -135,8 +135,9 @@ public partial class Principale : ContentPage
     {
         string userEmail = Modelview.Utilisateur.Mail;
         string newEmail = NewTextMail.Text;
+        string password = Hash.HashPassword(MailMotDePasse.Text);
 
-        if (newEmail != userEmail)
+        if (password == Modelview.Utilisateur.Passwd)
         {
             if (Dt.CheckMailExist(newEmail, All))
             {
@@ -155,9 +156,34 @@ public partial class Principale : ContentPage
                 errorNewMailLabel.Text = "Changement Effectué !";
             }
         }
-        else errorNewMailLabel.Text = "Veuillez Saisir Un Nouvel Email !";
+        else errorNewMailLabel.Text = "Le mot de passe du compte n'est pas bon";
     }
 
+    private void OnChangePasswordClicked(object sender, EventArgs e)
+    {
+        string userPassword = Modelview.Utilisateur.Passwd;
+        string actualPassword = Hash.HashPassword(ActualPassword.Text);
+        string newPassword = Hash.HashPassword(NewTextPassword.Text);
+        string confirmNewPassword = Hash.HashPassword(ConfirmNewPassword.Text);
+
+
+        if (actualPassword == userPassword)
+        {
+            if (newPassword == confirmNewPassword)
+            {
+                Modelview.Utilisateur.ChangePasswd(newPassword);
+
+                Dt.SaveData(JsonSource, All);
+                errorNewPasswordLabel.Text = "Changement Effectué !";
+            }
+            else
+            {
+                errorNewPasswordLabel.Text = "Les 2 mot de passes sont différents";
+            }
+        }
+        else errorNewPasswordLabel.Text = "Le mot de passe du compte n'est pas bon !";
     }
+
+}
 
 
