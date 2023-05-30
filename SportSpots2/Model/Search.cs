@@ -31,10 +31,9 @@ namespace Model
         /// Selon chaque sport specifie
         /// </summary>
         /// <returns>retourne la liste des spots trouves</returns>
-        public async Task<List<(Spot,Sport)>> ExecuteSearch()
+        public async Task<List<Spot>> ExecuteSearch()
         {
-            List<(Spot, Sport)> result = new List<(Spot, Sport)>();
-            
+            List<Spot> result = new List<Spot>();
 
             foreach (Sport sport in SportsToFind)
             {
@@ -44,8 +43,24 @@ namespace Model
                 Debug.WriteLine("\"Spot 0 : {0}\",spots[0])");
                 foreach (Spot spot in spots)
                 {
-                    result.Add((spot,sport));
+                    /*
+                    int find = 0;
+                    // méthode pour éviter les doublons à revoir
+                    foreach(Spot sp in spots)
+                    {
+                        if (sp.Numero == spot.Numero)
+                            find += 1;
+                    }
+                    
+                    if (find < 2)
+                    {        
+                        spot.ImgLink = sport.ImgLink;
+                        result.Add(spot);
+                    }*/
+                    spot.ImgLink = sport.ImgLink;
+                    result.Add(spot);
                 }
+                                
             }
             return result;
         }

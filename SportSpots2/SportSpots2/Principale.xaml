@@ -225,45 +225,44 @@
                         <Label x:Name="searchinfo" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
 
                             <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="500">
-                            <ScrollView VerticalScrollBarVisibility="Always">
-                                <StackLayout>
-                                    <ListView ItemsSource="{Binding SpotsFinded}">
 
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <ViewCell>
+                            <StackLayout VerticalOptions="FillAndExpand">
+                                <ListView ItemsSource="{Binding SpotsFinded}" HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" VerticalOptions="FillAndExpand">
+                                                    <Grid VerticalOptions="FillAndExpand">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="40"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="60"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                        <Label Text="{Binding Name}"  FontSize="16" Grid.Column="1" TextColor="Black"  HorizontalOptions="StartAndExpand"/>
+                                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                                        <Image Source="star.png" WidthRequest="30" Grid.Column="3"/>
+                                                        <Label Text="{Binding Adress}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        <Label Text="{Binding NonCommune}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                    </Grid>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
 
-                                                    <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="100" >
-                                                        <Grid>
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="60"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="Auto"/>
-                                                                <ColumnDefinition Width="Auto"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <Image Source="{Binding Item2.ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
-                                                            <Label Text="{Binding Item1.Name}" FontSize="18" Grid.Column="1" TextColor="Black"/>
-                                                            <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
-                                                            <Image Source="star.png" WidthRequest="30" Grid.Column="3"/>
-                                                            <Label Text="{Binding Item1.Adress}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                            <Label Text="{Binding Item1.NonCommune}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
 
-                                                            <!-- <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/> -->
-                                                        </Grid>
-                                                    </Frame>
 
-                                                </ViewCell>
 
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
 
-                                </StackLayout>
-                            </ScrollView>
+
+
                         </Frame>
 
                     </StackLayout>

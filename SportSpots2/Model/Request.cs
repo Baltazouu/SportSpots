@@ -41,6 +41,7 @@ namespace Model
         public async Task<List<Spot>> FindSpot()
         {
             List<Spot> res = new List<Spot>();
+            ApiLink = ApiLink.Replace(" ", "-");            
             Debug.WriteLine(ApiLink);
             try
             {

@@ -31,6 +31,8 @@ namespace Model
         [DataMember(Name = "PublicAcess")]
         public bool Public_access { get; init; }
 
+        [DataMember(Name = "imgLink")]
+        public string? ImgLink { get; set; }
 
         public Spot(int? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,

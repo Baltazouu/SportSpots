@@ -13,12 +13,12 @@ namespace SportsSpots
 
         public List<Sport> toSearch { get; set; } = new();
 
-        public List<(Spot,Sport)> SpotsFinded { get; set; }
+        public  List<Spot> SpotsFinded { get; set; }
         
         public string Town { get; set; }
 
         // ne marche pas quand bindée ??
-        public ReadOnlyCollection<(Spot, Sport)> collectionFinded;
+        public ReadOnlyCollection<Spot> collectionFinded;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -26,7 +26,7 @@ namespace SportsSpots
         {
             Utilisateur = utilisateur;
             SpotsFinded = new();
-            collectionFinded = new ReadOnlyCollection<(Spot,Sport)>(SpotsFinded);
+            collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
         }
 
         void OnPropertyChanged(string propertyName)
@@ -49,7 +49,7 @@ namespace SportsSpots
 
             SpotsFinded = await s.ExecuteSearch();
 
-            collectionFinded = new ReadOnlyCollection<(Spot, Sport)>(SpotsFinded);
+            collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
             
             OnPropertyChanged("SpotsFinded");
             OnPropertyChanged("collectionFinded");
@@ -70,6 +70,7 @@ namespace SportsSpots
         }
 
 
+       
 
     }
 }
