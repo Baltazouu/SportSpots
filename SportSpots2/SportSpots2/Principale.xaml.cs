@@ -100,34 +100,32 @@ public partial class Principale : ContentPage
     }
 
 
-
-
     public void OnClickedStar(object sender, EventArgs e)
     {
         if(sender is Image img)
         {
-            if (img.Source == Modelview.star )
+            if (img.Source == Modelview.star)
             {
                 img.Source = Modelview.starfilled;
+
+                if (img.BindingContext is Spot spot)
+                {
+                    spot.Favorite = "starfilled.png";
+                    Modelview.Utilisateur.AddSpot(spot);
+                }
+
                 // et ajouter à list des favoris
             }
-            else img.Source = Modelview.star;
-            // to do later remove to favlist
-        }
-    }
-
-
-    public void StarFav()
-    {
-        foreach (var Sport in Modelview.Utilisateur.Favsports)
-        {
-            foreach (var sportView in Modelview.SportsAvaibles.SportCollection)
+            else
             {
-                if (Sport.Name.Equals(sportView.Name))
+                img.Source = Modelview.star;
+                if (img.BindingContext is Spot spot)
                 {
-
+                    spot.Favorite = "star.png";
+                    Modelview.Utilisateur.RemoveSpot(spot);
                 }
             }
+            
         }
     }
 
