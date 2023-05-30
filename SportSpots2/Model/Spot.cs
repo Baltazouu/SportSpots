@@ -34,6 +34,8 @@ namespace Model
         [DataMember(Name = "imgLink")]
         public string? ImgLink { get; set; }
 
+        public string Favorite { get; set; }
+
         public Spot(int? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,
                     double? coord_x, double? coord_y, bool asccessHandicap,
@@ -51,6 +53,7 @@ namespace Model
             Restauration = restauration;
             Public_access = publicAccess;
             Dept = dept;
+            Favorite = "star.png";
         }
 
 

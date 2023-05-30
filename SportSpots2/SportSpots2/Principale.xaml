@@ -125,7 +125,11 @@
                                                         <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
                                                         <Label Text="{Binding Name}" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
                                                         <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
-                                                        <Image Source="star.png" WidthRequest="30" Grid.Column="3"/>
+                                                        <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="OnClickedStar"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
                                                         <Label Text="{Binding Adress}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
                                                         <Label Text="{Binding NonCommune}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
 
@@ -253,7 +257,11 @@
                                                         <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
                                                         <Label Text="{Binding Name}"  FontSize="16" Grid.Column="1" TextColor="Black"  HorizontalOptions="StartAndExpand"/>
                                                         <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
-                                                        <Image Source="star.png" WidthRequest="30" Grid.Column="3"/>
+                                                        <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="OnClickedStar"/>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
                                                         <Label Text="{Binding Adress}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
                                                         <Label Text="{Binding NonCommune}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
                                                     </Grid>

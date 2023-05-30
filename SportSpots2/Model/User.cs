@@ -115,6 +115,8 @@ namespace Model
             {
                 FavSpots.Add(spot);
                 OnPropertyChanged("FavSpots");
+                FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
+                OnPropertyChanged("FavSpotsCollection");
                 return true;
             }
             return false;
@@ -153,7 +155,12 @@ namespace Model
                     break;
                 }
             }
-            if (present) { FavSpots.Remove(sport); OnPropertyChanged("FavSpots"); }
+            if (present) {
+                FavSpots.Remove(sport); OnPropertyChanged("FavSpots");
+                OnPropertyChanged("FavSpots");
+                FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
+                OnPropertyChanged("FavSpotsCollection");
+            }
             return present;
 
         }
