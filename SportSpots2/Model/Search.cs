@@ -21,6 +21,16 @@ namespace Model
         string Town { get; init; }
         List<Sport> SportsToFind { get; init; }
 
+        public int PostalCode { get; init;  }
+
+        public Search(string town, List<Sport> sports,int cp)
+        {
+            Town = town;
+            SportsToFind = sports;
+            PostalCode = cp;
+
+        }
+
         public Search(string town,List<Sport>sports)
         {
             Town = town;
@@ -37,8 +47,18 @@ namespace Model
 
             foreach (Sport sport in SportsToFind)
             {
-                Request r = new Request(Town, sport);
-                List<Spot> spots = await r.FindSpot();
+                List<Spot> spots = null;
+                if (PostalCode > 0 && PostalCode <= 99)
+                {
+                    Request r = new Request(Town, sport, PostalCode);
+                    spots = await r.FindSpot();
+                }
+                else
+                {
+                    Request r = new Request(Town, sport);
+                    spots = await r.FindSpot();
+                }
+
                 //Console.WriteLine("Spot 0 : {0}",spots[0]);
                 Debug.WriteLine("\"Spot 0 : {0}\",spots[0])");
                 foreach (Spot spot in spots)

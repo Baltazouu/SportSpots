@@ -40,9 +40,14 @@ namespace SportsSpots
         public ImageSource star { get;init; } = "star.png";
         public ImageSource starfilled { get; init; } = "starfilled.png";
 
-        public async  Task executeResearch(string town)
+        public async  Task executeResearch(string town,int postalcode)
         {
-            Search s = new(town, toSearch);
+            Search s = null;
+            if(postalcode > 0 && postalcode < 100)
+            {
+                s = new(town, toSearch, postalcode);
+            }
+            else s = new(town, toSearch);
 
             Town = town;
             OnPropertyChanged("Town");

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Microsoft.Maui.Graphics;
 using Microsoft.VisualBasic;
 using Persistance;
-
+using System.Diagnostics;
 namespace SportsSpots;
 
 public partial class Principale : ContentPage
@@ -24,14 +24,16 @@ public partial class Principale : ContentPage
         All = allusers;
 }
 
-    void ClickedAccount(object sender, EventArgs e)
+
+
+void ClickedAccount(object sender, EventArgs e)
     {
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
     }
 
     private async void ClickedResult(object sender, EventArgs e)
     {
-        
+        int postalcode;
         if(sender is SearchBar)
         {
             if (searchCity.Text == "" || searchCity.Text == null || searchCity.Text.Length < 2)
@@ -42,15 +44,25 @@ public partial class Principale : ContentPage
             { errorSearchLabel.Text = "Séléctionnez au moins un sport à rechercher"; }
             else
             {
-                
+                try
+                {
+                    postalcode = Convert.ToInt32(searchPostalCode.Text);
+                    Debug.WriteLine("Code Postal : {0}", postalcode);
+
+                }
+                catch (Exception)
+                {
+                    postalcode = 0;
+                }
+
                 errorSearchLabel.Text = null;
                 searchinfo.Text = "Chargement...";
                 ResultSearch.IsVisible = true;
                 // rechercher les spots
 
-                await Modelview.executeResearch(searchCity.Text);
+                await Modelview.executeResearch(searchCity.Text, postalcode);
 
-                if(Modelview.SpotsFinded.Count <1 ) 
+                if (Modelview.SpotsFinded.Count <1 ) 
                 {
                     searchinfo.Text = $"Aucun Spot Trouvé Pour {searchCity.Text}";
                 }
@@ -189,6 +201,7 @@ public partial class Principale : ContentPage
         }
         else errorNewPasswordLabel.Text = "Le mot de passe du compte n'est pas bon !";
     }
+
 
 }
 

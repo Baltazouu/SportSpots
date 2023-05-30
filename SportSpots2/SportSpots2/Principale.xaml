@@ -55,15 +55,22 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+                        
                         <Frame Grid.Column="0" BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True">
                             <SearchBar x:Name="searchCity" Placeholder="Entrez une ville" TextColor="Black" VerticalOptions="Center" SearchButtonPressed="ClickedResult" />
                         </Frame>
+
                         <Image Grid.Column="1" Source="pin.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
                     </Grid>
-                    <Label x:Name="errorSearchLabel"/>
-                    
+                    <Label x:Name="errorSearchLabel" Margin="10"/>
+
+                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True"  HorizontalOptions="Start">
+                        <Entry x:Name="searchPostalCode" Placeholder="Numéro Département (Optionnel)" TextColor="Black" VerticalOptions="Center" WidthRequest="220" Keyboard="Numeric" />
+                    </Frame>
+                    <Label x:Name="errorCPLabel" Margin="10"/>
+
                     <!-- Catégorie sports -->
-                    <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                    <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Gray" />
                     <Frame BackgroundColor="LightGray" BorderColor="Gray" CornerRadius="5" Padding="1" Margin="10,0,0,0" HasShadow="True" HeightRequest="400">
                         <ScrollView VerticalScrollBarVisibility="Always">
                             <ListView ItemsSource="{Binding SportsAvaibles.SportCollection}" Grid.Row="1" >
