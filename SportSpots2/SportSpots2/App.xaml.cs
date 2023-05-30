@@ -9,11 +9,11 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		//MainPage = new AppShell();
 		//MainPage = new ViewSpot();
 
-		//User u = new(155,"testmail.com","dadadada",SpotStub.LoadSpots(), SportStub.Loadsport());
+		User u = new(155, "testmail.com", "dadadada", SpotStub.LoadSpots(), SportStub.Loadsport());
 
-		//MainPage = new Principale(u);
+        MainPage = new Principale(u, new List<User>());
 	}
 }

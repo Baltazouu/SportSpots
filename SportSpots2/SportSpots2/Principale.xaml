@@ -245,12 +245,12 @@
                                                                 <ColumnDefinition Width="Auto"/>
                                                                 <ColumnDefinition Width="Auto"/>
                                                             </Grid.ColumnDefinitions>
-                                                            <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
-                                                            <Label Text="{Binding Name}" FontSize="18" Grid.Column="1" TextColor="Black"/>
+                                                            <Image Source="{Binding Item2.ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                            <Label Text="{Binding Item1.Name}" FontSize="18" Grid.Column="1" TextColor="Black"/>
                                                             <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
                                                             <Image Source="star.png" WidthRequest="30" Grid.Column="3"/>
-                                                            <Label Text="{Binding Adress}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                            <Label Text="{Binding NonCommune}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                            <Label Text="{Binding Item1.Adress}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                            <Label Text="{Binding Item1.NonCommune}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
 
                                                             <!-- <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/> -->
                                                         </Grid>

@@ -14,11 +14,11 @@ public partial class Principale : ContentPage
 
     List<User> All { get; set; }
 
-    ViewModel1 Modelview { get; set; }
+    BindingClass Modelview { get; set; }
 
     public Principale(User user,List<User> allusers)
     {
-       Modelview = new ViewModel1(user);
+       Modelview = new BindingClass(user);
        BindingContext = Modelview;
        InitializeComponent();
         All = allusers;

@@ -31,9 +31,10 @@ namespace Model
         /// Selon chaque sport specifie
         /// </summary>
         /// <returns>retourne la liste des spots trouves</returns>
-        public async Task<List<Spot>> ExecuteSearch()
+        public async Task<List<(Spot,Sport)>> ExecuteSearch()
         {
-            List<Spot> result = new List<Spot>();
+            List<(Spot, Sport)> result = new List<(Spot, Sport)>();
+            
 
             foreach (Sport sport in SportsToFind)
             {
@@ -43,10 +44,8 @@ namespace Model
                 Debug.WriteLine("\"Spot 0 : {0}\",spots[0])");
                 foreach (Spot spot in spots)
                 {
-                    result.Add(spot);
+                    result.Add((spot,sport));
                 }
-
-                
             }
             return result;
         }
