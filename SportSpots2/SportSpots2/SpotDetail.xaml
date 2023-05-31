@@ -42,6 +42,7 @@
             </StackLayout>
 
             <Grid>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300" />
                     <!-- Largeur de la barre latérale -->
@@ -53,7 +54,8 @@
                     <RowDefinition Height="1000"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout BackgroundColor="LightGray" >
+                <ScrollView>
+                    <StackLayout BackgroundColor="LightGray" >
                     <!-- Contenu de la barre latérale -->
                     <Label Margin="10" HorizontalTextAlignment="Center" Text="{Binding Name}" FontSize="25" TextColor="Black"/>
                     
@@ -146,10 +148,14 @@
                         </Label.Text>
                     </Label>
 
+                    <Label Text="Notes :" TextColor="Black" FontSize="20" Margin="10"/>
+
+                    <Entry Placeholder="Notes" HeightRequest="100" Margin="10"/>
 
                 </StackLayout>
-
-                <WebView Grid.Column="1" Source="https://www.arcgis.com/apps/mapviewer/index.html">
+                </ScrollView>
+            
+                <WebView Grid.Column="1" Source="{Binding UrlLink}">
                     <!-- Remplacez l'URL par votre source de carte -->
                     <!-- Contenu de la carte -->
                 </WebView>

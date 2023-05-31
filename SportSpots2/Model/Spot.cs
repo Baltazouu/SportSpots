@@ -37,6 +37,9 @@ namespace Model
         [DataMember(Name = "favorite")]
         public string Favorite { get; set; } // image favoris pour les bindings
 
+        [DataMember(Name="urllink")]
+        public string UrlLink { get; init; }
+
         public Spot(int? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,
                     double? coord_x, double? coord_y, bool asccessHandicap,
@@ -55,6 +58,9 @@ namespace Model
             Public_access = publicAccess;
             Dept = dept;
             Favorite = "star.png";
+            //UrlLink = $"https://www.google.fr/maps/@{Coord_x},{Coord_y}";
+            UrlLink = $"https://www.openstreetmap.org/#map=16/{Coord_x}/{Coord_y}&layers=Y";
+            // UrlLink = $"https://www.openstreetmap.org/relation/281346#map=14/{Coord_x}/{Coord_y}&layers=Y";
         }
 
 

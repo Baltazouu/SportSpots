@@ -246,6 +246,8 @@ void ClickedAccount(object sender, EventArgs e)
                 OnPropertyChanged(nameof(Binding.Utilisateur.History));
                 Dt.SaveData(JsonSource, All);
 
+                //string urlLink = $"https://www.google.fr/maps/@{s.Coord_x},{s.Coord_y}";
+
                 //await Navigation.PushAsync(detail);// modal en attendant
                 await Navigation.PushModalAsync(new SpotDetail(s));
 
