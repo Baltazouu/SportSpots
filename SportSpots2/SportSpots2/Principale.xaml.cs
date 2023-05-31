@@ -124,6 +124,7 @@ void ClickedAccount(object sender, EventArgs e)
                     // and add to favorite
                     Binding.Utilisateur.Favsports.Add(sport);
                     OnPropertyChanged(nameof(Binding.Utilisateur.Favsports));
+                    Dt.SaveData(JsonSource, All);
                 }
                 else
                 {
@@ -131,6 +132,7 @@ void ClickedAccount(object sender, EventArgs e)
                     img.Source = "star.png";
                     Binding.Utilisateur.Favsports.Remove(sport);
                     OnPropertyChanged(nameof(Binding.Utilisateur.Favsports));
+                    Dt.SaveData(JsonSource, All);
                 }
             }    
         }
@@ -224,7 +226,34 @@ void ClickedAccount(object sender, EventArgs e)
         else errorNewPasswordLabel.Text = "Le mot de passe du compte n'est pas bon !";
     }
 
+    public async void OpenDetail(object sender,EventArgs e)
+    {
+        Debug.WriteLine("Into OpenDetail");
+        if(sender is ViewCell vc)
+        {
+            Debug.WriteLine("into viewCell condition");
+            if (vc.BindingContext is Spot s)
+            {
+                Debug.WriteLine("Into spot condition");
 
+                SpotDetail detail = new SpotDetail(s);
+
+                if(Binding.Utilisateur.History.Count == 10)
+                {
+                    Binding.Utilisateur.History.RemoveAt(0);
+                }
+                Binding.Utilisateur.History.Add(s);
+                OnPropertyChanged(nameof(Binding.Utilisateur.History));
+                Dt.SaveData(JsonSource, All);
+
+                //await Navigation.PushAsync(detail);// modal en attendant
+                await Navigation.PushModalAsync(new SpotDetail(s));
+
+            }
+        }
+        
+
+    }
 }
 
 

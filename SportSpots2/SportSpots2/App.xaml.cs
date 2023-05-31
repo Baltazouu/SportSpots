@@ -1,5 +1,5 @@
 ﻿using Model;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace SportsSpots;
 
@@ -9,10 +9,13 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		//MainPage = new AppShell();
-		//MainPage = new ViewSpot();
+        //MainPage = new AppShell();
+        //MainPage = new ViewSpot();
 
-		// tests 
+        // tests 
+
+        
+
 		List<Sport> l = new List<Sport>();
 
         l.Insert(0, new Sport(1, "Terrain de Rugby", "Terrain de rugby", true, true, "rugby.png"));
@@ -25,5 +28,8 @@ public partial class App : Application
         User u = new(155, "testmail.com", "dadadada", SpotStub.LoadSpots(),l);
 
         MainPage = new Principale(u, new List<User>());
+
+
+        //MainPage = new SpotDetail(SpotStub.LoadSpots()[0]);
 	}
 }

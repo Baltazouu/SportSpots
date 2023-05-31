@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="ViewSpot.xaml">
+	  <MauiXaml Update="SpotDetail.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

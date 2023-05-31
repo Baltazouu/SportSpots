@@ -54,6 +54,8 @@ namespace Model
         [DataMember(EmitDefaultValue = false)]
         public List<Sport> Favsports { get;  set; }
 
+        public List<Spot> History { get; set; }
+
         public ReadOnlyCollection<Spot> FavSpotsCollection { get; set; }
 
         public User(int id, string mail,string pass,List<Spot>?spots,List<Sport> ?sports)
@@ -74,8 +76,9 @@ namespace Model
             else Favsports = new List<Sport>();
 
             FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
-            
-            
+            History = new();
+
+
 
         }
 
