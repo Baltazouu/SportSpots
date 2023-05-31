@@ -34,7 +34,8 @@ namespace Model
         [DataMember(Name = "imgLink")]
         public string? ImgLink { get; set; }
 
-        public string Favorite { get; set; }
+        [DataMember(Name = "favorite")]
+        public string Favorite { get; set; } // image favoris pour les bindings
 
         public Spot(int? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,

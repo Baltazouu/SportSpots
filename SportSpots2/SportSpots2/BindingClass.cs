@@ -9,8 +9,10 @@ namespace SportsSpots
     {
 
         public User Utilisateur { get; set; }
-        public SportStub SportsAvaibles { get; set; } = new SportStub();
+        
+        public static List<Sport> SportsAvaibles { get; set; } = SportStub.Loadsport();
 
+        public ReadOnlyCollection<Sport> SportsAvaiblesCollection { get; } 
         public List<Sport> toSearch { get; set; } = new();
 
         public  List<Spot> SpotsFinded { get; set; }
@@ -27,6 +29,7 @@ namespace SportsSpots
             Utilisateur = utilisateur;
             SpotsFinded = new();
             collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
+            SportsAvaiblesCollection = new ReadOnlyCollection<Sport>(SetFavoriteSports());
         }
 
         void OnPropertyChanged(string propertyName)
@@ -71,7 +74,23 @@ namespace SportsSpots
             //foreach (var spot in collectionFinded)
             //    Debug.WriteLine(spot.ToString());
 
+        }
 
+
+        public List<Sport> SetFavoriteSports()
+        {
+            foreach(var sport in SportsAvaibles)
+            {
+                foreach(var sportUser in Utilisateur.Favsports)
+                {
+                    if(sport.Equals(sportUser))
+                    {
+                        sport.Favorite = "starfilled.png";
+                    }
+                }
+            }
+            SportsAvaibles.OrderByDescending(s => s.Favorite == "starfilled.png").ToList();
+            return SportsAvaibles;
         }
 
 

@@ -32,7 +32,7 @@ namespace Model
             PostalCode = postalcode;
 
             Debug.WriteLine(Town);
-            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune%3A{town}%26famille%3A{s.TypeEquipement}%codepostal%3A{PostalCode}&rows=15";
+            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune:{town}&famille:{s.TypeEquipement}&codepostal=startswith:14&rows=15";
 
         }
 
@@ -149,8 +149,7 @@ namespace Model
             }
             catch (Exception e)
             {
-                //Console.WriteLine("on est dans l'exception");
-                //Console.WriteLine("error {0}", e.Message);
+                //Debug.WriteLine("on est dans l'exception");
                 Debug.WriteLine(e.Message);
                 return res;
             }

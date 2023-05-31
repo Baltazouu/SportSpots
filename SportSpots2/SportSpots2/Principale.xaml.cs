@@ -14,12 +14,12 @@ public partial class Principale : ContentPage
 
     List<User> All { get; set; }
 
-    BindingClass Modelview { get; set; }
+    BindingClass Binding { get; set; }
 
     public Principale(User user,List<User> allusers)
     {
-       Modelview = new BindingClass(user);
-       BindingContext = Modelview;
+       Binding = new BindingClass(user);
+       BindingContext = Binding;
        InitializeComponent();
         All = allusers;
 }
@@ -40,7 +40,7 @@ void ClickedAccount(object sender, EventArgs e)
             {
                 errorSearchLabel.Text = "Entrez une ville de recherche valide";
             }
-            else if (Modelview.toSearch.Count < 1)
+            else if (Binding.toSearch.Count < 1)
             { errorSearchLabel.Text = "Séléctionnez au moins un sport à rechercher"; }
             else
             {
@@ -60,9 +60,9 @@ void ClickedAccount(object sender, EventArgs e)
                 ResultSearch.IsVisible = true;
                 // rechercher les spots
 
-                await Modelview.executeResearch(searchCity.Text, postalcode);
+                await Binding.executeResearch(searchCity.Text, postalcode);
 
-                if (Modelview.SpotsFinded.Count <1 ) 
+                if (Binding.SpotsFinded.Count <1 ) 
                 {
                     searchinfo.Text = $"Aucun Spot Trouvé Pour {searchCity.Text}";
                 }
@@ -87,22 +87,22 @@ void ClickedAccount(object sender, EventArgs e)
             {
                 bool find = false;
 
-                for (int i = Modelview.toSearch.Count - 1; i >= 0; i--)
+                for (int i = Binding.toSearch.Count - 1; i >= 0; i--)
                 {
-                    if (Modelview.toSearch[i].Name == sport.Name)
+                    if (Binding.toSearch[i].Name == sport.Name)
                     {
                         find = true;
                         stackLayout.BackgroundColor = null;
-                        Modelview.toSearch.RemoveAt(i);
-                        OnPropertyChanged(nameof(Modelview));
+                        Binding.toSearch.RemoveAt(i);
+                        OnPropertyChanged(nameof(Binding));
                         break;
                     }
                 }
 
                 if (!find)
                 {
-                    Modelview.toSearch.Add(sport);
-                    OnPropertyChanged(nameof(Modelview));
+                    Binding.toSearch.Add(sport);
+                    OnPropertyChanged(nameof(Binding));
                     stackLayout.BackgroundColor = Color.FromArgb("737373");
                 }
 
@@ -111,30 +111,54 @@ void ClickedAccount(object sender, EventArgs e)
         }
     }
 
+    public void OnClickedStarSport(object sender,EventArgs e)
+    {
+        if(sender is Image img)
+        {
+            if(img.BindingContext is Sport sport)
+            {
+                if(sport.Favorite == "star.png")
+                {
+                    sport.Favorite = "starfilled.png";
+                    img.Source = "starfilled.png";
+                    // and add to favorite
+                    Binding.Utilisateur.Favsports.Add(sport);
+                    OnPropertyChanged(nameof(Binding.Utilisateur.Favsports));
+                }
+                else
+                {
+                    sport.Favorite = "star.png";
+                    img.Source = "star.png";
+                    Binding.Utilisateur.Favsports.Remove(sport);
+                    OnPropertyChanged(nameof(Binding.Utilisateur.Favsports));
+                }
+            }    
+        }
+    }
 
     public void OnClickedStar(object sender, EventArgs e)
     {
         if(sender is Image img)
         {
-            if (img.Source == Modelview.star)
+            if (img.Source == Binding.star)
             {
-                img.Source = Modelview.starfilled;
+                img.Source = Binding.starfilled;
 
                 if (img.BindingContext is Spot spot)
                 {
                     spot.Favorite = "starfilled.png";
-                    Modelview.Utilisateur.AddSpot(spot);
+                    Binding.Utilisateur.AddSpot(spot);
                 }
 
                 // et ajouter à list des favoris
             }
             else
             {
-                img.Source = Modelview.star;
+                img.Source = Binding.star;
                 if (img.BindingContext is Spot spot)
                 {
                     spot.Favorite = "star.png";
-                    Modelview.Utilisateur.RemoveSpot(spot);
+                    Binding.Utilisateur.RemoveSpot(spot);
                 }
             }
             
@@ -143,11 +167,11 @@ void ClickedAccount(object sender, EventArgs e)
 
     private void OnChangeMailClicked(object sender, EventArgs e)
     {
-        string userEmail = Modelview.Utilisateur.Mail;
+        string userEmail = Binding.Utilisateur.Mail;
         string newEmail = NewTextMail.Text;
         string password = Hash.HashPassword(MailMotDePasse.Text);
 
-        if (password == Modelview.Utilisateur.Passwd)
+        if (password == Binding.Utilisateur.Passwd)
         {
             if (Dt.CheckMailExist(newEmail, All))
             {
@@ -155,7 +179,7 @@ void ClickedAccount(object sender, EventArgs e)
             }
             else
             {
-                Modelview.Utilisateur.ChangeMail(newEmail);
+                Binding.Utilisateur.ChangeMail(newEmail);
 
                 // a refaire mieux
 
@@ -171,7 +195,7 @@ void ClickedAccount(object sender, EventArgs e)
 
     private void OnChangePasswordClicked(object sender, EventArgs e)
     {
-        string userPassword = Modelview.Utilisateur.Passwd;
+        string userPassword = Binding.Utilisateur.Passwd;
         string actualPassword = Hash.HashPassword(ActualPassword.Text);
         string newPassword = Hash.HashPassword(NewTextPassword.Text);
         string confirmNewPassword = Hash.HashPassword(ConfirmNewPassword.Text);
@@ -184,7 +208,7 @@ void ClickedAccount(object sender, EventArgs e)
             {
                 if (NewTextPassword.Text.Length >= 6)
                 {
-                    Modelview.Utilisateur.ChangePasswd(newPassword);
+                    Binding.Utilisateur.ChangePasswd(newPassword);
 
                     Dt.SaveData(JsonSource, All);
                     errorNewPasswordLabel.Text = "Changement Effectué !";

@@ -73,7 +73,7 @@
                     <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Gray" />
                     <Frame BackgroundColor="LightGray" BorderColor="Gray" CornerRadius="5" Padding="1" Margin="10,0,0,0" HasShadow="True" HeightRequest="400">
                         <ScrollView VerticalScrollBarVisibility="Always">
-                            <ListView ItemsSource="{Binding SportsAvaibles.SportCollection}" Grid.Row="1" >
+                            <ListView ItemsSource="{Binding SportsAvaiblesCollection}" Grid.Row="1" >
                                 <ListView.ItemTemplate>
                                     
                                     <DataTemplate>
@@ -86,9 +86,9 @@
 
                                                 <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand"/>
                                                 <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" Margin="10,0,10,10" HorizontalOptions="FillAndExpand" />
-                                                <Image Source="star.png" WidthRequest="35" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                                                <Image Source="{Binding Favorite}" WidthRequest="35" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
                                                     <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedStar" />
+                                                        <TapGestureRecognizer Tapped="OnClickedStarSport" />
                                                     </Image.GestureRecognizers>
                                                 </Image>
                                             </StackLayout>
@@ -235,18 +235,20 @@
                         
                         <Label x:Name="searchinfo" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
 
-                            <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="500">
+                            <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Margin="0,10" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="700">
 
                             <StackLayout VerticalOptions="FillAndExpand">
                                 <ListView ItemsSource="{Binding SpotsFinded}" HasUnevenRows="True">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" VerticalOptions="FillAndExpand">
+                                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" >
                                                     <Grid VerticalOptions="FillAndExpand">
                                                         <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50"/>
                                                             <RowDefinition Height="Auto"/>
-                                                            <RowDefinition Height="40"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
                                                         </Grid.RowDefinitions>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="60"/>
@@ -255,28 +257,25 @@
                                                             <ColumnDefinition Width="Auto"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
-                                                        <Label Text="{Binding Name}"  FontSize="16" Grid.Column="1" TextColor="Black"  HorizontalOptions="StartAndExpand"/>
+                                                        <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
                                                         <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
                                                         <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
                                                             <Image.GestureRecognizers>
                                                                 <TapGestureRecognizer Tapped="OnClickedStar"/>
                                                             </Image.GestureRecognizers>
                                                         </Image>
-                                                        <Label Text="{Binding Adress}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                        <Label Text="{Binding NonCommune}" FontSize="10" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                                            <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                            <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        </StackLayout>
                                                     </Grid>
+
                                                 </Frame>
                                             </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackLayout>
-
-
-
-
-
-
 
                         </Frame>
 

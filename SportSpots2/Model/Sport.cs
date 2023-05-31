@@ -19,6 +19,8 @@ namespace Model
         [DataMember(Name="imglink")]
         public string ImgLink { get; set; }
 
+        public string Favorite { get; set; } 
+
         public Sport(int num, string name, string typ, bool indoor, bool outdoor,string urlImage)
         {
             //name = name.Replace(" ", "+");
@@ -32,6 +34,7 @@ namespace Model
             Indoor = indoor;
             Outdoor = outdoor;
             ImgLink = urlImage;
+            Favorite = "star.png";
 
         }
 
