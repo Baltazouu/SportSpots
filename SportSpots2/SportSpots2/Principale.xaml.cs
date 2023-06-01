@@ -22,6 +22,8 @@ public partial class Principale : ContentPage
        BindingContext = Binding;
        InitializeComponent();
        All = allusers;
+
+
 }
 
 
@@ -229,10 +231,10 @@ void ClickedAccount(object sender, EventArgs e)
     public async void OpenDetail(object sender,EventArgs e)
     {
         Debug.WriteLine("Into OpenDetail");
-        if(sender is ViewCell vc)
+        if(sender is Image  img)
         {
             Debug.WriteLine("into viewCell condition");
-            if (vc.BindingContext is Spot s)
+            if (img.BindingContext is Spot s)
             {
                 Debug.WriteLine("Into spot condition");
 

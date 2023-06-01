@@ -7,10 +7,9 @@ namespace SportsSpots
 {
     public class BindingClass : INotifyPropertyChanged
     {
-
         public User Utilisateur { get; set; }
         
-        public static List<Sport> SportsAvaibles { get; set; } = SportStub.Loadsport();
+        public static ObservableCollection<Sport> SportsAvaibles { get; set; } = SportStub.Loadsport();
 
         public ReadOnlyCollection<Sport> SportsAvaiblesCollection { get; } 
         public List<Sport> toSearch { get; set; } = new();
@@ -27,6 +26,9 @@ namespace SportsSpots
         public BindingClass(User utilisateur)
         {
             Utilisateur = utilisateur;
+
+            // test not works
+                        
             SpotsFinded = new();
             collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
             SportsAvaiblesCollection = new ReadOnlyCollection<Sport>(SetFavoriteSports());
@@ -78,7 +80,7 @@ namespace SportsSpots
         }
 
 
-        public List<Sport> SetFavoriteSports()
+        public ObservableCollection<Sport> SetFavoriteSports()
         {
             foreach(var sport in SportsAvaibles)
             {

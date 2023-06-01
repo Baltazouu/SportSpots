@@ -58,6 +58,10 @@ namespace Model
             if (all.Count>0)
             {
                 u = all.Where(n => n.Mail.Equals(mail) && n.Passwd.Equals(pass)).First();
+
+                Debug.WriteLine("U.Favspots.count : {0} ",u.FavSpots.Count);
+                Debug.WriteLine("U.Favspots.History : {0} ", u.History.Count);
+                Debug.WriteLine("U.Favspots.Favsports : {0} ", u.Favsports.Count);
                 return u;
             }
             return null;
@@ -79,12 +83,8 @@ namespace Model
         {
             return all.Max(u =>  u.Id);
         }
-
-   
-
     }
-
-
+   
 }
 
 

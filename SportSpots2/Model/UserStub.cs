@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,9 @@ namespace Model
         {
             List<User> users = new();
 
-            List<Spot> sp = SpotStub.LoadSpots();
+            ObservableCollection<Spot> sp = SpotStub.LoadSpots();
 
-            List<Sport> sports = SportStub.Loadsport();
+            ObservableCollection<Sport> sports = SportStub.Loadsport();
 
             List<string> passes = new();
 
@@ -33,7 +34,7 @@ namespace Model
             int x  = 0;
             for (int i = 150;i<155;i++)
             {
-                users.Add(new(i, mails[x], passes[x], sp, sports));
+                users.Add(new(i, mails[x], passes[x], sp, sports,null));
                 x++;
             }
             

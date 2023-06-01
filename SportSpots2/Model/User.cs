@@ -49,18 +49,19 @@ namespace Model
         }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<Spot> FavSpots { get; set; }
+        public ObservableCollection<Spot> FavSpots { get; set; }
 
         [DataMember(EmitDefaultValue = false)]
-        public List<Sport> Favsports { get;  set; }
+        public ObservableCollection<Sport> Favsports { get;  set; }
 
-        public List<Spot> History { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public ObservableCollection<Spot> History { get; set; }
 
-        public ReadOnlyCollection<Spot> HistoryCollection { get; set; }
+        //public ReadOnlyCollection<Spot> HistoryCollection { get; set; }
 
-        public ReadOnlyCollection<Spot> FavSpotsCollection { get; set; }
+        //public ReadOnlyCollection<Spot> FavSpotsCollection { get; set; }
 
-        public User(int id, string mail,string pass,List<Spot>?spots,List<Sport> ?sports)
+        public User(int id, string mail,string pass,ObservableCollection<Spot>?spots,ObservableCollection<Sport> ?sports,ObservableCollection<Spot>?history)
         {
             Id = id;
             Mail = mail;
@@ -69,19 +70,23 @@ namespace Model
             {
                 FavSpots = spots;
             }
-            else FavSpots = new List<Spot>();
+            else FavSpots = new ObservableCollection<Spot>();
 
             if(sports!=null)
             {
                 Favsports = sports;
             }    
-            else Favsports = new List<Sport>();
+            else Favsports = new ObservableCollection<Sport>();
+            
+            if(history!=null)
+            {
+                History = history;
+            }
+            else History = new();
 
-            History = new();
+           // FavSpotsCollection = new ReadOnlyCollection<Spot>(History);
 
-            FavSpotsCollection = new ReadOnlyCollection<Spot>(History);
-
-            FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
+           // FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
             
 
         }
@@ -121,9 +126,9 @@ namespace Model
             if (!present)
             {
                 FavSpots.Add(spot);
-                OnPropertyChanged("FavSpots");
-                FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
-                OnPropertyChanged("FavSpotsCollection");
+               // OnPropertyChanged("FavSpots");
+               // FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
+               // OnPropertyChanged("FavSpotsCollection");
                 return true;
             }
             return false;
@@ -162,11 +167,12 @@ namespace Model
                     break;
                 }
             }
+
             if (present) {
                 FavSpots.Remove(sport); OnPropertyChanged("FavSpots");
-                OnPropertyChanged("FavSpots");
-                FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
-                OnPropertyChanged("FavSpotsCollection");
+                //OnPropertyChanged("FavSpots");
+                //FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
+                //OnPropertyChanged("FavSpotsCollection");
             }
             return present;
 
@@ -180,7 +186,7 @@ namespace Model
                 if (sp.Numero == spot.Numero)
                 {
                     FavSpots.Remove(sp);
-                    OnPropertyChanged("FavSpots");
+                    //OnPropertyChanged("FavSpots");
                     return true;
                 }
             }
@@ -220,12 +226,22 @@ namespace Model
                     History.RemoveAt(0);
                 }
                 History.Add(s);
-                OnPropertyChanged("History");
-                HistoryCollection = new ReadOnlyCollection<Spot>(History);
-                OnPropertyChanged("HistoryCollection"); 
+                //OnPropertyChanged("History");
+                //HistoryCollection = new ReadOnlyCollection<Spot>(History);
+                //OnPropertyChanged("HistoryCollection"); 
              }
 
             
         }
+        /*
+
+        public void UpdateUserView()
+        {
+            OnPropertyChanged("History");
+            OnPropertyChanged("HistoryCollection");
+            OnPropertyChanged("FavSpots");
+            OnPropertyChanged("FavSpotsCollection");
+        }
+        */
     }
 }

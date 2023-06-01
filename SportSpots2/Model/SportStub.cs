@@ -15,16 +15,16 @@ namespace Model
     public class SportStub
     {
 
-        public ReadOnlyCollection<Sport> SportCollection { get; private set; }
+        public ObservableCollection<Sport> SportCollection { get; private set; }
 
         public SportStub()
         {
-            SportCollection = new ReadOnlyCollection<Sport>(Loadsport());
+            SportCollection = new ObservableCollection<Sport>(Loadsport());
         }
 
-        public static List<Sport> Loadsport()
+        public static ObservableCollection<Sport> Loadsport()
         {
-            List<Sport> sport = new List<Sport>();
+            ObservableCollection<Sport> sport = new ObservableCollection<Sport>();
 
             sport.Insert(0, new Sport(1, "Pétanque", "Terrain de Pétanque", true, true,"petanque.png"));
             sport.Insert(1, new Sport(2, "Terrain de Football", "Terrain de Football", true, true, "foot.png"));

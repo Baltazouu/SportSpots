@@ -9,12 +9,12 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-        //MainPage = new AppShell();
+        MainPage = new AppShell();
         //MainPage = new ViewSpot();
 
         // tests 
 
-        
+        /*
 
 		List<Sport> l = new List<Sport>();
 
@@ -27,9 +27,10 @@ public partial class App : Application
 
         User u = new(155, "testmail.com", "dadadada", SpotStub.LoadSpots(),l);
 
-        MainPage = new Principale(u, new List<User>());
+       // MainPage = new Principale(u, new List<User>());
 
 
         //MainPage = new SpotDetail(SpotStub.LoadSpots()[0]);
+        */
 	}
 }
