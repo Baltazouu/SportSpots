@@ -27,12 +27,17 @@
                     </MultiBinding>
                 </Label.Text>
             </Label>
-            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30">
+            <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30,30,0,30">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ClickedAccount"/>
                 </Image.GestureRecognizers>
             </Image>
-        </StackLayout>
+            <Image Source="fleche_bas.png" x:Name="accountArrow" WidthRequest="30" HeightRequest="30" VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClickedAccount"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout> 
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -102,95 +107,103 @@
                     <!-- Catégorie favoris -->
                     <Label Text="Spots Favoris" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
                     <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
-                        
-                        <StackLayout>
-                            <ListView ItemsSource="{Binding Utilisateur.FavSpots}">
 
+                        <StackLayout VerticalOptions="FillAndExpand">
+                            <ListView ItemsSource="{Binding Utilisateur.FavSpots}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
+                                    <DataTemplate >
+                                        <ViewCell >
+                                            <!-- Tapped="OpenDetail" -->
 
-                                            <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
-                                                <Grid>
+                                            <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
+                                                <Grid VerticalOptions="FillAndExpand">
                                                     <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"/>
+                                                        <RowDefinition Height="Auto"/>
                                                         <RowDefinition Height="Auto"/>
                                                         <RowDefinition Height="Auto"/>
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="60"/>
                                                         <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
-                                                    <Label Text="{Binding Name}" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
-                                                    <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
+                                                    <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                                                    <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OpenDetail"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
                                                     <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
                                                         <Image.GestureRecognizers>
                                                             <TapGestureRecognizer Tapped="OnClickedStar"/>
                                                         </Image.GestureRecognizers>
                                                     </Image>
-                                                    <Label Text="{Binding Adress}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                    <Label Text="{Binding NonCommune}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-
-                                                    <!-- <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/> -->
+                                                    <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                                        <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                    </StackLayout>
                                                 </Grid>
+
                                             </Frame>
-
                                         </ViewCell>
-
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-
                         </StackLayout>
                     </Frame>
                     <!-- Catégorie historique -->
                     <Label Text="Historique" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
                     <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
-                       
-                            <StackLayout>
-                            <ListView ItemsSource="{Binding Utilisateur.History}">
 
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
+                        <StackLayout VerticalOptions="FillAndExpand">
+                            <ListView ItemsSource="{Binding Utilisateur.History}" HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate >
+                                        <ViewCell >
+                                            <!-- Tapped="OpenDetail" -->
 
-                                                <Frame Padding="10" Margin="0,10,0,10" BackgroundColor="#f2f2f2" HeightRequest="80">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto"/>
-                                                            <RowDefinition Height="Auto"/>
-                                                        </Grid.RowDefinitions>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="40"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Image Source="foot.png" WidthRequest="30" HorizontalOptions="Start"/>
-                                                        <Label Text="{Binding Name}" Grid.Column="1" FontSize="Medium" TextColor="Black"/>
-                                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2"/>
-                                                        <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
-                                                            <Image.GestureRecognizers>
-                                                                <TapGestureRecognizer Tapped="OnClickedStar"/>
-                                                            </Image.GestureRecognizers>
-                                                        </Image>
-                                                        <Label Text="{Binding Adress}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                        <Label Text="{Binding NonCommune}" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                            <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
+                                                <Grid VerticalOptions="FillAndExpand">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                                                    <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OpenDetail"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnClickedStar"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                                        <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                    </StackLayout>
+                                                </Grid>
 
-                                                        <!-- <Label Text="45, Place centrale, 63000 Clermont" FontSize="12" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" TextColor="Grey"/> -->
-                                                    </Grid>
-                                                </Frame>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
 
-                                            </ViewCell>
-
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-
-                            </StackLayout>
-                        
                     </Frame>
                 </StackLayout>
             </ScrollView>
