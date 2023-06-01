@@ -34,7 +34,11 @@ public partial class MainPage : ContentPage
 
     }
 
-
+    /// <summary>
+    /// Async Method to create an account to sportspots
+    /// </summary>
+    /// <param name="sender">button</param>
+    /// <param name="e"></param>
 	async void OnInscriptionClicked(Object sender,EventArgs e)
 	{
 		
@@ -74,6 +78,11 @@ public partial class MainPage : ContentPage
 
     }
 
+    /// <summary>
+    /// Display the connexion page instead
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     async void OnConnexionClicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();

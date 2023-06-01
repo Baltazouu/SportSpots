@@ -1,5 +1,6 @@
 using Model;
 using Persistance;
+using System.Collections.ObjectModel;
 
 namespace UnitsTests
 {
@@ -8,7 +9,7 @@ namespace UnitsTests
         [Fact]
         public void Test1()
         { 
-            List<Sport> avaible = new();
+            ObservableCollection<Sport> avaible = new();
             avaible = SportStub.Loadsport();
 
             Assert.NotNull(avaible);
@@ -28,7 +29,7 @@ namespace UnitsTests
         [Fact]
         public void TestStubSpot()
         {
-            List<Spot> spots = SpotStub.LoadSpots();
+            ObservableCollection<Spot> spots = SpotStub.LoadSpots();
 
             Assert.False(spots.Count == 0);
         }

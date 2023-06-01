@@ -1,4 +1,5 @@
 ﻿using Model;
+using System.Collections.ObjectModel;
 using System.Runtime.Intrinsics.Arm;
 using System.Xml.Serialization;
 
@@ -20,7 +21,7 @@ namespace ConsoleApp
                 """);
         }
 
-        public void MyFavspots(List<Spot> list)
+        public void MyFavspots(ObservableCollection<Spot> list)
         {
             string? c;
             Console.WriteLine("[FavSpots]");
@@ -57,7 +58,7 @@ namespace ConsoleApp
         }
 
 
-        public void MyFavSports(List<Sport> list)
+        public void MyFavSports(ObservableCollection<Sport> list)
         {
             string? c;
             Console.WriteLine("[FavSpots]");

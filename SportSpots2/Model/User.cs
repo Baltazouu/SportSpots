@@ -9,16 +9,25 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-
+    /// <summary>
+    /// Public Class User to manage user favorites and history
+    /// </summary>
     [DataContract(Name = "user")]
     public class User : INotifyPropertyChanged
     {
+        /// <summary>
+        /// User id
+        /// </summary>
         [DataMember]
         public int Id { get; init; }
 
+        /// <summary>
+        /// User Mail
+        /// </summary>
         [DataMember]
         public string Mail { get; private set; }
 
+        
         string _passwd;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -31,6 +40,9 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// User Password (normally hashed)
+        /// </summary>
         [DataMember]
         public string Passwd
         {
@@ -61,6 +73,15 @@ namespace Model
 
         //public ReadOnlyCollection<Spot> FavSpotsCollection { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <param name="mail">User Mail</param>
+        /// <param name="pass">User password</param>
+        /// <param name="spots">User list of spots favorite</param>
+        /// <param name="sports">User list of sports favorite</param>
+        /// <param name="history">user list of history</param>
         public User(int id, string mail,string pass,ObservableCollection<Spot>?spots,ObservableCollection<Sport> ?sports,ObservableCollection<Spot>?history)
         {
             Id = id;
@@ -91,6 +112,11 @@ namespace Model
 
         }
 
+        /// <summary>
+        /// method who manage userpasswordchange
+        /// </summary>
+        /// <param name="newpasswd">new hashed password</param>
+        /// <returns>boolean of operation result</returns>
         public bool ChangePasswd(string newpasswd)
         {
             if (newpasswd.Length > 6)
@@ -101,6 +127,11 @@ namespace Model
             return false ;
         }
 
+        /// <summary>
+        /// Method who manage changing mail opearation
+        /// </summary>
+        /// <param name="newMail"></param>
+        /// <returns>boolean of operation success</returns>
         public bool ChangeMail(string newMail)
         {
             if(newMail.Length > 5)
@@ -113,6 +144,11 @@ namespace Model
             return false;
         }
 
+        /// <summary>
+        /// Method Who manage adding spot into user favspots list
+        /// </summary>
+        /// <param name="spot">spot to add</param>
+        /// <returns>boolean result of operation</returns>
         public bool AddSpot(Spot spot)
         {
             bool present = false;
@@ -126,15 +162,17 @@ namespace Model
             if (!present)
             {
                 FavSpots.Add(spot);
-               // OnPropertyChanged("FavSpots");
-               // FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
-               // OnPropertyChanged("FavSpotsCollection");
                 return true;
             }
             return false;
 
         }
 
+        /// <summary>
+        /// Method Who Manage Adding sport into favsports list
+        /// </summary>
+        /// <param name="sport">sport to add</param>
+        /// <returns>result of operation</returns>
         public bool AddSport(Sport sport)
         {
             bool present = false;
@@ -154,7 +192,11 @@ namespace Model
             return false;
         }
 
-
+        /// <summary>
+        /// Method to manage removing sport into favlist
+        /// </summary>
+        /// <param name="sport">sport to remove</param>
+        /// <returns>resultt of operation</returns>
         public bool RemoveSpot(Spot sport)
         {
             bool present = false;
@@ -170,15 +212,16 @@ namespace Model
 
             if (present) {
                 FavSpots.Remove(sport); OnPropertyChanged("FavSpots");
-                //OnPropertyChanged("FavSpots");
-                //FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
-                //OnPropertyChanged("FavSpotsCollection");
             }
             return present;
 
         }
 
-
+        /// <summary>
+        /// Method to manage removing spot of favspot list
+        /// </summary>
+        /// <param name="spot">spot to remove</param>
+        /// <returns>boolean result of operation</returns>
         public bool RemoveSport(Sport spot)
         {
             foreach (Spot sp in FavSpots)
@@ -193,12 +236,20 @@ namespace Model
             return false;
         }
 
-
+        /// <summary>
+        /// Get HashCode
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return Id.GetHashCode();
         }
 
+        /// <summary>
+        /// Equals method
+        /// </summary>
+        /// <param name="other">other to compare</param>
+        /// <returns>bool</returns>
         public bool Equals(User other)
         {
             return this.Mail== other.Mail && this.Passwd==other.Passwd;
@@ -210,6 +261,11 @@ namespace Model
             return $"{Mail} {Id}";
         }
 
+        /// <summary>
+        /// Add Spot to history method
+        /// When history.count equals 10 the older is removed of the list
+        /// </summary>
+        /// <param name="s">spot to add</param>
         public void AddSpotToHistory(Spot s)
         {
             bool find = false;
@@ -226,22 +282,10 @@ namespace Model
                     History.RemoveAt(0);
                 }
                 History.Add(s);
-                //OnPropertyChanged("History");
-                //HistoryCollection = new ReadOnlyCollection<Spot>(History);
-                //OnPropertyChanged("HistoryCollection"); 
              }
 
             
         }
-        /*
-
-        public void UpdateUserView()
-        {
-            OnPropertyChanged("History");
-            OnPropertyChanged("HistoryCollection");
-            OnPropertyChanged("FavSpots");
-            OnPropertyChanged("FavSpotsCollection");
-        }
-        */
+        
     }
 }

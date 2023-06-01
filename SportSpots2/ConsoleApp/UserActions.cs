@@ -1,5 +1,5 @@
 ﻿using Model;
-
+using System.Collections.ObjectModel;
 
 namespace ConsoleApp
 {
@@ -70,7 +70,7 @@ namespace ConsoleApp
         {
 
             string? choice;
-            List<Sport> avaible = SportStub.Loadsport();
+            ObservableCollection<Sport> avaible = SportStub.Loadsport();
             Sport?s = null;
 
             Console.WriteLine("Enter A number Corresponding To A Sport !");

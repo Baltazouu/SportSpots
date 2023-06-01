@@ -3,24 +3,42 @@ using System.Diagnostics;
 
 namespace Model
 {
+    /// <summary>
+    /// Class Request
+    /// This Class allow to manage api link 
+    /// </summary>
     public class Request
     {
 
+       
         /// <summary>
-        /// Classe Request
-        /// Cette classe permet de gerer la partie connexion avec l'api data-es
+        /// Attribute to execute http get api requests
         /// </summary>
-
         private readonly HttpClient _httpclient = new HttpClient();
 
+        /// <summary>
+        /// Api Link to find
+        /// </summary>
         string ApiLink { get; set; }
 
+        /// <summary>
+        /// Town Target of the search
+        /// </summary>
         public string Town { get; init; }
 
+        /// <summary>
+        /// Sport Associate to search
+        /// </summary>
         public Sport Sport { get; init; }
 
+        /// <summary>
+        /// List of spots finded after the search 
+        /// </summary>
         public List<Spot> Res { get; set; }
 
+        /// <summary>
+        /// PostalCode if specified
+        /// </summary>
         int PostalCode { get; set; }
 
         public Request(string town,Sport s, int postalcode)
@@ -32,7 +50,7 @@ namespace Model
             PostalCode = postalcode;
 
             Debug.WriteLine(Town);
-            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune:{town}&famille:{s.TypeEquipement}&codepostal=startswith:14&rows=15";
+            ApiLink = $"https://equipements.sports.gouv.fr/api/records/1.0/search/?dataset=data-es&q=commune:{town}&famille:{s.TypeEquipement}&codepostal=startswith:{PostalCode}&rows=15";
 
         }
 
@@ -50,9 +68,9 @@ namespace Model
 
         /// <summary>
         /// Methode Asynchrone permettant de retourner une liste de spots trouves en fonction de
-        /// l'url de l'api
+        /// l'url de l'api 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of spot finded</returns>
         public async Task<List<Spot>> FindSpot()
         {
             List<Spot> res = new List<Spot>();

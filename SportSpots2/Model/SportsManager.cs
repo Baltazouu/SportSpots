@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Cass to manage list of spots avaible
+    /// </summary>
     public class SportsManager
     {  
 

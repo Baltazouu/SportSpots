@@ -7,20 +7,28 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Class Search To Manage the Link With the request class
+    /// The difference with this class is that this one 
+    /// allow to search several Sports this class can find spots for different sport
+    /// </summary>
     public class Search
     {
         
+
         /// <summary>
-        /// Cette classe permet de gerer la recherche de spots 
-        /// Une recherche contient une ville de recherche
-        /// Elle contient egalement une liste de sports a rechercher
-        /// Pour la ville specifiee
+        /// Target Town
         /// </summary>
-
-
         string Town { get; init; }
+
+        /// <summary>
+        /// list of sports to find
+        /// </summary>
         List<Sport> SportsToFind { get; init; }
 
+        /// <summary>
+        /// PostalCode (optionnal)
+        /// </summary>
         public int PostalCode { get; init;  }
 
         public Search(string town, List<Sport> sports,int cp)
@@ -31,13 +39,21 @@ namespace Model
 
         }
 
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="town">target</param>
+        /// <param name="sports">List of sports to find</param>
         public Search(string town,List<Sport>sports)
         {
             Town = town;
             SportsToFind = sports;
         }
+
+
         /// <summary>
-        /// Charger les spots trouves 
+        /// Load Sports
         /// Selon chaque sport specifie
         /// </summary>
         /// <returns>retourne la liste des spots trouves</returns>

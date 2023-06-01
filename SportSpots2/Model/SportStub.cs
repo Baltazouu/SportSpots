@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     /// <summary>
-    /// Load Sports
+    /// Stub Class To Test the app
     /// </summary>
     public class SportStub
     {

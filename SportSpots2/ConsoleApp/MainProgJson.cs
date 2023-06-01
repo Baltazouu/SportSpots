@@ -81,7 +81,7 @@ namespace ConsoleProject
                 throw new Exception("Error While Connecting to persistence");
             }*/
 
-            User u = new(Dt.GetNewUserId(All), Addr, Passwd, null, null);
+            User u = new(Dt.GetNewUserId(All), Addr, Passwd, null, null,null);
             All.Add(u);
 
             UserActions actions = new UserActions(u,All,(IDataManager)JsonSource);

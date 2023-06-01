@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace Model
 {
+    /// <summary>
+    /// Class Sport : Sports avaible in SportsSpots 
+    /// </summary>
     public class Sport : IEquatable<Sport>
     {
         [DataMember(Name="SportNumero")]
@@ -19,8 +22,21 @@ namespace Model
         [DataMember(Name="imglink")]
         public string ImgLink { get; set; }
 
-        public string Favorite { get; set; } 
 
+        /// <summary>
+        /// Image Link star.png or starfilled.png if the sport is in user favorite
+        /// </summary>
+        public string Favorite { get; set; }
+
+        /// <summary>
+        /// COnstructor
+        /// </summary>
+        /// <param name="num">id number of sport</param>
+        /// <param name="name">mane of sport</param>
+        /// <param name="typ">type of sport</param>
+        /// <param name="indoor">boolean is the sport pratiquable indoor</param>
+        /// <param name="outdoor">boolean is the sport pratiquable outdoor</param>
+        /// <param name="urlImage">link of image corresponding</param>
         public Sport(int num, string name, string typ, bool indoor, bool outdoor,string urlImage)
         {
             //name = name.Replace(" ", "+");
@@ -38,9 +54,19 @@ namespace Model
 
         }
 
+        /// <summary>
+        /// return hashcode
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
             => base.GetHashCode();
 
+
+        /// <summary>
+        /// Return boolean equal
+        /// </summary>
+        /// <param name="other">Other sport</param>
+        /// <returns>boolean equal</returns>
         public bool Equals(Sport? other)
         => Name.Equals(other.Name);
 

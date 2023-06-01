@@ -3,7 +3,9 @@ using System.Runtime.Serialization;
 
 namespace Model
 {
-    // All the  code in this file is included in all platforms.
+   /// <summary>
+   /// Spot class (result of API data-es requests)
+   /// </summary>
     public class Spot
     {
         [DataMember(Name = "commune")]
@@ -40,6 +42,22 @@ namespace Model
         [DataMember(Name="urllink")]
         public string UrlLink { get; init; }
 
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="numero">national number of spot</param>
+        /// <param name="nomcomm">name of town of the spot</param>
+        /// <param name="nom">name of the spot</param>
+        /// <param name="family">family sport of the spot</param>
+        /// <param name="adress">adress of the spot</param>
+        /// <param name="postalcode">postalcode of the spot</param>
+        /// <param name="dept">departement of the spot</param>
+        /// <param name="coord_x">X coordinate</param>
+        /// <param name="coord_y">Y coordinate</param>
+        /// <param name="asccessHandicap">boolean accessiblity for handicap persons</param>
+        /// <param name="restauration">boolean is restauration avaible on the site</param>
+        /// <param name="publicAccess">boolean is the spot in public access</param>
         public Spot(int? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,
                     double? coord_x, double? coord_y, bool asccessHandicap,
@@ -68,7 +86,6 @@ namespace Model
         {
             return $"Spot : {Name}  {Family} {NomCommune} {Adress} {Dept} {PostalCode}";
         }
-
 
     }
 }

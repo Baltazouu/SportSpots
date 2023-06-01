@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// User stub class implementing IdataManager
+    /// </summary>
     public class UserStub : IDataManager
     {
         public (bool,List<User>) LoadUser()
@@ -41,7 +44,12 @@ namespace Model
             return (true,users);
         }
 
-
+        /// <summary>
+        /// Fake Saving User
+        /// </summary>
+        /// <param name="all"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public bool SaveUser(List<User> all)
         {
             throw new NotImplementedException("Error Not Possible to save in userStub");

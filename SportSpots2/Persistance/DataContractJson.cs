@@ -5,11 +5,23 @@ using System.Diagnostics;
 
 namespace Persistance
 {
+    /// <summary>
+    /// DataContractJson Implement IDataManager Interface from model
+    /// This class use Newtonsoft.Json Package
+    /// </summary>
     public class DataContractJson : IDataManager
     {
-
+        /// <summary>
+        /// Path file to save and load
+        /// </summary>
         static string UserFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Users.json");
 
+
+        /// <summary>
+        /// Explained Into IdataManger commentary's
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
         public bool SaveUser(List<User> users)
         {
             try
@@ -37,7 +49,12 @@ namespace Persistance
             }
             return true;
         }
-
+        
+        /// <returns></returns>
+        /// <summary>
+        /// Explained Into IdataManger commentary's
+        /// </summary>
+        /// <returns></returns>
         public (bool, List<User>?) LoadUser()
         {
             List<User>? users = new List<User>();

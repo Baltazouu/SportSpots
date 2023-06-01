@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Interface For Manager The Link With the DataBase
+    /// Not Used Here
+    /// </summary>
     public interface IDatabaseManager
     {
         List<Sport> LoadFavSportFromUser(string mail, string password);

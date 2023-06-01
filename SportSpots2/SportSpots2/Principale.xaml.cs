@@ -6,6 +6,11 @@ using Persistance;
 using System.Diagnostics;
 namespace SportsSpots;
 
+/// <summary>
+/// Princpal View Code Behind
+/// On This Page the user can find spots, see favorite sports, spots his search history
+/// You can also manage your account here
+/// </summary>
 public partial class Principale : ContentPage
 {
 
@@ -27,12 +32,22 @@ public partial class Principale : ContentPage
 }
 
 
-
+    /// <summary>
+    /// Show Details about account Ex change : password,mail or disconnect
+    /// </summary>
+    /// <param name="sender"> Button </param>
+    /// <param name="e"></param>
 void ClickedAccount(object sender, EventArgs e)
     {
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
     }
 
+
+    /// <summary>
+    /// Search Spots Using data-es API with a town selected by entry and a list of Sport
+    /// </summary>
+    /// <param name="sender"> SearchBar </param>
+    /// <param name="e"></param>
     private async void ClickedResult(object sender, EventArgs e)
     {
         int postalcode;
@@ -80,7 +95,11 @@ void ClickedAccount(object sender, EventArgs e)
         }
     }
     
-
+    /// <summary>
+    /// Goal : Add a sport to searchList for finding spots around you
+    /// </summary>
+    /// <param name="sender">Sport selected</param>
+    /// <param name="e"></param>
     public void OnClickedSport(object sender, EventArgs e)
     {
         if (sender is StackLayout stackLayout)
@@ -113,6 +132,11 @@ void ClickedAccount(object sender, EventArgs e)
         }
     }
 
+    /// <summary>
+    /// This Method Allow User to add a Spot to his favorite Spot List
+    /// </summary>
+    /// <param name="sender">Image star/starfilled</param>
+    /// <param name="e"></param>
     public void OnClickedStarSport(object sender,EventArgs e)
     {
         if(sender is Image img)
@@ -140,6 +164,12 @@ void ClickedAccount(object sender, EventArgs e)
         }
     }
 
+
+    /// <summary>
+    /// This Method Allows User to add a spot to his favorite list
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void OnClickedStar(object sender, EventArgs e)
     {
         if(sender is Image img)
@@ -169,6 +199,11 @@ void ClickedAccount(object sender, EventArgs e)
         }
     }
 
+    /// <summary>
+    /// This Method Allows to user to change is email adress account from view
+    /// </summary>
+    /// <param name="sender"> Button </param>
+    /// <param name="e"></param>
     private void OnChangeMailClicked(object sender, EventArgs e)
     {
         string userEmail = Binding.Utilisateur.Mail;
@@ -197,6 +232,11 @@ void ClickedAccount(object sender, EventArgs e)
         else errorNewMailLabel.Text = "Le mot de passe du compte n'est pas bon";
     }
 
+    /// <summary>
+    /// This Method allows user to change his passoword from the view page
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnChangePasswordClicked(object sender, EventArgs e)
     {
         string userPassword = Binding.Utilisateur.Passwd;
@@ -228,6 +268,12 @@ void ClickedAccount(object sender, EventArgs e)
         else errorNewPasswordLabel.Text = "Le mot de passe du compte n'est pas bon !";
     }
 
+
+    /// <summary>
+    /// This method allows user to open a detail spot when a Spot is clicked on the result view content
+    /// </summary>
+    /// <param name="sender">Image direction</param>
+    /// <param name="e"></param>
     public async void OpenDetail(object sender,EventArgs e)
     {
         Debug.WriteLine("Into OpenDetail");
@@ -245,7 +291,7 @@ void ClickedAccount(object sender, EventArgs e)
                 SpotDetail detail = new SpotDetail(s);
 
                 
-                //string urlLink = $"https://www.google.fr/maps/@{s.Coord_x},{s.Coord_y}";
+       
 
                 //await Navigation.PushAsync(detail);// modal en attendant
                 await Navigation.PushModalAsync(new SpotDetail(s));
@@ -256,6 +302,11 @@ void ClickedAccount(object sender, EventArgs e)
 
     }
 
+    /// <summary>
+    /// This Method is made to disconnet the user from the princpal page
+    /// </summary>
+    /// <param name="sender">button</param>
+    /// <param name="e"></param>
     public async void OnDisconnect(object sender, EventArgs e)
     {
 
