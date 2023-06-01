@@ -149,9 +149,9 @@
                     <!-- Catégorie historique -->
                     <Label Text="Historique" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
                     <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
-                        <ScrollView VerticalScrollBarVisibility="Always">
+                       
                             <StackLayout>
-                                <ListView ItemsSource="{Binding Utilisateur.History}">
+                                <ListView ItemsSource="{Binding Utilisateur.HistoryCollection}">
 
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
@@ -191,7 +191,7 @@
                                 </ListView>
 
                             </StackLayout>
-                        </ScrollView>
+                        
                     </Frame>
                 </StackLayout>
             </ScrollView>

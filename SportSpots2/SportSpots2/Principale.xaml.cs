@@ -21,7 +21,7 @@ public partial class Principale : ContentPage
        Binding = new BindingClass(user);
        BindingContext = Binding;
        InitializeComponent();
-        All = allusers;
+       All = allusers;
 }
 
 
@@ -236,16 +236,13 @@ void ClickedAccount(object sender, EventArgs e)
             {
                 Debug.WriteLine("Into spot condition");
 
-                SpotDetail detail = new SpotDetail(s);
-
-                if(Binding.Utilisateur.History.Count == 10)
-                {
-                    Binding.Utilisateur.History.RemoveAt(0);
-                }
-                Binding.Utilisateur.History.Add(s);
-                OnPropertyChanged(nameof(Binding.Utilisateur.History));
+                Binding.Utilisateur.AddSpotToHistory(s);
                 Dt.SaveData(JsonSource, All);
 
+
+                SpotDetail detail = new SpotDetail(s);
+
+                
                 //string urlLink = $"https://www.google.fr/maps/@{s.Coord_x},{s.Coord_y}";
 
                 //await Navigation.PushAsync(detail);// modal en attendant

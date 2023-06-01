@@ -56,6 +56,8 @@ namespace Model
 
         public List<Spot> History { get; set; }
 
+        public ReadOnlyCollection<Spot> HistoryCollection { get; set; }
+
         public ReadOnlyCollection<Spot> FavSpotsCollection { get; set; }
 
         public User(int id, string mail,string pass,List<Spot>?spots,List<Sport> ?sports)
@@ -75,10 +77,12 @@ namespace Model
             }    
             else Favsports = new List<Sport>();
 
-            FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
             History = new();
 
+            FavSpotsCollection = new ReadOnlyCollection<Spot>(History);
 
+            FavSpotsCollection = new ReadOnlyCollection<Spot>(FavSpots);
+            
 
         }
 
@@ -198,6 +202,30 @@ namespace Model
         public override string ToString()
         {
             return $"{Mail} {Id}";
+        }
+
+        public void AddSpotToHistory(Spot s)
+        {
+            bool find = false;
+            
+            foreach (Spot sp in History)
+                {
+                    if (s.Equals(sp))
+                        find = true;
+                }
+             if (!find)
+             {
+                if (History.Count == 10)
+                {
+                    History.RemoveAt(0);
+                }
+                History.Add(s);
+                OnPropertyChanged("History");
+                HistoryCollection = new ReadOnlyCollection<Spot>(History);
+                OnPropertyChanged("HistoryCollection"); 
+             }
+
+            
         }
     }
 }

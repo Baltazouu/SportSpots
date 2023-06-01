@@ -30,6 +30,7 @@ namespace SportsSpots
             SpotsFinded = new();
             collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
             SportsAvaiblesCollection = new ReadOnlyCollection<Sport>(SetFavoriteSports());
+            
         }
 
         void OnPropertyChanged(string propertyName)
@@ -92,6 +93,8 @@ namespace SportsSpots
             SportsAvaibles.OrderByDescending(s => s.Favorite == "starfilled.png").ToList();
             return SportsAvaibles;
         }
+
+
 
 
        
