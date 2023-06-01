@@ -43,6 +43,14 @@ steps:
        - dotnet sonarscanner end /d:sonar.login=$${sonar_token}
 
      depends_on: [ tests ]
+   - name: generate-and-deploy-docs
+     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-docdeployer
+     failure: ignore
+     volumes:
+       - name: docs
+         path: /docs
+     commands:
+       - /entrypoint.sh
    
 
 #kind: pipeline

@@ -181,7 +181,7 @@ void ClickedAccount(object sender, EventArgs e)
                 if (img.BindingContext is Spot spot)
                 {
                     spot.Favorite = "starfilled.png";
-                    Binding.Utilisateur.AddSpot(spot);
+                    Binding.Utilisateur.AddToFavSpot(spot);
                 }
 
                 // et ajouter à list des favoris
@@ -192,7 +192,7 @@ void ClickedAccount(object sender, EventArgs e)
                 if (img.BindingContext is Spot spot)
                 {
                     spot.Favorite = "star.png";
-                    Binding.Utilisateur.RemoveSpot(spot);
+                    Binding.Utilisateur.RemoveToFavSpot(spot);
                 }
             }
             

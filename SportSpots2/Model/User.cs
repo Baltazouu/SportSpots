@@ -149,7 +149,7 @@ namespace Model
         /// </summary>
         /// <param name="spot">spot to add</param>
         /// <returns>boolean result of operation</returns>
-        public bool AddSpot(Spot spot)
+        public bool AddToFavSpot(Spot spot)
         {
             bool present = false;
             foreach (Spot sp in FavSpots)
@@ -173,7 +173,7 @@ namespace Model
         /// </summary>
         /// <param name="sport">sport to add</param>
         /// <returns>result of operation</returns>
-        public bool AddSport(Sport sport)
+        public bool AddSToFavSport(Sport sport)
         {
             bool present = false;
             foreach (Sport sp in Favsports)
@@ -197,7 +197,7 @@ namespace Model
         /// </summary>
         /// <param name="sport">sport to remove</param>
         /// <returns>resultt of operation</returns>
-        public bool RemoveSpot(Spot sport)
+        public bool RemoveToFavSpot(Spot sport)
         {
             bool present = false;
 
@@ -222,13 +222,13 @@ namespace Model
         /// </summary>
         /// <param name="spot">spot to remove</param>
         /// <returns>boolean result of operation</returns>
-        public bool RemoveSport(Sport spot)
+        public bool RemoveToFavSport(Sport sport)
         {
-            foreach (Spot sp in FavSpots)
+            foreach (Sport sp in Favsports)
             {
-                if (sp.Numero == spot.Numero)
+                if (sp.Numero == sport.Numero)
                 {
-                    FavSpots.Remove(sp);
+                    Favsports.Remove(sp);
                     //OnPropertyChanged("FavSpots");
                     return true;
                 }

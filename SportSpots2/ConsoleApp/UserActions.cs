@@ -21,7 +21,7 @@ namespace ConsoleApp
 
         public async Task actions()
         {
-
+            Console.WriteLine("\n\n");
             Console.WriteLine($"Welcome Back {User.Mail} , {User.Id} !");
             string? choice;
             do
@@ -59,7 +59,7 @@ namespace ConsoleApp
 
 
                 }
-            } while (choice == "6");
+            } while (choice != "6");
             
 
 
@@ -85,6 +85,7 @@ namespace ConsoleApp
 
             do
             {
+                Console.WriteLine("\n");
                 Console.Write(" Enter A Number in the list : ");
                 choice = Console.ReadLine();
             }
@@ -187,36 +188,61 @@ namespace ConsoleApp
                 Search Research = new(town, sportSearchs);
                 finded = await Research.ExecuteSearch();
                 string?choice;
+
+                Console.WriteLine("{0} Spots Finded !",finded.Count);
+
+                int tour = 1;
+
                 foreach (Spot s in finded)
                 {
-                    Console.WriteLine(s);
-                    Console.WriteLine("1. Add Spot To my favorite List");
-                    Console.WriteLine("2. Get Route to the spot");
-                    Console.WriteLine("3. Display next");
-
                     do
                     {
-                        Console.Write("Enter Your Choice : ");
-                        choice = Console.ReadLine();
-                    }
-                    while (choice != "1" && choice != "2" && choice != "3");
+                        Console.WriteLine("\n\n");
+                        Console.WriteLine("Spot Number {0}\n{1} Remain", tour, (finded.Count - tour));
+                        Console.WriteLine(s);
+                        Console.WriteLine("\n\n");
+                        Console.WriteLine("1. Add Spot To my favorite List");
+                        Console.WriteLine("2. Get Route to the spot");
+                        Console.WriteLine("3. Display next");
+                        Console.WriteLine("4. Back to main menue");
+                        tour++;
 
-                    if (choice == "1")
-                    {
-                        IEnumerable<Spot> find = User.FavSpots.Where(u => Equals(u.Numero, s.Numero));
-                        if (find.Count() > 0)
-                            Console.WriteLine("This spot is already in your favorite list !");
-                        else
+                        do
                         {
-                            User.FavSpots.Add(s);
+                            Console.Write("Enter Your Choice : ");
+                            choice = Console.ReadLine();
+                        }
+                        while (choice != "1" && choice != "2" && choice != "3" && choice != "4");
+
+                        if (choice == "1")
+                        {
+                            IEnumerable<Spot> find = User.FavSpots.Where(u => Equals(u.Numero, s.Numero));
+                            if (find.Count() > 0)
+                                Console.WriteLine("This spot is already in your favorite list !");
+                            else
+                            {
+                                User.FavSpots.Add(s);
+                            }
+
+                        }
+                        if (choice == "2")
+                        {
+                            Console.WriteLine("\n\n");
+                            Console.WriteLine("Coming Soon (with view)");
+                            Console.WriteLine("\n\n");
+                            //OpenBrowser($"www.google.com/search?&q=45.735176%2C+3.008964&sourceid=opera&ie=UTF-8&oe=UTF-8");
                         }
 
-                    }
-                    if (choice == "2")
+                      
+                    }while(choice == "3" ||  choice == "4");
+
+
+                    if (choice == "4")
                     {
-                        Console.WriteLine("Coming Soon");
-                        //OpenBrowser($"www.google.com/search?&q=45.735176%2C+3.008964&sourceid=opera&ie=UTF-8&oe=UTF-8");
+                        Console.WriteLine("Backing to main menue...");
+                        break;
                     }
+
 
                 }
             }

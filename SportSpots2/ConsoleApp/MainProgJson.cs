@@ -68,7 +68,7 @@ namespace ConsoleProject
                 if (Dt.CheckMailExist(Addr, All))
                 {
                     errorConditions = true;
-                    Console.WriteLine("Error ! Wrong This email altready exists !");
+                    Console.WriteLine("\nError ! Wrong This email altready exists !");
                 }
                 else errorConditions = false;
 
@@ -110,11 +110,11 @@ namespace ConsoleProject
                 if (!Dt.CheckMailExist(Addr, All))
                 {
                     errorConditions = true;
-                    Console.WriteLine("Error ! Wrong This email does'nt exists !");
+                    Console.WriteLine("\nError ! Wrong This email does'nt exists !");
                 }
                 else if (!Dt.CheckRightPass(Addr, Passwd, All))
                 {
-                    Console.WriteLine("Error ! Wrong Password !");
+                    Console.WriteLine("\nError ! Wrong Password !");
                     errorConditions = true;
                 }
                 else errorConditions = false;

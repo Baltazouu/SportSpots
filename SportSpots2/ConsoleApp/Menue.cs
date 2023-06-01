@@ -95,15 +95,22 @@ namespace ConsoleApp
             Console.WriteLine("[ChangeEmail]");
 
             Console.Write("Enter Your Actual Email : ");
+            string? oldmail = Console.ReadLine();
+
+            Console.Write("Enter Your New Email : ");
             mail = Console.ReadLine();
 
             Console.Write("Enter Your Password :");
             pass = ReadPasswd.ReadPassword();
 
-            if(pass.Equals(u.Passwd) && mail.Equals(u.Mail) && u.ChangeMail(mail))
-            {  
-                Console.WriteLine("[New Mail Setted Successfully]");
-                return true;
+            if(pass.Equals(u.Passwd) && oldmail.Equals(u.Mail))
+            {
+                if (u.ChangeMail(mail))
+                {
+                    Console.WriteLine("[New Mail Setted Successfully]");
+                    return true;
+                }
+                else Console.WriteLine("[Error Mail Not Updated :( ]");
             }
             Console.WriteLine("Error Mail Not Updated !");
             return false;
@@ -143,7 +150,6 @@ namespace ConsoleApp
             }
             Console.WriteLine("Error passwd Not Updated !");
             return false;
-
 
 
         }
