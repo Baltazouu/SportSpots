@@ -307,6 +307,7 @@
                 <Entry IsPassword="True" TextColor="Black" x:Name="ConfirmNewPassword" Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
                 <Label x:Name="errorNewPasswordLabel" TextColor="Black"/>
                 <Button Text="valider" Clicked="OnChangePasswordClicked" Margin="15"></Button>
+                <Button Text="Se Déconnecter" Clicked="OnChangePasswordClicked" Margin="15"></Button>
             </StackLayout>
         </Grid>
     </StackLayout>

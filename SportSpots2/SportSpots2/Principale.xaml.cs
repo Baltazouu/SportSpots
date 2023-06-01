@@ -255,6 +255,13 @@ void ClickedAccount(object sender, EventArgs e)
         
 
     }
+
+    public async void OnDisconnect(object sender, EventArgs e)
+    {
+
+        Dt.SaveData(JsonSource, All);
+        await Navigation.PopToRootAsync();
+    }
 }
 
 

@@ -49,6 +49,9 @@ public partial class Connexion : ContentPage
         }
         else
         {
+            entryMail.Text = null;
+            //entryPass.Text = null;
+
             ResultLabel.Text = "Connexion en cours..";
 
             User user = Dt.FindUser(Mail, Pass, all);
