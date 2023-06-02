@@ -71,14 +71,14 @@ namespace Model
             PostalCode = postalcode;
             Coord_x = coord_x;
             Coord_y = coord_y;
+            string Coord_x_Link = Coord_x.ToString().Replace(",", "."); // on remplace la virgule par un point, sinon openstreetmap ne reconnait pas les coordonnées
+            string Coord_y_Link = Coord_y.ToString().Replace(",", "."); 
             AccessibiltyHandicap = asccessHandicap;
             Restauration = restauration;
             Public_access = publicAccess;
             Dept = dept;
             Favorite = "star.png";
-            //UrlLink = $"https://www.google.fr/maps/@{Coord_x},{Coord_y}";
-            UrlLink = $"https://www.openstreetmap.org/#map=16/{Coord_x}/{Coord_y}&layers=Y";
-            // UrlLink = $"https://www.openstreetmap.org/relation/281346#map=14/{Coord_x}/{Coord_y}&layers=Y";
+            UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y_Link}%2C{Coord_x_Link}&layer=mapnik";
         }
 
 

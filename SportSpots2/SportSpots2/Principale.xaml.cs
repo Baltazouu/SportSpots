@@ -40,6 +40,14 @@ public partial class Principale : ContentPage
 void ClickedAccount(object sender, EventArgs e)
     {
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
+        if(ParametreUser.IsVisible)
+        {
+            accountArrow.Source = "fleche_haut.png";
+        }
+        else
+        {
+            accountArrow.Source = "fleche_bas.png";
+        }
     }
 
 
