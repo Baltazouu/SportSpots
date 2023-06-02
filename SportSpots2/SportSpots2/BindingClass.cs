@@ -60,6 +60,14 @@ namespace SportsSpots
 
             SpotsFinded = await s.ExecuteSearch();
 
+            foreach (var spot in SpotsFinded)
+            {
+                foreach(var spot2 in Utilisateur.FavSpots)
+                    if(spot.Equals(spot2))
+                    {
+                        spot.Favorite = "starfilled.png";
+                    }
+            }
             collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
             
             OnPropertyChanged("SpotsFinded");
