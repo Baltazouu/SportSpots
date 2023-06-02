@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Model
@@ -71,9 +72,9 @@ namespace Model
         /// l'url de l'api 
         /// </summary>
         /// <returns>List of spot finded</returns>
-        public async Task<List<Spot>> FindSpot()
+        public async Task<ObservableCollection<Spot>> FindSpot()
         {
-            List<Spot> res = new List<Spot>();
+            ObservableCollection<Spot> res = new ObservableCollection<Spot>();
             ApiLink = ApiLink.Replace(" ", "-");            
             Debug.WriteLine(ApiLink);
             try

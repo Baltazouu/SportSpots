@@ -81,6 +81,8 @@ namespace Model
             UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y_Link}%2C{Coord_x_Link}&layer=mapnik";
         }
 
+        public bool Equals(Spot other)
+            => Numero.Equals(other.Numero);
 
         public override string ToString()
         {

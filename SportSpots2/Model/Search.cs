@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -57,13 +58,13 @@ namespace Model
         /// Selon chaque sport specifie
         /// </summary>
         /// <returns>retourne la liste des spots trouves</returns>
-        public async Task<List<Spot>> ExecuteSearch()
+        public async Task<ObservableCollection<Spot>> ExecuteSearch()
         {
-            List<Spot> result = new List<Spot>();
+            ObservableCollection<Spot> result = new ObservableCollection<Spot>();
 
             foreach (Sport sport in SportsToFind)
             {
-                List<Spot> spots = null;
+                ObservableCollection<Spot> spots = null;
                 if (PostalCode > 0 && PostalCode <= 99)
                 {
                     Request r = new Request(Town, sport, PostalCode);

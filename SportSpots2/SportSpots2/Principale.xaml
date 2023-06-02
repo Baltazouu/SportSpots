@@ -249,7 +249,7 @@
                             <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Margin="0,10" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="700">
 
                             <StackLayout VerticalOptions="FillAndExpand">
-                                <ListView ItemsSource="{Binding SpotsFinded}" HasUnevenRows="True">
+                                <ListView x:Name="finded" ItemsSource="{Binding SpotsFinded}" HasUnevenRows="True">
                                     <ListView.ItemTemplate>
                                         <DataTemplate >
                                             <ViewCell >

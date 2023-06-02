@@ -79,7 +79,6 @@ namespace Persistance
             {
                 Debug.WriteLine(user);
             }    
-
             return (true, users);
         }
 

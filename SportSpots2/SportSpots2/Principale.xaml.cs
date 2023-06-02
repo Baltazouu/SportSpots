@@ -21,15 +21,15 @@ public partial class Principale : ContentPage
 
     BindingClass Binding { get; set; }
 
-    public Principale(User user,List<User> allusers)
+    public Principale(User user, List<User> allusers)
     {
-       Binding = new BindingClass(user);
-       BindingContext = Binding;
-       InitializeComponent();
-       All = allusers;
+        Binding = new BindingClass(user);
+        BindingContext = Binding;
+        InitializeComponent();
+        All = allusers;
 
 
-}
+    }
 
 
     /// <summary>
@@ -37,10 +37,10 @@ public partial class Principale : ContentPage
     /// </summary>
     /// <param name="sender"> Button </param>
     /// <param name="e"></param>
-void ClickedAccount(object sender, EventArgs e)
+    void ClickedAccount(object sender, EventArgs e)
     {
         ParametreUser.IsVisible = !ParametreUser.IsVisible;
-        if(ParametreUser.IsVisible)
+        if (ParametreUser.IsVisible)
         {
             accountArrow.Source = "fleche_haut.png";
         }
@@ -59,7 +59,7 @@ void ClickedAccount(object sender, EventArgs e)
     private async void ClickedResult(object sender, EventArgs e)
     {
         int postalcode;
-        if(sender is SearchBar)
+        if (sender is SearchBar)
         {
             if (searchCity.Text == "" || searchCity.Text == null || searchCity.Text.Length < 2)
             {
@@ -87,22 +87,22 @@ void ClickedAccount(object sender, EventArgs e)
 
                 await Binding.executeResearch(searchCity.Text, postalcode);
 
-                if (Binding.SpotsFinded.Count <1 ) 
+                if (Binding.SpotsFinded.Count < 1)
                 {
                     searchinfo.Text = $"Aucun Spot Trouvé Pour {searchCity.Text}";
                 }
                 else { searchinfo.Text = "Spots Trouvés :"; }
-               
-                
+
+
             }
-                   
+
         }
-        if(sender is ImageButton)
+        if (sender is ImageButton)
         {
             ResultSearch.IsVisible = false;
         }
     }
-    
+
     /// <summary>
     /// Goal : Add a sport to searchList for finding spots around you
     /// </summary>
@@ -134,8 +134,6 @@ void ClickedAccount(object sender, EventArgs e)
                     OnPropertyChanged(nameof(Binding));
                     stackLayout.BackgroundColor = Color.FromArgb("737373");
                 }
-
-                
             }
         }
     }
@@ -145,19 +143,23 @@ void ClickedAccount(object sender, EventArgs e)
     /// </summary>
     /// <param name="sender">Image star/starfilled</param>
     /// <param name="e"></param>
-    public void OnClickedStarSport(object sender,EventArgs e)
+    public void OnClickedStarSport(object sender, EventArgs e)
     {
-        if(sender is Image img)
+        if (sender is Image img)
         {
-            if(img.BindingContext is Sport sport)
+            //Sport s = (Sport)img.BindingContext;
+            if (img.BindingContext is Sport sport)
             {
-                if(sport.Favorite == "star.png")
+                if (sport.Favorite == "star.png")
                 {
                     sport.Favorite = "starfilled.png";
                     img.Source = "starfilled.png";
                     // and add to favorite
                     Binding.Utilisateur.Favsports.Add(sport);
-                    OnPropertyChanged(nameof(Binding.Utilisateur.Favsports));
+
+
+
+
                     Dt.SaveData(JsonSource, All);
                 }
                 else
@@ -165,10 +167,12 @@ void ClickedAccount(object sender, EventArgs e)
                     sport.Favorite = "star.png";
                     img.Source = "star.png";
                     Binding.Utilisateur.Favsports.Remove(sport);
-                    OnPropertyChanged(nameof(Binding.Utilisateur.Favsports));
+
+
+
                     Dt.SaveData(JsonSource, All);
                 }
-            }    
+            }
         }
     }
 
@@ -180,32 +184,27 @@ void ClickedAccount(object sender, EventArgs e)
     /// <param name="e"></param>
     public void OnClickedStar(object sender, EventArgs e)
     {
-        if(sender is Image img)
+        if (sender is Image img)
         {
-            if (img.Source == Binding.star)
+            Spot sp = (Spot)img.BindingContext;
+
+            if (sp.Favorite == "star.png")
             {
-                img.Source = Binding.starfilled;
-
-                if (img.BindingContext is Spot spot)
-                {
-                    spot.Favorite = "starfilled.png";
-                    Binding.Utilisateur.AddToFavSpot(spot);
-                }
-
-                // et ajouter à list des favoris
+                sp.Favorite = "starfilled.png";
+                Binding.Utilisateur.AddToFavSpot(sp);
+                Binding.UpdatedSpotFinded();
             }
             else
             {
-                img.Source = Binding.star;
-                if (img.BindingContext is Spot spot)
-                {
-                    spot.Favorite = "star.png";
-                    Binding.Utilisateur.RemoveToFavSpot(spot);
-                }
+                sp.Favorite = "star.png";
+                Binding.Utilisateur.RemoveToFavSpot(sp);
+                Binding.UpdatedSpotFinded();
             }
-            
+
         }
+                        
     }
+  
 
     /// <summary>
     /// This Method Allows to user to change is email adress account from view
@@ -321,6 +320,7 @@ void ClickedAccount(object sender, EventArgs e)
         Dt.SaveData(JsonSource, All);
         await Navigation.PopToRootAsync();
     }
+
 }
 
 

@@ -22,8 +22,5 @@ namespace Model
             avaibleS = SportStub.Loadsport();
 
         }
-
-        
-
     }
 }

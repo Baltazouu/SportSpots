@@ -162,6 +162,8 @@ namespace Model
             if (!present)
             {
                 FavSpots.Add(spot);
+                OnPropertyChanged("FavSpots");
+                OnPropertyChanged("Favorite");
                 return true;
             }
             return false;
@@ -197,27 +199,27 @@ namespace Model
         /// </summary>
         /// <param name="sport">sport to remove</param>
         /// <returns>resultt of operation</returns>
-        public bool RemoveToFavSpot(Spot sport)
+        public bool RemoveToFavSpot(Spot spot)
         {
-            bool present = false;
-
+            
             foreach (Spot sp in FavSpots)
             {
-                if (sp.Numero == sport.Numero)
+                if (sp.Numero == spot.Numero)
                 {
-                    present = true;
-                    break;
+                    FavSpots.Remove(sp);
+                    OnPropertyChanged("FavSpots");
+                    OnPropertyChanged("Favorite");
+                    return true;
+                    
                 }
             }
-
-            if (present) {
-                FavSpots.Remove(sport); OnPropertyChanged("FavSpots");
-            }
-            return present;
+            return false;
+            
 
         }
 
-        /// <summary>
+        /// <summary>collection cannot work with indices larger than Int32.MaxValue - 1 (0x7FFFFFFF - 1). Arg_ParamName_Name'
+
         /// Method to manage removing spot of favspot list
         /// </summary>
         /// <param name="spot">spot to remove</param>

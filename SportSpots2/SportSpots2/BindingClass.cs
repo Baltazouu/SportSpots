@@ -14,7 +14,7 @@ namespace SportsSpots
         public ReadOnlyCollection<Sport> SportsAvaiblesCollection { get; } 
         public List<Sport> toSearch { get; set; } = new();
 
-        public  List<Spot> SpotsFinded { get; set; }
+        public  ObservableCollection<Spot> SpotsFinded { get; set; }
         
         public string Town { get; set; }
 
@@ -66,17 +66,17 @@ namespace SportsSpots
             OnPropertyChanged("collectionFinded");
 
             //debug test
+#if debug
             Debug.WriteLine("[Test Collection Finded]\n\n");
             foreach (var spot in collectionFinded)
                 Debug.WriteLine(spot.ToString());
-
+#endif
 
 
             // debug test
             //Debug.WriteLine("[Test Collection Finded]\n\n");
             //foreach (var spot in collectionFinded)
             //    Debug.WriteLine(spot.ToString());
-
         }
 
 
@@ -96,6 +96,14 @@ namespace SportsSpots
             return SportsAvaibles;
         }
 
+        public void UpdatedSpotFinded()
+        {
+            OnPropertyChanged("SpotsFinded");
+
+            // c'est dégeulasse, mais ça marchait pas autrement
+            // à corriger à l'occasion !
+            SpotsFinded = new ObservableCollection<Spot>(SpotsFinded);
+        }
 
 
 
