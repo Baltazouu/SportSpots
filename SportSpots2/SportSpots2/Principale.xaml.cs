@@ -215,6 +215,13 @@ public partial class Principale : ContentPage
     {
         string userEmail = Binding.Utilisateur.Mail;
         string newEmail = NewTextMail.Text;
+
+        if(MailMotDePasse.Text == null || MailMotDePasse.Text == "")
+        {
+            errorNewMailLabel.Text = "Entrez votre mot de passe !";
+            return;
+        }
+
         string password = Hash.HashPassword(MailMotDePasse.Text);
 
         if (password == Binding.Utilisateur.Passwd)
