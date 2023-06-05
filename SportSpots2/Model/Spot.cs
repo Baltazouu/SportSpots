@@ -96,7 +96,7 @@ namespace Model
         public string Public_access_image
         {
             get
-            
+            { 
                 return Public_access ? "cross.png" : "check.png";
             }
         }
