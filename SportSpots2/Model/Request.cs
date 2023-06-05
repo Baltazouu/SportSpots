@@ -111,10 +111,29 @@ namespace Model
                    // if(access_handicap == null || restauraton == null || acces_free == null)
                     //    continue;
 
-                    bool ac_handic; // default values false
-                    bool ac_free;
-                    bool ac_restauration;
+                    bool ac_handic=false; // default values false
+                    bool ac_free=false;
+                    bool ac_restauration = false;
 
+
+#if DEBUG
+                    Debug.WriteLine($"Acces handic {access_handicap}");
+                    Debug.WriteLine($"Acces free {acces_free}");
+                    Debug.WriteLine($"Restauration {ac_restauration}");
+#endif
+
+                    if(access_handicap != null)
+                        if(access_handicap.ToLower() == "true")
+                            ac_handic = true;
+
+                    if(acces_free != null)
+                        if(acces_free.ToLower() == "true")
+                            ac_free = true;
+
+                    if(restauraton != null)
+                        if(restauraton.ToLower() == "true")
+                            ac_restauration = true;
+                    /*
                     if (access_handicap == "" || access_handicap == null)
                     {
                         ac_handic = false;
@@ -133,6 +152,8 @@ namespace Model
                         ac_restauration = false;
                     }
                     else ac_restauration = true;
+                    */
+
 
                     Debug.WriteLine("Code Insee {0}",apires?["records"]?[i]?["fields"]?["codeinsee"]?.Value<int>());
                     Debug.WriteLine("Nom commune : {0}",apires?["records"]?[i]?["fields"]?["nom_commune"]?.Value<string>());
@@ -169,7 +190,7 @@ namespace Model
             }
             catch (Exception e)
             {
-                //Debug.WriteLine("on est dans l'exception");
+               
                 Debug.WriteLine(e.Message);
                 return res;
             }

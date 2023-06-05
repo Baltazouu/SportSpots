@@ -83,21 +83,21 @@ namespace Model
         {
             get
             {
-                return Restauration ? "cross.png" : "check.png";
+                return Restauration ? "check.png" : "cross.png";
             }
         }
         public string AccesHandicap_image
         {
             get
             {
-                return AccessibiltyHandicap ? "cross.png" : "check.png";
+                return AccessibiltyHandicap ? "check.png" : "cross.png";
             }
         }
         public string Public_access_image
         {
             get
             { 
-                return Public_access ? "cross.png" : "check.png";
+                return Public_access ? "check.png" : "cross.png";
             }
         }
 

@@ -126,6 +126,8 @@
 
                         <BoxView Margin="10" WidthRequest="200" Color="Black" HeightRequest="5" CornerRadius="5"/>
 
+                        <Label Text="Informations" TextColor="Black" FontSize="16" VerticalTextAlignment="Center" LineBreakMode="WordWrap" Margin="5"/>
+
                         <Grid Margin="10" BackgroundColor="Grey" Padding="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
