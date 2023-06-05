@@ -48,6 +48,7 @@ namespace Model
             Res = new List<Spot>();
             Town = town;
             Town = Town.Replace(" ", "+");
+            Town = Town.Replace("'", "\'");
             PostalCode = postalcode;
 
             Debug.WriteLine(Town);
@@ -143,8 +144,8 @@ namespace Model
                     string? address = apires?["records"]?[i]?["fields"]?["adresse"]?.Value<string>();
                     int? codePostal = apires?["records"]?[i]?["fields"]?["codepostal"]?.Value<int>();
                     string? dept = apires?["records"]?[i]?["fields"]?["nom_dept"]?.Value<string>();
-                    double? coord_x = apires?["records"]?[i]?["fields"]?["coordonnees"]?[0]?.Value<double>();
-                    double? coord_y = apires?["records"]?[i]?["fields"]?["coordonnees"]?[1]?.Value<double>();
+                    string? coord_x = apires?["records"]?[i]?["fields"]?["coordonnees"]?[0]?.Value<string>();
+                    string? coord_y = apires?["records"]?[i]?["fields"]?["coordonnees"]?[1]?.Value<string>();
 
                     res.Insert(i, new Spot(codeInsee,
                                            nomCommune,

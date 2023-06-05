@@ -23,9 +23,9 @@ namespace Model
         [DataMember(Name = "PostalCode")]
         public int?PostalCode { get; init; }
         [DataMember(Name = "SpotCoord_x")]
-        public double?Coord_x { get; init; }
+        public string?Coord_x { get; init; }
         [DataMember(Name = "SpotCoord_x")]
-        public double?Coord_y { get; init; }
+        public string?Coord_y { get; init; }
         [DataMember(Name="AccessHandicap")]
         public bool AccessibiltyHandicap { get; init; }
         [DataMember(Name = "Restauration")]
@@ -60,7 +60,7 @@ namespace Model
         /// <param name="publicAccess">boolean is the spot in public access</param>
         public Spot(int? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,
-                    double? coord_x, double? coord_y, bool asccessHandicap,
+                    string? coord_x, string? coord_y, bool asccessHandicap,
                     bool restauration, bool publicAccess)
         {
             NomCommune = nomcomm;
@@ -69,16 +69,14 @@ namespace Model
             Family = family;
             Adress = adress;
             PostalCode = postalcode;
-            Coord_x = coord_x;
-            Coord_y = coord_y;
-            string Coord_x_Link = Coord_x.ToString().Replace(",", "."); // on remplace la virgule par un point, sinon openstreetmap ne reconnait pas les coordonnées
-            string Coord_y_Link = Coord_y.ToString().Replace(",", "."); 
+            Coord_x = coord_x.Replace(",", ".");
+            Coord_y = coord_y.Replace(",", "."); 
             AccessibiltyHandicap = asccessHandicap;
             Restauration = restauration;
             Public_access = publicAccess;
             Dept = dept;
             Favorite = "star.png";
-            UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y_Link}%2C{Coord_x_Link}&layer=mapnik";
+            UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y}%2C{Coord_x}&layer=mapnik";
         }
 
         public bool Equals(Spot other)

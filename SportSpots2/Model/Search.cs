@@ -48,7 +48,7 @@ namespace Model
         /// <param name="sports">List of sports to find</param>
         public Search(string town,List<Sport>sports)
         {
-            Town = town;
+            Town = town.Replace("'","\'");
             SportsToFind = sports;
         }
 
