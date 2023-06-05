@@ -15,9 +15,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!-- Barre du haut -->
-    <StackLayout>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
+
+    <Grid>
+        <StackLayout ZIndex="1" Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
             <Image Source="foot.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" Margin="30"/>
             <Label Text="SportsSpot" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"/>
             <Label TextColor="Black" FontSize="20" VerticalOptions="Center" Margin="15,0,0,0">
@@ -27,6 +27,7 @@
                     </MultiBinding>
                 </Label.Text>
             </Label>
+
             <Image Source="account.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30,30,0,30">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ClickedAccount"/>
@@ -37,298 +38,281 @@
                     <TapGestureRecognizer Tapped="ClickedAccount"/>
                 </Image.GestureRecognizers>
             </Image>
-        </StackLayout> 
+        </StackLayout>
+        <ScrollView Margin="0,60,0,0">
+            <StackLayout WidthRequest="300" BackgroundColor="White" HorizontalOptions="Start" Padding="10">
+                <!-- Recherche de la ville -->
+                <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label Text="Ville" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="350" />
-                <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-            
-            <!-- 
-            <ColumnDefinition Width="200" />
-            
-                -->
-            
-            <ScrollView VerticalScrollBarVisibility="Always" HeightRequest="1070 ">
-                <StackLayout VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="White" Padding="10" >
-                    <!-- Recherche de la ville -->
-                    <Label Text="Rechercher un Spot !" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <Label Text="Ville" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        
-                        <Frame Grid.Column="0" BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True">
-                            <SearchBar x:Name="searchCity" Placeholder="Entrez une ville" TextColor="Black" VerticalOptions="Center" SearchButtonPressed="ClickedResult" />
-                        </Frame>
-
-                        <Image Grid.Column="1" Source="pin.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
-                    </Grid>
-                    <Label x:Name="errorSearchLabel" Margin="10"/>
-
-                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True"  HorizontalOptions="Start">
-                        <Entry x:Name="searchPostalCode" Placeholder="Numéro Département (Optionnel)" TextColor="Black" VerticalOptions="Center" WidthRequest="220" Keyboard="Numeric" />
+                    <Frame Grid.Column="0" BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="0" HasShadow="True">
+                        <SearchBar x:Name="searchCity" Placeholder="Entrez une ville" BackgroundColor="White" TextColor="Black"  WidthRequest="220" SearchButtonPressed="ClickedResult" />
                     </Frame>
-                    <Label x:Name="errorCPLabel" Margin="10"/>
 
-                    <!-- Catégorie sports -->
-                    <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Gray" />
-                    <Frame BackgroundColor="LightGray" BorderColor="Gray" CornerRadius="5" Padding="1" Margin="10,0,0,0" HasShadow="True" HeightRequest="400">
-                        <ScrollView VerticalScrollBarVisibility="Always">
-                            <ListView ItemsSource="{Binding SportsAvaiblesCollection}" Grid.Row="1" >
-                                <ListView.ItemTemplate>
-                                    
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,0,10,0" >
+                    <Image Grid.Column="1" Source="pin.png" WidthRequest="35" VerticalOptions="CenterAndExpand" />
+                </Grid>
+                <Label x:Name="errorSearchLabel" Margin="10"/>
 
-                                                <StackLayout.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="OnClickedSport"/>
-                                                </StackLayout.GestureRecognizers>
+                <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="1" HasShadow="True"  HorizontalOptions="Start">
+                    <Entry x:Name="searchPostalCode" Placeholder="Code postal (Optionnel)" TextColor="Black" VerticalOptions="Center" WidthRequest="210" Keyboard="Numeric" />
+                </Frame>
+                <Label x:Name="errorCPLabel" Margin="10"/>
 
-                                                <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand"/>
-                                                <Label Text="{Binding Name}" FontSize="Medium" TextColor="Black" Margin="10,0,10,10" HorizontalOptions="FillAndExpand" />
-                                                <Image Source="{Binding Favorite}" WidthRequest="35" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                <!-- Catégorie sports -->
+                <Label Text="Sports" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,10" TextColor="Gray" />
+                <Frame BackgroundColor="LightGray" BorderColor="Gray" CornerRadius="5" Padding="1" Margin="10,0,0,0" HasShadow="True" HeightRequest="320" WidthRequest="270">
+                    <ScrollView VerticalScrollBarVisibility="Always">
+                        <ListView ItemsSource="{Binding SportsAvaiblesCollection}" Grid.Row="1" >
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,0,10,0" >
+
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnClickedSport"/>
+                                            </StackLayout.GestureRecognizers>
+
+                                            <Image Source="{Binding ImgLink}" WidthRequest="35" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding Name}" FontSize="16" TextColor="Black" Margin="10,0,10,10" HorizontalOptions="FillAndExpand" />
+                                            <Image Source="{Binding Favorite}" WidthRequest="35" VerticalOptions="CenterAndExpand" HorizontalOptions="End">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnClickedStarSport" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </Frame>
+                <!-- Catégorie favoris -->
+                <Label Text="Spots Favoris" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
+
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView ItemsSource="{Binding Utilisateur.FavSpots}" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate >
+                                    <ViewCell >
+                                        <!-- Tapped="OpenDetail" -->
+
+                                        <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
+                                            <Grid VerticalOptions="FillAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                                                <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
                                                     <Image.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedStarSport" />
+                                                        <TapGestureRecognizer Tapped="OpenDetail"/>
                                                     </Image.GestureRecognizers>
                                                 </Image>
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                    
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </ScrollView>
-                    </Frame>
-                    <!-- Catégorie favoris -->
-                    <Label Text="Spots Favoris" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
-                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
+                                                <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnClickedStar"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                                    <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                    <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                </StackLayout>
+                                            </Grid>
 
-                        <StackLayout VerticalOptions="FillAndExpand">
-                            <ListView ItemsSource="{Binding Utilisateur.FavSpots}" HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate >
-                                        <ViewCell >
-                                            <!-- Tapped="OpenDetail" -->
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <!-- Catégorie historique -->
+                <Label Text="Historique" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
 
-                                            <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
-                                                <Grid VerticalOptions="FillAndExpand">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="50"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="60"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
-                                                    <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
-                                                    <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OpenDetail"/>
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OnClickedStar"/>
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                                                        <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                        <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                    </StackLayout>
-                                                </Grid>
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView ItemsSource="{Binding Utilisateur.History}" HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate >
+                                    <ViewCell >
+                                        <!-- Tapped="OpenDetail" -->
 
-                                            </Frame>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
-                    </Frame>
-                    <!-- Catégorie historique -->
-                    <Label Text="Historique" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
-                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
+                                        <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
+                                            <Grid VerticalOptions="FillAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                                                <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OpenDetail"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnClickedStar"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                                    <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                    <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                </StackLayout>
+                                            </Grid>
 
-                        <StackLayout VerticalOptions="FillAndExpand">
-                            <ListView ItemsSource="{Binding Utilisateur.History}" HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate >
-                                        <ViewCell >
-                                            <!-- Tapped="OpenDetail" -->
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+        <!-- résultat recherche spot ici -->
 
-                                            <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
-                                                <Grid VerticalOptions="FillAndExpand">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="50"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="60"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
-                                                    <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
-                                                    <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OpenDetail"/>
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
-                                                        <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="OnClickedStar"/>
-                                                        </Image.GestureRecognizers>
-                                                    </Image>
-                                                    <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                                                        <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                        <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                    </StackLayout>
-                                                </Grid>
+        <ScrollView x:Name="ResultSearch" ZIndex="2" IsVisible="False" Margin="300,60,0,0" Grid.Column="1" BackgroundColor="LightGrey" WidthRequest="380" HorizontalOptions="Start">
+            <StackLayout>
+                <StackLayout HeightRequest="100" >
 
-                                            </Frame>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
-
-                    </Frame>
-                </StackLayout>
-            </ScrollView>
-
-
-            <!-- résultat recherche spot ici -->
-            
-            <ScrollView x:Name="ResultSearch" IsVisible="false" Grid.Column="1" BackgroundColor="LightGrey" WidthRequest="380" HorizontalOptions="Start">
-                <StackLayout>
-                    <StackLayout HeightRequest="100" >
-                    
                     <Grid Margin="0,10,5,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="45" />
                             <RowDefinition Height="70"/>
                             <RowDefinition Height="50"/>
-                            
 
-                            </Grid.RowDefinitions>
+
+                        </Grid.RowDefinitions>
 
                         <Label  Grid.Column="0" Text="Résultats :" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" TextColor="Grey" HorizontalOptions="Center" />
-            
-                            <ImageButton CornerRadius="5"  VerticalOptions="Start" Grid.Column="1" Source="close.png" WidthRequest="25" Clicked="ClickedResult" />
 
-                            <Label Text="{Binding Town}" Grid.Column="0" Grid.Row="1" VerticalOptions="Start" FontSize="Medium" FontAttributes="Bold" Margin="5,20,0,10" TextColor="Gray" />
+                        <ImageButton CornerRadius="5"  VerticalOptions="Start" Grid.Column="1" Source="close.png" WidthRequest="25" Clicked="ClickedResult" />
+
+                        <Label Text="{Binding Town}" Grid.Column="0" Grid.Row="1" VerticalOptions="Start" FontSize="Medium" FontAttributes="Bold" Margin="5,20,0,10" TextColor="Gray" />
 
 
-                        </Grid>
+                    </Grid>
 
                 </StackLayout>
 
-                         <!-- Spot findeds -->
-                    <StackLayout>
-                        
-                        <Label x:Name="searchinfo" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
+                <!-- Spot findeds -->
+                <StackLayout>
 
-                            <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Margin="0,10" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="700">
+                    <Label x:Name="searchinfo" FontSize="Medium" FontAttributes="Bold" Margin="0,20,0,10" TextColor="Gray" />
 
-                            <StackLayout VerticalOptions="FillAndExpand">
-                                <ListView x:Name="finded" ItemsSource="{Binding SpotsFinded}" HasUnevenRows="True">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate >
-                                            <ViewCell >
-                                                <!-- Tapped="OpenDetail" -->
-                                                
-                                                <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
-                                                    <Grid VerticalOptions="FillAndExpand">
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="50"/>
-                                                            <RowDefinition Height="Auto"/>
-                                                            <RowDefinition Height="Auto"/>
-                                                            <RowDefinition Height="Auto"/>
-                                                        </Grid.RowDefinitions>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="60"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
-                                                        <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
-                                                        <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
-                                                            <Image.GestureRecognizers>
-                                                                <TapGestureRecognizer Tapped="OpenDetail"/>
-                                                            </Image.GestureRecognizers>
-                                                        </Image>
-                                                        <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
-                                                            <Image.GestureRecognizers>
-                                                                <TapGestureRecognizer Tapped="OnClickedStar"/>
-                                                            </Image.GestureRecognizers>
-                                                        </Image>
-                                                        <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                                                            <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                            <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
-                                                        </StackLayout>
-                                                    </Grid>
+                    <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Margin="0,10" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="700">
 
-                                                </Frame>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </StackLayout>
+                        <StackLayout VerticalOptions="FillAndExpand">
+                            <ListView x:Name="finded" ItemsSource="{Binding SpotsFinded}" HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate >
+                                        <ViewCell >
+                                            <!-- Tapped="OpenDetail" -->
 
-                        </Frame>
+                                            <Frame Padding="10" Margin="0,10,0,10"  BackgroundColor="#f2f2f2">
+                                                <Grid VerticalOptions="FillAndExpand">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Source="{Binding ImgLink}" WidthRequest="30" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Name}"  FontSize="15" Grid.Column="1" Grid.Row="0" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                                                    <Image Source="direction.png" WidthRequest="30" Grid.Column="2">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OpenDetail"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Image Source="{Binding Favorite}" WidthRequest="30" Grid.Column="3">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnClickedStar"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                                                        <Label Text="{Binding Adress}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                        <Label Text="{Binding NomCommune}" FontSize="10" LineBreakMode="WordWrap" TextColor="Grey"/>
+                                                    </StackLayout>
+                                                </Grid>
 
-                    </StackLayout>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                    </Frame>
+
                 </StackLayout>
-
-            </ScrollView>
-
-            <WebView ZIndex="-1" Grid.Column="1" Source="https://www.openstreetmap.org/export/embed.html?bbox=-5.3594,41.3085,9.6636,51.1242"/>
-            
-            <!-- Parametres utilisateur -->
-            
-            <StackLayout x:Name="ParametreUser" IsVisible="False" BackgroundColor="White" Orientation="Vertical" Grid.Column="1" ZIndex="1" WidthRequest="300" VerticalOptions="Start" HorizontalOptions="End" Padding="20" >
-                
-                
-                <Label Text="Changer l'adresse mail" FontAttributes="Italic"/>
-                
-                <Entry TextColor="Black" x:Name ="NewTextMail" Placeholder="nouvelle Adresse Email" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                
-                <Entry TextColor="Black" x:Name="MailMotDePasse" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5" IsPassword="True"></Entry>
-                
-                <Label x:Name="errorNewMailLabel" TextColor="Black"/>
-                
-                <Button Text="Confirmer" Clicked="OnChangeMailClicked" Margin="15"></Button>
-                
-                <Label Text="Changer le mot de passe" FontAttributes="Italic"/>
-                
-                <Entry IsPassword="True" TextColor="Black" x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Entry IsPassword="True" TextColor="Black" x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                <Entry IsPassword="True" TextColor="Black" x:Name="ConfirmNewPassword" Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
-                
-                <Label x:Name="errorNewPasswordLabel" TextColor="Black"/>
-                <Button Text="Confirmer" Clicked="OnChangePasswordClicked" Margin="15"></Button>
-
-                <Button Text="Se déconnecter" Clicked="OnDisconnect" Margin="15"></Button>
             </StackLayout>
-        </Grid>
-    </StackLayout>
+
+        </ScrollView>
+        <WebView Margin="300,60,0,0" Source="https://www.openstreetmap.org/export/embed.html?bbox=-5.3594,41.3085,9.6636,51.1242"/>
+
+        <!-- Parametres utilisateur -->
+
+        <StackLayout x:Name="ParametreUser" IsVisible="False" BackgroundColor="White" Orientation="Vertical" Grid.Column="1" ZIndex="1" WidthRequest="300"  VerticalOptions="Start" HorizontalOptions="End" Margin="0,60,0,0" Padding="20" >
+
+
+            <Label Text="Changer l'adresse mail" FontAttributes="Italic"/>
+
+            <Entry TextColor="Black" x:Name ="NewTextMail" Placeholder="nouvelle Adresse Email" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+
+            <Entry TextColor="Black" x:Name="MailMotDePasse" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5" IsPassword="True"></Entry>
+
+            <Label x:Name="errorNewMailLabel" TextColor="Black"/>
+
+            <Button Text="Confirmer" Clicked="OnChangeMailClicked" Margin="15"></Button>
+
+            <Label Text="Changer le mot de passe" FontAttributes="Italic"/>
+
+            <Entry IsPassword="True" TextColor="Black" x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+            <Entry IsPassword="True" TextColor="Black" x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+            <Entry IsPassword="True" TextColor="Black" x:Name="ConfirmNewPassword" Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+
+            <Label x:Name="errorNewPasswordLabel" TextColor="Black"/>
+            <Button Text="Confirmer" Clicked="OnChangePasswordClicked" Margin="15"></Button>
+
+            <Button Text="Se déconnecter" Clicked="OnDisconnect" Margin="15"></Button>
+        </StackLayout>
+    </Grid>
 </ContentPage>
