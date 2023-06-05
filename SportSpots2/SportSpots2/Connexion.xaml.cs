@@ -54,10 +54,15 @@ public partial class Connexion : ContentPage
 
             ResultLabel.Text = "Connexion en cours..";
 
+            
+
             User user = Dt.FindUser(Mail, Pass, all);
 
+            entryPass.Text = null;
            
             await Navigation.PushAsync(new Principale(user,all));
+
+            ResultLabel.Text = null;
 
         }
     }

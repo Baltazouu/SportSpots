@@ -302,20 +302,32 @@
             </ScrollView>
 
             <WebView ZIndex="-1" Grid.Column="1" Source="https://www.openstreetmap.org/export/embed.html?bbox=-5.3594,41.3085,9.6636,51.1242"/>
+            
             <!-- Parametres utilisateur -->
+            
             <StackLayout x:Name="ParametreUser" IsVisible="False" BackgroundColor="White" Orientation="Vertical" Grid.Column="1" ZIndex="1" WidthRequest="300" VerticalOptions="Start" HorizontalOptions="End" Padding="20" >
+                
+                
                 <Label Text="Changer l'adresse mail" FontAttributes="Italic"/>
+                
                 <Entry TextColor="Black" x:Name ="NewTextMail" Placeholder="nouvelle Adresse Email" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                
                 <Entry TextColor="Black" x:Name="MailMotDePasse" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5" IsPassword="True"></Entry>
+                
                 <Label x:Name="errorNewMailLabel" TextColor="Black"/>
+                
                 <Button Text="Confirmer" Clicked="OnChangeMailClicked" Margin="15"></Button>
+                
                 <Label Text="Changer le mot de passe" FontAttributes="Italic"/>
+                
                 <Entry IsPassword="True" TextColor="Black" x:Name="ActualPassword" Placeholder="mot de passe actuel" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
                 <Entry IsPassword="True" TextColor="Black" x:Name="NewTextPassword" Placeholder="nouveau mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
                 <Entry IsPassword="True" TextColor="Black" x:Name="ConfirmNewPassword" Placeholder="confirmer le mot de passe" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,5"></Entry>
+                
                 <Label x:Name="errorNewPasswordLabel" TextColor="Black"/>
                 <Button Text="Confirmer" Clicked="OnChangePasswordClicked" Margin="15"></Button>
-                <Button Text="Se déconnecter" Clicked="OnChangePasswordClicked" Margin="15"></Button>
+
+                <Button Text="Se déconnecter" Clicked="OnDisconnect" Margin="15"></Button>
             </StackLayout>
         </Grid>
     </StackLayout>
