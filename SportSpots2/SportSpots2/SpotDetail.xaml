@@ -1,0 +1,143 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SportsSpots.SpotDetail"
+             BackgroundColor="#a4a2a2"
+             Title="">
+
+    <!-- Ressources -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ButtonBackgroundColor">#d8d8d8</Color>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <StackLayout ZIndex="1" Orientation="Horizontal" VerticalOptions="Start" HeightRequest="60" BackgroundColor="SkyBlue">
+            <Image Source="foot.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" Margin="30"/>
+            <Label Text="SportsSpot" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" FontSize="35"/>
+
+            <!--
+                    <Label TextColor="Black" FontSize="20" VerticalOptions="Center" Margin="15,0,0,0">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{} Compte : {0}">
+                            <Binding Path="Utilis"/>
+                        </MultiBinding>
+                    </Label.Text> 
+                </Label> -->
+            <ImageButton CornerRadius="10" Source="close.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="30" Clicked="CloseClicked"/>
+
+            <!--
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Image.GestureRecognizers-->
+
+        </StackLayout>
+        <ScrollView Margin="0,60,0,0">
+            <StackLayout BackgroundColor="LightGray" WidthRequest="300" HorizontalOptions="Start" Padding="10">
+                <!-- Contenu de la barre latérale -->
+                <Label Margin="10" HorizontalTextAlignment="Center" Text="{Binding Name}" FontSize="25" TextColor="Black"/>
+
+
+                <BoxView Margin="10" WidthRequest="200" Color="Black" HeightRequest="5" CornerRadius="5"/>
+
+                <Label Margin="0,10" Text="Détail du Spot" HorizontalOptions="Center" VerticalOptions="Center" FontSize="20" />
+
+
+
+
+                <Label Padding="5" TextColor="Black" FontSize="17" VerticalOptions="Center" Margin="15,0,0,0">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{} Ville : {0}">
+                            <Binding Path="NomCommune"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <Label TextDecorations="Underline" TextColor="Black" FontSize="17" VerticalOptions="Center" Margin="15,0,0,0">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{} Adresse : {0}">
+                            <Binding Path="Adress"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <Label TextColor="Black" FontSize="17" VerticalOptions="Center" Margin="15,0,0,0">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{} Département : {0}">
+                            <Binding Path="Dept"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+
+                <Label TextColor="Black" FontSize="17" VerticalOptions="Center" Margin="15,0,0,0">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{} Code Postal : {0}">
+                            <Binding Path="PostalCode"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Label Text="Votre adresse (pour itinéraire) :" TextColor="Black" FontSize="17" VerticalOptions="Center" Margin="10,15,0,0"/>
+                <SearchBar x:Name="userLocationText" Placeholder="Entrez votre adresse pour un itinéraire" TextColor="Black" VerticalOptions="Center" SearchButtonPressed="ClickedItinerary" Margin="5,10,10,5"/>
+
+                <BoxView Margin="10" WidthRequest="200" Color="Black" HeightRequest="5" CornerRadius="5"/>
+
+                <Grid Margin="10" BackgroundColor="Grey" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Label  Grid.Column="0" Grid.Row="0" Text="Type :" FontSize="20" HorizontalTextAlignment="Center"/>
+                    <Image  Grid.Column="0" Grid.Row="1" Source="{Binding ImgLink}" WidthRequest="30"/>
+
+                    <Label Text="Equipement :" Grid.Column="0" Grid.Row="2" FontSize="18" HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Family}" Grid.Column="0" Grid.Row="3" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                </Grid>
+
+                <BoxView Margin="10" WidthRequest="200" Color="Black" HeightRequest="5" CornerRadius="5"/>
+
+                <Label Text="Informations :" TextColor="Black" FontSize="18" VerticalTextAlignment="Center" LineBreakMode="WordWrap" Margin="5"/>
+
+                <Grid Margin="10" BackgroundColor="Grey" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Text="Restauration :" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0"/>
+                    <Image Grid.Column="1" Grid.Row="0" Source="{Binding Restauration_image}" WidthRequest="15"/>
+                    <Label Grid.Column="0" Grid.Row="1" Text="Accessibilité Aux Handicapés :" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0"/>
+                    <Image Grid.Column="1" Grid.Row="1" Source="{Binding AccesHandicap_image}" WidthRequest="15"/>
+                    <Label Grid.Column="0" Grid.Row="2" Text="Accès public :" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0"/>
+                    <Image Grid.Column="1" Grid.Row="2" Source="{Binding Public_access_image}" WidthRequest="15"/>
+                </Grid>
+
+
+                <Label Text="Notes :" TextColor="Black" FontSize="20" Margin="10"/>
+
+                <Entry Placeholder="Message à vous-même pour ce spot" PlaceholderColor="Grey" HeightRequest="100" Margin="10"/>
+
+            </StackLayout>
+        </ScrollView>
+        <!-- Affichage de la carte -->
+        <WebView Margin="300,60,0,0  " Grid.Column="1" x:Name="webViewMap" Source="{Binding UrlLink}"/>
+    </Grid>
+</ContentPage>
