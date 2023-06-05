@@ -98,56 +98,53 @@
                                 </MultiBinding>
                             </Label.Text>
                         </Label>
+                        <Label Text="Votre adresse (pour itinéraire) :" TextColor="Black" FontSize="18" VerticalOptions="Center" Margin="10,15,0,0"/>
                         <SearchBar x:Name="userLocationText" Placeholder="Entrez votre adresse pour un itinéraire" TextColor="Black" VerticalOptions="Center" SearchButtonPressed="ClickedItinerary" Margin="5,10,10,5"/>
 
                         <BoxView Margin="10" WidthRequest="200" Color="Black" HeightRequest="5" CornerRadius="5"/>
 
                         <Grid Margin="10" BackgroundColor="Grey" Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                         
 
                             <Label  Grid.Column="0" Grid.Row="0" Text="Type :" FontSize="20" HorizontalTextAlignment="Center"/>
-                            <Image  Grid.Column="1" Grid.Row="0" Source="{Binding ImgLink}" WidthRequest="30"/>
+                            <Image  Grid.Column="0" Grid.Row="1" Source="{Binding ImgLink}" WidthRequest="30"/>
 
-                            <Label Text="Equipement :" Grid.Column="0" Grid.Row="1" FontSize="18" HorizontalTextAlignment="Center"/>
-                            <Label Text="{Binding Family}" Grid.Column="1" Grid.Row="1" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Text="Equipement :" Grid.Column="0" Grid.Row="2" FontSize="18" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Family}" Grid.Column="0" Grid.Row="3" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
 
                         </Grid>
 
                         <BoxView Margin="10" WidthRequest="200" Color="Black" HeightRequest="5" CornerRadius="5"/>
-                    
-                        <Label TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0">
-                            <Label.Text>
-                                <MultiBinding StringFormat="{} Accès Public : {0}">
-                                    <Binding Path="Public_access"/>
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>
 
-                  
-                        <Label TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0">
-                            <Label.Text>
-                                <MultiBinding StringFormat="{} Restauration : {0}">
-                                    <Binding Path="Restauration"/>
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>
+                        <Grid Margin="10" BackgroundColor="Grey" Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <Label TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0">
-                            <Label.Text>
-                                <MultiBinding StringFormat="{} Accessibilité Aux Handicapés : {0}">
-                                    <Binding Path="AccessibiltyHandicap"/>
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Text="Restauration :" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0"/>
+                            <Image Grid.Column="1" Grid.Row="0" Source="{Binding Restauration_image}" WidthRequest="15"/>
+                            <Label Grid.Column="0" Grid.Row="1" Text="Accessibilité Aux Handicapés :" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0"/>
+                            <Image Grid.Column="1" Grid.Row="1" Source="{Binding AccesHandicap_image}" WidthRequest="15"/>
+                            <Label Grid.Column="0" Grid.Row="2" Text="Accès public :" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="15,0,0,0"/>
+                            <Image Grid.Column="1" Grid.Row="2" Source="{Binding Public_access_image}" WidthRequest="15"/>
+                        </Grid> 
+                        
 
                         <Label Text="Notes :" TextColor="Black" FontSize="20" Margin="10"/>
 

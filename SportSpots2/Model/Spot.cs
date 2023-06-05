@@ -79,6 +79,28 @@ namespace Model
             UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y}%2C{Coord_x}&layer=mapnik";
         }
 
+        public string Restauration_image
+        {
+            get
+            {
+                return Restauration ? "cross.png" : "check.png";
+            }
+        }
+        public string AccesHandicap_image
+        {
+            get
+            {
+                return AccessibiltyHandicap ? "cross.png" : "check.png";
+            }
+        }
+        public string Public_access_image
+        {
+            get
+            
+                return Public_access ? "cross.png" : "check.png";
+            }
+        }
+
         public bool Equals(Spot other)
             => Numero.Equals(other.Numero);
 
