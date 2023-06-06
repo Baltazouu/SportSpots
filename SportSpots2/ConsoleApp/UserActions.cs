@@ -142,7 +142,7 @@ namespace ConsoleApp
         {
             List<Sport> sportSearchs = new();
 
-            List<Spot> finded = new();
+            ObservableCollection<Spot> finded = new();
 
             string? town;
             bool stop = false;

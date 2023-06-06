@@ -85,7 +85,7 @@ public partial class Principale : ContentPage
                 ResultSearch.IsVisible = true;
                 // rechercher les spots
 
-                await Binding.executeResearch(searchCity.Text, postalcode);
+                await Binding.ExecuteResearch(searchCity.Text, postalcode);
 
                 if (Binding.SpotsFinded.Count < 1)
                 {
@@ -253,6 +253,20 @@ public partial class Principale : ContentPage
     /// <param name="e"></param>
     private void OnChangePasswordClicked(object sender, EventArgs e)
     {
+
+        if(ActualPassword.Text == null ||  ActualPassword.Text.Length <6)
+        {
+            errorNewPasswordLabel.Text = "entrez votre mot de passe actuel !";
+            return;
+        }
+
+        if(NewTextPassword.Text == null || ActualPassword.Text.Length > 6)
+        {
+            errorNewPasswordLabel.Text = "Entrez Un Nouveau Mot de passe d'au moins 6 caratères";
+            return;
+        }
+
+
         string userPassword = Binding.Utilisateur.Passwd;
         string actualPassword = Hash.HashPassword(ActualPassword.Text);
         string newPassword = Hash.HashPassword(NewTextPassword.Text);

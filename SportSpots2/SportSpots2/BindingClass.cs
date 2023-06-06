@@ -43,10 +43,10 @@ namespace SportsSpots
             }
         }
 
-        public ImageSource star { get;init; } = "star.png";
-        public ImageSource starfilled { get; init; } = "starfilled.png";
+        public ImageSource Star { get;init; } = "star.png";
+        public ImageSource Starfilled { get; init; } = "starfilled.png";
 
-        public async  Task executeResearch(string town,int postalcode)
+        public async  Task ExecuteResearch(string town,int postalcode)
         {
             Search s = null;
             if(postalcode > 0 && postalcode < 100)
