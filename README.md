@@ -16,29 +16,11 @@ Cependant, il n'existe actuellement aucun moyen de connaître si des installatio
 
 **SportsSpots** a pour but de devenir une application leader dans le développement du sport pour tous. Cette application de type **Master Detail** permet de découvrir les équipements sportifs en fonction d'une ville recherchée ou d'une localisation. **SportsSpots** permettera à ses futurs utilisateurs de rechercher des équipements sportifs à leur proximité en fonction de divers critères de recherche tels que le type de sport qu'ils souhaitent exercer. Les utilisateurs pourront ensuite définir un itinéraire vers l'infrastructure sportive trouvée. Cette application concerne tous types d'utilisateurs qui recherchent une pratique sportive. Qu'ils soient jeunes en recherche d'un terrain de foot à proximité ou bien plus âgés à la recherche d'un parcours de santé, SportsSpots s'adresse à tous types d'utilisateurs.
 
-### Personnas
+## Documentation 
 
-**Retrouvez les Personnas [ici](https://codefirst.iut.uca.fr/git/SportSpot/SportSpot/wiki/Personnas)**
+** Retrouvez l'ensemble de la documentation  **[ici !](https://codefirst.iut.uca.fr/git/SportsSpot/SportsSpot/wiki/)**
     
-### User Storys 
-    
-**Retrouvez les User story [ici](https://codefirst.iut.uca.fr/git/SportSpot/SportSpot/wiki/UserStorys)**
 
-### Sketchs
-
-**Les sketchs sont disponibles [ici](https://codefirst.iut.uca.fr/git/SportsSpot/SportsSpot/wiki/Sketchs)**
-
-## StoryBoard 
-    
-**Lien vers le [StoryBoard](https://codefirst.iut.uca.fr/git/SportsSpot/SportsSpot/wiki/StoryBoard)**
-    
-### Diagrammes de Cas d'utilisation
-    
-**Retrouvez les diagrammes de cas d'utilisation [ici](https://codefirst.iut.uca.fr/git/SportsSpot/SportsSpot/wiki/Digramme-de-cas-d%27utilisations)**
-
-## Jeu de données :
-Jeu de données concernant les équipements sportifs en France [disponible ici](https://equipements.sports.gouv.fr/explore/dataset/data-es/table/)
-    
 ## Contact
 DUDONNÉ Baptiste : *baptiste.dudonne@etu.uca.fr*
 <br>
