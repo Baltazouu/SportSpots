@@ -18,7 +18,9 @@ Cependant, il n'existe actuellement aucun moyen de connaître si des installatio
 
 ## Documentation 
 
-Retrouvez l'ensemble de la documentation **[ici !](https://codefirst.iut.uca.fr/git/SportsSpot/SportsSpot/wiki/)**
+Retrouvez l'ensemble de la conception **[ici !](https://codefirst.iut.uca.fr/git/SportsSpot/SportsSpot/wiki/)**
+
+Retrouvez la documentation **Doxygen ici**(https://codefirst.iut.uca.fr/documentation/SportsSpot/doxygen/SportsSpot/html/)
     
 
 ## Contact
