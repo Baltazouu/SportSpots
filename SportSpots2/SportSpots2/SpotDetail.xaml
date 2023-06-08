@@ -132,8 +132,13 @@
 
 
                 <Label Text="Notes :" TextColor="Black" FontSize="20" Margin="10"/>
+                <Label Text="{Binding Notes}"  TextColor="Black" FontSize="16" Margin="5"/>
+                
+                <Entry  x:Name="Notes" Placeholder="Message à vous-même pour ce spot" PlaceholderColor="Grey" HeightRequest="100" Margin="10"/>
 
-                <Entry Placeholder="Message à vous-même pour ce spot" PlaceholderColor="Grey" HeightRequest="100" Margin="10"/>
+                <Label x:Name="errorNotes" FontSize="15" TextColor="Black" />
+
+                <Button Text="Confirmer Notes" FontSize="15" BackgroundColor="Azure" Clicked="ChangeNoteSpot"/>
 
             </StackLayout>
         </ScrollView>

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Persistance;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -29,6 +30,11 @@ namespace SportsSpots
             // test not works
             
             SportsAvaiblesCollection = new ReadOnlyCollection<Sport>(SetFavoriteSports());
+
+            Data dt = new();
+            
+           // exception a gerer
+           // dt.SaveSport(new SportContract(), SportsAvaibles.ToList());
             
         }
 

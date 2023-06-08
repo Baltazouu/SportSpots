@@ -129,7 +129,21 @@ namespace Model
         {
             return all.Max(u =>  u.Id);
         }
+
+
+        public void SaveSport(IDataSport s, List<Sport> all)
+        {
+            s.SaveSports(all);
+        }
+
+
+        public List<Sport> LoadSport(IDataSport s)
+        {
+            return s.LoadSports();
+        }
     }
+
+   
    
 }
 

@@ -44,6 +44,9 @@ namespace Model
         [DataMember(Name="urllink")]
         public string UrlLink { get; init; }
 
+        [DataMember(Name = "Notes")]
+        public string Notes { get; private set; }
+
 
         /// <summary>
         /// Constructor
@@ -130,6 +133,12 @@ namespace Model
             else Favorite = "star.png";
             OnPropertyChanged(nameof(Favorite));
             
+        }
+
+        public void AddNotes(string notes)
+        {
+            Notes = notes;
+            OnPropertyChanged(nameof(Notes));
         }
     }
 }

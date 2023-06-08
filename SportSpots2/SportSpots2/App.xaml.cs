@@ -13,7 +13,7 @@ public partial class App : Application
         UserAppTheme = AppTheme.Light;
 
         MainPage = new AppShell();
-        //MainPage = new ViewSpot();
+        
 
         // tests 
         /*
@@ -32,8 +32,9 @@ public partial class App : Application
         */
 
         //MainPage = new SpotDetail(SpotStub.LoadSpots()[0]);
-        
 
+        //Spot s = SpotStub.LoadSpots()[0];
+        //MainPage = new SpotDetail(s);
 
 
 

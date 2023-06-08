@@ -5,10 +5,13 @@ namespace SportsSpots;
 
 public partial class SpotDetail : ContentPage
 {
+
+	Spot spot { get; set; }
+
 	public SpotDetail(Spot s)
 	{
-
-		BindingContext = s;
+		spot = s;
+		BindingContext = spot;
 
 		InitializeComponent();
 	}
@@ -18,7 +21,7 @@ public partial class SpotDetail : ContentPage
 		await Navigation.PopModalAsync();
 	}
 
-	private async void ClickedItinerary(object sender, EventArgs e)
+	private void ClickedItinerary(object sender, EventArgs e)
 	{
 		string userLocation = userLocationText.Text;		
         if(BindingContext is Spot sp)
@@ -28,4 +31,20 @@ public partial class SpotDetail : ContentPage
 		}
 
     }
+
+	private void ChangeNoteSpot(Object sender,EventArgs e)
+	{
+		if (Notes.Text == null || Notes.Text == "")
+			errorNotes.Text = "Entrez des caracteres ! ";
+
+		else
+		{
+			
+			
+			spot.AddNotes(Notes.Text);
+            errorNotes.Text = "";
+			Notes.Text = null;
+        }
+	}
+
 }
