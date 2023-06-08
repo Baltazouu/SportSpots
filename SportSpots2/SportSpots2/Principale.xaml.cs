@@ -189,15 +189,20 @@ public partial class Principale : ContentPage
         {
             if (img.BindingContext is Spot sp)
             {
-                sp.ChangeToggleFavorite();
 
+                Debug.WriteLine(sp.ToString());
                 Debug.WriteLine(sp.Favorite);
 
-                if(sp.Favorite == "starfilled.png")
+                sp.ChangeToggleFavorite();
+
+                if (sp.Favorite == "star.png")
                 {
-                    Binding.Utilisateur.AddToFavSpot(sp);
+                    Binding.Utilisateur.RemoveToFavSpot(sp);
+                    
                 }
-                else { Binding.Utilisateur.RemoveToFavSpot(sp);}
+                else { Binding.Utilisateur.AddToFavSpot(sp);  }
+
+                
             }
         }
         

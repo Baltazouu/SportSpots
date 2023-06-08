@@ -53,7 +53,8 @@ namespace Model
                 if (value == null || value.Length < 6 )
                 {
                     Console.WriteLine("Value null");
-                    throw new ArgumentException("Invalid Password ");
+                    return;
+                    //throw new ArgumentException("Invalid Password ");
                 }
                 _passwd = value;
                 OnPropertyChanged("Passwd");

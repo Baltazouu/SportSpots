@@ -15,7 +15,7 @@ public partial class Connexion : ContentPage
     Data Dt = new Data();
     DataContractJson jsonSource = new DataContractJson();
 
-    List<User> all;
+    List<User> all = new();
 
     public Connexion()
 	{

@@ -54,14 +54,28 @@ namespace SportsSpots
 
             SpotsFinded = new ObservableCollection<Spot>(await s.ExecuteSearch());
             
-            
-            foreach (var spot in SpotsFinded)
+            for(int i = 0; i < SpotsFinded.Count; i++)
             {
-                if (Utilisateur.FavSpots.Contains(spot))
+                for(int x = 0; x < Utilisateur.FavSpots.Count;x++)
                 {
-                    spot.ChangeToggleFavorite();
+                    if (SpotsFinded[i].Numero.Equals(Utilisateur.FavSpots[x].Numero))
+                    {
+                        SpotsFinded[i] = Utilisateur.FavSpots[x];
+                    }
                 }
             }
+
+            for (int i = 0; i < SpotsFinded.Count; i++)
+            {
+                for (int x = 0; x < Utilisateur.History.Count; x++)
+                {
+                    if (SpotsFinded[i].Numero.Equals(Utilisateur.History[x].Numero))
+                    {
+                        SpotsFinded[i] = Utilisateur.History[x];
+                    }
+                }
+            }
+
             OnPropertyChanged(nameof(SpotsFinded));
             
          

@@ -12,11 +12,11 @@ public partial class App : Application
 
         UserAppTheme = AppTheme.Light;
 
-        //MainPage = new AppShell();
+        MainPage = new AppShell();
         //MainPage = new ViewSpot();
 
         // tests 
-
+        /*
 		ObservableCollection<Sport> l = new ObservableCollection<Sport>();
 
         l.Insert(0, new Sport(1, "Terrain de Rugby", "Terrain de rugby", true, true, "rugby.png"));
@@ -29,7 +29,7 @@ public partial class App : Application
         User u = new(155, "testmail.com", "dadadada", null,null,null);
 
        MainPage = new Principale(u, new List<User>());
-
+        */
 
         //MainPage = new SpotDetail(SpotStub.LoadSpots()[0]);
         
