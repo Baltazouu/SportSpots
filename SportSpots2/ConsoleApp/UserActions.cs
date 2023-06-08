@@ -9,7 +9,7 @@ namespace ConsoleApp
         List<User> ALlUsers;
         IDataManager Dt;
 
-        Menue menue = new Menue();
+        Menu menue = new Menu();
 
         public UserActions(User u,List<User> all,IDataManager dt)
         {

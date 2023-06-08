@@ -14,12 +14,11 @@ namespace SportsSpots
         public ReadOnlyCollection<Sport> SportsAvaiblesCollection { get; } 
         public List<Sport> toSearch { get; set; } = new();
 
-        public  ObservableCollection<Spot> SpotsFinded { get; set; }
+        public  ObservableCollection<Spot> SpotsFinded { get; private set; }
         
         public string Town { get; set; }
 
         // ne marche pas quand bindée ??
-        public ReadOnlyCollection<Spot> collectionFinded;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -28,9 +27,7 @@ namespace SportsSpots
             Utilisateur = utilisateur;
 
             // test not works
-                        
-            SpotsFinded = new();
-            collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
+            
             SportsAvaiblesCollection = new ReadOnlyCollection<Sport>(SetFavoriteSports());
             
         }
@@ -43,9 +40,6 @@ namespace SportsSpots
             }
         }
 
-        public ImageSource Star { get;init; } = "star.png";
-        public ImageSource Starfilled { get; init; } = "starfilled.png";
-
         public async  Task ExecuteResearch(string town,int postalcode)
         {
             Search s = null;
@@ -56,35 +50,28 @@ namespace SportsSpots
             else s = new(town, toSearch);
 
             Town = town;
-            OnPropertyChanged("Town");
+            OnPropertyChanged(nameof(Town));
 
-            SpotsFinded = await s.ExecuteSearch();
-
+            SpotsFinded = new ObservableCollection<Spot>(await s.ExecuteSearch());
+            
+            
             foreach (var spot in SpotsFinded)
             {
-                foreach(var spot2 in Utilisateur.FavSpots)
-                    if(spot.Equals(spot2))
-                    {
-                        spot.Favorite = "starfilled.png";
-                    }
+                if (Utilisateur.FavSpots.Contains(spot))
+                {
+                    spot.ChangeToggleFavorite();
+                }
             }
-            collectionFinded = new ReadOnlyCollection<Spot>(SpotsFinded);
+            OnPropertyChanged(nameof(SpotsFinded));
             
-            OnPropertyChanged("SpotsFinded");
-            OnPropertyChanged("collectionFinded");
-
-            //debug test
-#if debug
+         
+#if DEBUG
             Debug.WriteLine("[Test Collection Finded]\n\n");
-            foreach (var spot in collectionFinded)
+            foreach (var spot in SpotsFinded)
                 Debug.WriteLine(spot.ToString());
+
+            Debug.WriteLine("Nombre de spots : {0}", SpotsFinded.Count);
 #endif
-
-
-            // debug test
-            //Debug.WriteLine("[Test Collection Finded]\n\n");
-            //foreach (var spot in collectionFinded)
-            //    Debug.WriteLine(spot.ToString());
         }
 
 
@@ -100,22 +87,12 @@ namespace SportsSpots
                     }
                 }
             }
+
             SportsAvaibles.OrderByDescending(s => s.Favorite == "starfilled.png").ToList();
-            return SportsAvaibles;
+            return SportsAvaibles; 
+
         }
-
-        public void UpdatedSpotFinded()
-        {
-            OnPropertyChanged("SpotsFinded");
-
-            // c'est dégeulasse, mais ça marchait pas autrement
-            // à corriger à l'occasion !
-            SpotsFinded = new ObservableCollection<Spot>(SpotsFinded);
-        }
-
-
-
-       
-
+            
+        
     }
 }

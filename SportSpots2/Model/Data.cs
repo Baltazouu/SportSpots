@@ -70,6 +70,7 @@ namespace Model
                 {
                     if (user.Mail == mail && user.Passwd == pass) 
                        return true;
+                    
                 }
             }
             catch (Exception)

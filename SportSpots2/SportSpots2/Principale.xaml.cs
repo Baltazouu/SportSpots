@@ -4,6 +4,7 @@ using Microsoft.Maui.Graphics;
 using Microsoft.VisualBasic;
 using Persistance;
 using System.Diagnostics;
+
 namespace SportsSpots;
 
 /// <summary>
@@ -27,7 +28,6 @@ public partial class Principale : ContentPage
         BindingContext = Binding;
         InitializeComponent();
         All = allusers;
-
 
     }
 
@@ -184,25 +184,23 @@ public partial class Principale : ContentPage
     /// <param name="e"></param>
     public void OnClickedStar(object sender, EventArgs e)
     {
-        if (sender is Image img)
+        
+        if(sender is Image img)
         {
-            Spot sp = (Spot)img.BindingContext;
-
-            if (sp.Favorite == "star.png")
+            if (img.BindingContext is Spot sp)
             {
-                sp.Favorite = "starfilled.png";
-                Binding.Utilisateur.AddToFavSpot(sp);
-                Binding.UpdatedSpotFinded();
-            }
-            else
-            {
-                sp.Favorite = "star.png";
-                Binding.Utilisateur.RemoveToFavSpot(sp);
-                Binding.UpdatedSpotFinded();
-            }
+                sp.ChangeToggleFavorite();
 
+                Debug.WriteLine(sp.Favorite);
+
+                if(sp.Favorite == "starfilled.png")
+                {
+                    Binding.Utilisateur.AddToFavSpot(sp);
+                }
+                else { Binding.Utilisateur.RemoveToFavSpot(sp);}
+            }
         }
-                        
+        
     }
   
 

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace Model
@@ -6,7 +8,7 @@ namespace Model
    /// <summary>
    /// Spot class (result of API data-es requests)
    /// </summary>
-    public class Spot
+    public class Spot : INotifyPropertyChanged
     {
         [DataMember(Name = "commune")]
         public string? NomCommune { get; init; }
@@ -79,6 +81,8 @@ namespace Model
             UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y}%2C{Coord_x}&layer=mapnik";
         }
 
+
+
         public string Restauration_image
         {
             get
@@ -101,6 +105,13 @@ namespace Model
             }
         }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+
+        public void OnPropertyChanged([CallerMemberName] string pname = "")
+            => PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(pname));
+        
+
         public bool Equals(Spot other)
             => Numero.Equals(other.Numero);
 
@@ -109,5 +120,16 @@ namespace Model
             return $"Spot : {Name}  {Family} {NomCommune} {Adress} {Dept} {PostalCode}";
         }
 
+
+        public void ChangeToggleFavorite()
+        {
+            if (Favorite == "star.png")
+            {
+                Favorite = "starfilled.png";
+            }
+            else Favorite = "star.png";
+            OnPropertyChanged(nameof(Favorite));
+            
+        }
     }
 }

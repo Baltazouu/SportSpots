@@ -53,7 +53,7 @@ namespace Model
                 if (value == null || value.Length < 6 )
                 {
                     Console.WriteLine("Value null");
-                    //throw new ArgumentException("Invalid Password ");
+                    throw new ArgumentException("Invalid Password ");
                 }
                 _passwd = value;
                 OnPropertyChanged("Passwd");
@@ -61,7 +61,7 @@ namespace Model
         }
 
         [DataMember(EmitDefaultValue = false)]
-        public ObservableCollection<Spot> FavSpots { get; set; }
+        public ObservableCollection<Spot> FavSpots { get; private set; }
 
         [DataMember(EmitDefaultValue = false)]
         public ObservableCollection<Sport> Favsports { get;  set; }
@@ -162,8 +162,6 @@ namespace Model
             if (!present)
             {
                 FavSpots.Add(spot);
-                OnPropertyChanged("FavSpots");
-                OnPropertyChanged("Favorite");
                 return true;
             }
             return false;
@@ -188,7 +186,6 @@ namespace Model
             if (!present)
             {
                 Favsports.Add(sport);
-                OnPropertyChanged("Favsports");
                 return true;
             }
             return false;
@@ -207,8 +204,6 @@ namespace Model
                 if (sp.Numero == spot.Numero)
                 {
                     FavSpots.Remove(sp);
-                    OnPropertyChanged("FavSpots");
-                    OnPropertyChanged("Favorite");
                     return true;
                     
                 }
@@ -262,6 +257,9 @@ namespace Model
         {
             return $"{Mail} {Id}";
         }
+
+
+       
 
         /// <summary>
         /// Add Spot to history method

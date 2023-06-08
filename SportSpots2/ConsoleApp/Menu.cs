@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace ConsoleApp
 {
-    internal class Menue
+    internal class Menu
     {
 
         public void Actions()
