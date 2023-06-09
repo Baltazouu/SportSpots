@@ -152,20 +152,18 @@ namespace Model
         /// <returns>boolean result of operation</returns>
         public bool AddToFavSpot(Spot spot)
         {
-            bool present = false;
+            
             foreach (Spot sp in FavSpots)
             {
-                if (sp.Numero == spot.Numero)
+                if (sp.Equals(spot))
                 {
-                    present = true;
+                    return false;
                 }
             }
-            if (!present)
-            {
-                FavSpots.Add(spot);
-                return true;
-            }
-            return false;
+
+            FavSpots.Add(spot);
+            return true;
+            
 
         }
 

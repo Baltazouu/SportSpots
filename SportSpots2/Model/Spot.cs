@@ -13,7 +13,7 @@ namespace Model
         [DataMember(Name = "commune")]
         public string? NomCommune { get; init; }
         [DataMember(Name = "SpotNum")]
-        public int?Numero { get; init; }
+        public string?Numero { get; init; }
         [DataMember(Name = "SpotName")]
         public string?Name { get; init; }
         [DataMember(Name = "SpotFamily")]
@@ -63,7 +63,7 @@ namespace Model
         /// <param name="asccessHandicap">boolean accessiblity for handicap persons</param>
         /// <param name="restauration">boolean is restauration avaible on the site</param>
         /// <param name="publicAccess">boolean is the spot in public access</param>
-        public Spot(int? numero, string? nomcomm, string? nom, string? family,
+        public Spot(string? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,
                     string? coord_x, string? coord_y, bool asccessHandicap,
                     bool restauration, bool publicAccess)
@@ -130,7 +130,8 @@ namespace Model
             {
                 Favorite = "starfilled.png";
             }
-            else Favorite = "star.png";
+            else if(Favorite == "starfilled.png")
+            { Favorite = "star.png"; } 
             OnPropertyChanged(nameof(Favorite));
             
         }

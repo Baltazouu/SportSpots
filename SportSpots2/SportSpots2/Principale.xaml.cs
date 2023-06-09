@@ -202,7 +202,7 @@ public partial class Principale : ContentPage
                 }
                 else { Binding.Utilisateur.AddToFavSpot(sp);  }
 
-                
+                Dt.SaveData(JsonSource, All);
             }
         }
         

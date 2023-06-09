@@ -158,7 +158,7 @@ namespace Model
                     Debug.WriteLine("Code Insee {0}",apires?["records"]?[i]?["fields"]?["codeinsee"]?.Value<int>());
                     Debug.WriteLine("Nom commune : {0}",apires?["records"]?[i]?["fields"]?["nom_commune"]?.Value<string>());
 
-                    int? codeInsee = apires?["records"]?[i]?["fields"]?["codeinsee"]?.Value<int>();
+                    string? codeInsee = apires?["records"]?[i]?["fields"]?["numinstallation"]?.Value<string>();
                     string? nomCommune = apires?["records"]?[i]?["fields"]?["nom_commune"]?.Value<string>();
                     string? nomInstall = apires?["records"]?[i]?["fields"]?["nominstallation"]?.Value<string>();
                     string? family = apires?["records"]?[i]?["fields"]?["famille"]?.Value<string>();

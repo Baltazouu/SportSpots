@@ -98,7 +98,8 @@
                 <Frame BackgroundColor="White" BorderColor="Gray" CornerRadius="5" Padding="9,10,10,10" HasShadow="True" VerticalOptions="Fill" HeightRequest="200">
 
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <ListView ItemsSource="{Binding Utilisateur.FavSpots}" HasUnevenRows="True">
+                        <ListView ItemsSource="{Binding Utilisateur.FavSpots}">
+                            <!--  HasUnevenRows="True"-->
                             <ListView.ItemTemplate>
                                 <DataTemplate >
                                     <ViewCell >
