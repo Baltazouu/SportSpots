@@ -15,7 +15,7 @@ namespace Model
 
         //public IReadOnlyCollection<Sport> avaibles {  get; private set; }
 
-        readonly ObservableCollection<Sport> avaibleS;
+        public readonly ObservableCollection<Sport> avaibleS;
         
         public SportsManager()
         {

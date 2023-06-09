@@ -50,7 +50,7 @@ namespace Model
         /// <param name="all"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool SaveUser(List<User> all)
+        public bool SaveUser(List<User> users)
         {
             throw new NotImplementedException("Error Not Possible to save in userStub");
         }
