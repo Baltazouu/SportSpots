@@ -319,13 +319,8 @@ public partial class Principale : ContentPage
                 Dt.SaveData(JsonSource, All);
 
 
-                SpotDetail detail = new SpotDetail(s);
-
-                
-       
-
-                //await Navigation.PushAsync(detail);// modal en attendant
-                await Navigation.PushModalAsync(new SpotDetail(s));
+                //await Navigation.PushAsync(detail);//
+                await Navigation.PushModalAsync(new SpotDetail(s, Binding.Utilisateur,Dt,JsonSource,All));
 
             }
         }

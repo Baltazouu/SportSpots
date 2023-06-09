@@ -45,7 +45,7 @@ namespace Model
         public string UrlLink { get; init; }
 
         [DataMember(Name = "Notes")]
-        public string Notes { get; private set; }
+        public string?Notes { get; private set; }
 
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Model
         public Spot(string? numero, string? nomcomm, string? nom, string? family,
                     string? adress, int? postalcode, string? dept,
                     string? coord_x, string? coord_y, bool asccessHandicap,
-                    bool restauration, bool publicAccess)
+                    bool restauration, bool publicAccess,string ?notes)
         {
             NomCommune = nomcomm;
             Numero = numero;
@@ -82,6 +82,7 @@ namespace Model
             Dept = dept;
             Favorite = "star.png";
             UrlLink = $"https://www.openstreetmap.org/export/embed.html?bbox={Coord_y}%2C{Coord_x}&layer=mapnik";
+            Notes = notes;
         }
 
 

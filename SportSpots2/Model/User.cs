@@ -179,15 +179,12 @@ namespace Model
             {
                 if (sp.Numero == sport.Numero)
                 {
-                    present = true;
+                    return false;
                 }
             }
-            if (!present)
-            {
-                Favsports.Add(sport);
-                return true;
-            }
-            return false;
+            Favsports.Add(sport);
+            return true;
+            
         }
 
         /// <summary>
@@ -284,6 +281,17 @@ namespace Model
              }
 
             
+        }
+
+
+        public bool SpotPresentToFav(Spot sp)
+        {
+            foreach(Spot s in FavSpots)
+            {
+                if(s.Equals(sp))
+                    return true;
+            }
+            return false;
         }
         
     }

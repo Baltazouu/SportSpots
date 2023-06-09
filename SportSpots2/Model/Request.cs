@@ -85,7 +85,7 @@ namespace Model
                 Debug.WriteLine("Link API {0}", ApiLink);
 
 
-                _httpclient.Timeout = TimeSpan.FromMinutes(2);
+                _httpclient.Timeout = TimeSpan.FromSeconds(30);
                 string s = await _httpclient.GetStringAsync(ApiLink);
                 
                 //HttpResponseMessage response = await _httpclient.GetAsync(ApiLink);
@@ -179,13 +179,13 @@ namespace Model
                                            coord_y,
                                            ac_handic,
                                            ac_restauration,
-                                           ac_free));
+                                           ac_free,null));
 
 
                     Debug.WriteLine(res[i].ToString());
                 }
 
-                
+                Res = res.ToList();
                 return res;
             }
             catch (Exception e)
