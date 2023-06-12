@@ -29,7 +29,7 @@ namespace Model
         /// </summary>
         /// <param name="Dtmanager">IDataManager Implemented</param>
         /// <returns></returns>
-        public (bool,List<User>) LoadData(IDataManager Dtmanager)
+        public (bool,List<User>?) LoadData(IDataManager Dtmanager)
         {
             return Dtmanager.LoadUser();
         }
@@ -61,11 +61,11 @@ namespace Model
         /// <returns>true if the mail exist and if the pass is associate to this mail</returns>
         public bool CheckRightPass(string mail, string pass, List<User> u)
         {
-            //User find;
+            
             if(u==null || u.Count==0) { return false; }
             try
             {
-                //find = u.Where(n => n.Mail == mail && n.Passwd == pass).First();
+                
                 foreach(var user in u)
                 {
                     if (user.Mail == mail && user.Passwd == pass) 
@@ -116,8 +116,7 @@ namespace Model
                 if(user.Id > max)
                     max = user.Id;
             return max+1;
-            //int val =  all.Max(user =>user.Id)+ 1;
-            //return val;
+           
         }
 
         /// <summary>
@@ -142,9 +141,6 @@ namespace Model
             return s.LoadSports();
         }
     }
-
-   
-   
 }
 
 

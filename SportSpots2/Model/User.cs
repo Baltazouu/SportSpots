@@ -163,8 +163,6 @@ namespace Model
 
             FavSpots.Add(spot);
             return true;
-            
-
         }
 
         /// <summary>
@@ -174,7 +172,6 @@ namespace Model
         /// <returns>result of operation</returns>
         public bool AddSToFavSport(Sport sport)
         {
-            bool present = false;
             foreach (Sport sp in Favsports)
             {
                 if (sp.Numero == sport.Numero)
@@ -254,9 +251,6 @@ namespace Model
             return $"{Mail} {Id}";
         }
 
-
-       
-
         /// <summary>
         /// Add Spot to history method
         /// When history.count equals 10 the older is removed of the list
@@ -282,7 +276,6 @@ namespace Model
 
             
         }
-
 
         public bool SpotPresentToFav(Spot sp)
         {

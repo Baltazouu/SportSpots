@@ -263,7 +263,7 @@ public partial class Principale : ContentPage
             return;
         }
 
-        if(NewTextPassword.Text == null || ActualPassword.Text.Length > 6)
+        if(NewTextPassword.Text == null )
         {
             errorNewPasswordLabel.Text = "Entrez Un Nouveau Mot de passe d'au moins 6 caratères";
             return;
@@ -281,7 +281,7 @@ public partial class Principale : ContentPage
         {
             if (newPassword == confirmNewPassword)
             {
-                if (NewTextPassword.Text.Length >= 6)
+                if (NewTextPassword.Text.Length > 5)
                 {
                     Binding.Utilisateur.ChangePasswd(newPassword);
 
